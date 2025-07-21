@@ -76,6 +76,9 @@
     <Compile Include="Materia.cs">
       <DependentUpon>LBA.tt</DependentUpon>
     </Compile>
+    <Compile Include="Matricula.cs">
+      <DependentUpon>LBA.tt</DependentUpon>
+    </Compile>
     <Compile Include="Nota.cs">
       <DependentUpon>LBA.tt</DependentUpon>
     </Compile>

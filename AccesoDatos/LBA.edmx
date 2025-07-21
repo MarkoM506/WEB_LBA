@@ -70,6 +70,67 @@
           <Property Name="id_profesor" Type="int" Nullable="false" />
           <Property Name="id_materia" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="Matriculas">
+          <Key>
+            <PropertyRef Name="id_matricula" />
+          </Key>
+          <Property Name="id_matricula" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre_estudiante" Type="varchar" MaxLength="100" />
+          <Property Name="cedula_estudiante" Type="varchar" MaxLength="20" />
+          <Property Name="fecha_nacimiento" Type="date" />
+          <Property Name="genero" Type="varchar" MaxLength="20" />
+          <Property Name="nacionalidad_estudiante" Type="varchar" MaxLength="50" />
+          <Property Name="lugar_nacimiento" Type="varchar" MaxLength="100" />
+          <Property Name="tipo_agrupamiento" Type="varchar" MaxLength="20" />
+          <Property Name="modalidad_ingreso" Type="varchar" MaxLength="50" />
+          <Property Name="escuela_procedencia" Type="varchar" MaxLength="100" />
+          <Property Name="distrito_donde_vive" Type="varchar" MaxLength="100" />
+          <Property Name="pueblo_donde_vive" Type="varchar" MaxLength="100" />
+          <Property Name="telefono_estudiante" Type="varchar" MaxLength="20" />
+          <Property Name="correo_electronico_estudiante" Type="varchar" MaxLength="100" />
+          <Property Name="nivel_academico" Type="varchar" MaxLength="20" />
+          <Property Name="grado_academico" Type="varchar" MaxLength="20" />
+          <Property Name="modalidad_academica" Type="varchar" MaxLength="50" />
+          <Property Name="recibe_ayuda_economica" Type="bit" />
+          <Property Name="tipo_ayuda" Type="varchar" MaxLength="100" />
+          <Property Name="nombre_madre" Type="varchar" MaxLength="100" />
+          <Property Name="cedula_madre" Type="varchar" MaxLength="20" />
+          <Property Name="nacionalidad_madre" Type="varchar" MaxLength="50" />
+          <Property Name="telefono_madre" Type="varchar" MaxLength="20" />
+          <Property Name="escolaridad_madre" Type="varchar" MaxLength="100" />
+          <Property Name="direccion_madre" Type="varchar" MaxLength="200" />
+          <Property Name="nombre_padre" Type="varchar" MaxLength="100" />
+          <Property Name="cedula_padre" Type="varchar" MaxLength="20" />
+          <Property Name="nacionalidad_padre" Type="varchar" MaxLength="50" />
+          <Property Name="telefono_padre" Type="varchar" MaxLength="20" />
+          <Property Name="escolaridad_padre" Type="varchar" MaxLength="100" />
+          <Property Name="direccion_padre" Type="varchar" MaxLength="200" />
+          <Property Name="nombre_encargado" Type="varchar" MaxLength="100" />
+          <Property Name="cedula_encargado" Type="varchar" MaxLength="20" />
+          <Property Name="nacionalidad_encargado" Type="varchar" MaxLength="50" />
+          <Property Name="telefono_encargado" Type="varchar" MaxLength="20" />
+          <Property Name="escolaridad_encargado" Type="varchar" MaxLength="100" />
+          <Property Name="direccion_encargado" Type="varchar" MaxLength="200" />
+          <Property Name="autorizados_nombre1" Type="varchar" MaxLength="100" />
+          <Property Name="autorizados_cedula1" Type="varchar" MaxLength="20" />
+          <Property Name="autorizados_telefono1" Type="varchar" MaxLength="20" />
+          <Property Name="autorizados_nombre2" Type="varchar" MaxLength="100" />
+          <Property Name="autorizados_cedula2" Type="varchar" MaxLength="20" />
+          <Property Name="autorizados_telefono2" Type="varchar" MaxLength="20" />
+          <Property Name="autorizados_nombre3" Type="varchar" MaxLength="100" />
+          <Property Name="autorizados_cedula3" Type="varchar" MaxLength="20" />
+          <Property Name="autorizados_telefono3" Type="varchar" MaxLength="20" />
+          <Property Name="permiso_educacion_religiosa" Type="bit" />
+          <Property Name="permiso_salidas_libres" Type="bit" />
+          <Property Name="permiso_imagenes" Type="bit" />
+          <Property Name="permiso_autoriza_otro_retirar" Type="bit" />
+          <Property Name="comentario_adicional" Type="text" />
+          <Property Name="firma_padre_madre" Type="varchar" MaxLength="100" />
+          <Property Name="cedula_firma" Type="varchar" MaxLength="20" />
+          <Property Name="nombre_funcionario" Type="varchar" MaxLength="100" />
+          <Property Name="fecha_firma" Type="date" />
+          <Property Name="fecha_registro" Type="datetime" />
+        </EntityType>
         <EntityType Name="Notas">
           <Key>
             <PropertyRef Name="id_nota" />
@@ -551,6 +612,47 @@ advertencia 6002: La tabla o vista 'Liceo_BA.dbo.vista_notas_estudiantes' no tie
         <Function Name="SP_insMateria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="nombre_materia" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="SP_insMatricula" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nombre_estudiante" Type="varchar" Mode="In" />
+          <Parameter Name="cedula_estudiante" Type="varchar" Mode="In" />
+          <Parameter Name="fecha_nacimiento" Type="date" Mode="In" />
+          <Parameter Name="genero" Type="varchar" Mode="In" />
+          <Parameter Name="nacionalidad_estudiante" Type="varchar" Mode="In" />
+          <Parameter Name="lugar_nacimiento" Type="varchar" Mode="In" />
+          <Parameter Name="tipo_agrupamiento" Type="varchar" Mode="In" />
+          <Parameter Name="modalidad_ingreso" Type="varchar" Mode="In" />
+          <Parameter Name="escuela_procedencia" Type="varchar" Mode="In" />
+          <Parameter Name="distrito_donde_vive" Type="varchar" Mode="In" />
+          <Parameter Name="pueblo_donde_vive" Type="varchar" Mode="In" />
+          <Parameter Name="telefono_estudiante" Type="varchar" Mode="In" />
+          <Parameter Name="correo_electronico_estudiante" Type="varchar" Mode="In" />
+          <Parameter Name="nivel_academico" Type="varchar" Mode="In" />
+          <Parameter Name="grado_academico" Type="varchar" Mode="In" />
+          <Parameter Name="modalidad_academica" Type="varchar" Mode="In" />
+          <Parameter Name="recibe_ayuda_economica" Type="bit" Mode="In" />
+          <Parameter Name="tipo_ayuda" Type="varchar" Mode="In" />
+          <Parameter Name="nombre_madre" Type="varchar" Mode="In" />
+          <Parameter Name="cedula_madre" Type="varchar" Mode="In" />
+          <Parameter Name="nacionalidad_madre" Type="varchar" Mode="In" />
+          <Parameter Name="telefono_madre" Type="varchar" Mode="In" />
+          <Parameter Name="escolaridad_madre" Type="varchar" Mode="In" />
+          <Parameter Name="direccion_madre" Type="varchar" Mode="In" />
+          <Parameter Name="nombre_padre" Type="varchar" Mode="In" />
+          <Parameter Name="cedula_padre" Type="varchar" Mode="In" />
+          <Parameter Name="nacionalidad_padre" Type="varchar" Mode="In" />
+          <Parameter Name="telefono_padre" Type="varchar" Mode="In" />
+          <Parameter Name="escolaridad_padre" Type="varchar" Mode="In" />
+          <Parameter Name="direccion_padre" Type="varchar" Mode="In" />
+          <Parameter Name="permiso_educacion_religiosa" Type="bit" Mode="In" />
+          <Parameter Name="permiso_salidas_libres" Type="bit" Mode="In" />
+          <Parameter Name="permiso_imagenes" Type="bit" Mode="In" />
+          <Parameter Name="permiso_autoriza_otro_retirar" Type="bit" Mode="In" />
+          <Parameter Name="comentario_adicional" Type="text" Mode="In" />
+          <Parameter Name="firma_padre_madre" Type="varchar" Mode="In" />
+          <Parameter Name="cedula_firma" Type="varchar" Mode="In" />
+          <Parameter Name="nombre_funcionario" Type="varchar" Mode="In" />
+          <Parameter Name="fecha_firma" Type="date" Mode="In" />
+        </Function>
         <Function Name="SP_insNota" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id_estudiante" Type="int" Mode="In" />
           <Parameter Name="id_materia" Type="int" Mode="In" />
@@ -747,6 +849,7 @@ advertencia 6002: La tabla o vista 'Liceo_BA.dbo.vista_notas_estudiantes' no tie
           <EntitySet Name="Horarios" EntityType="Self.Horarios" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Materias" EntityType="Self.Materias" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Materias_Profesores" EntityType="Self.Materias_Profesores" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Matriculas" EntityType="Self.Matriculas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Notas" EntityType="Self.Notas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Notas_Estandarizadas" EntityType="Self.Notas_Estandarizadas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NotasEstandarizadas" EntityType="Self.NotasEstandarizadas" Schema="dbo" store:Type="Tables" />
@@ -967,6 +1070,67 @@ advertencia 6002: La tabla o vista 'Liceo_BA.dbo.vista_notas_estudiantes' no tie
           <NavigationProperty Name="Notas_Estandarizadas" Relationship="Self.FK__Notas_Est__id_ma__42E1EEFE" FromRole="Materias" ToRole="Notas_Estandarizadas" />
           <NavigationProperty Name="NotasEstandarizadas" Relationship="Self.FK__NotasEsta__id_ma__0A688BB1" FromRole="Materias" ToRole="NotasEstandarizadas" />
           <NavigationProperty Name="Profesores" Relationship="Self.Materias_Profesores" FromRole="Materias" ToRole="Profesores" />
+        </EntityType>
+        <EntityType Name="Matricula">
+          <Key>
+            <PropertyRef Name="id_matricula" />
+          </Key>
+          <Property Name="id_matricula" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre_estudiante" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="cedula_estudiante" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_nacimiento" Type="DateTime" Precision="0" />
+          <Property Name="genero" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="nacionalidad_estudiante" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="lugar_nacimiento" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="tipo_agrupamiento" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="modalidad_ingreso" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="escuela_procedencia" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="distrito_donde_vive" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="pueblo_donde_vive" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="telefono_estudiante" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="correo_electronico_estudiante" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="nivel_academico" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="grado_academico" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="modalidad_academica" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="recibe_ayuda_economica" Type="Boolean" />
+          <Property Name="tipo_ayuda" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="nombre_madre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="cedula_madre" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="nacionalidad_madre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="telefono_madre" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="escolaridad_madre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="direccion_madre" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="nombre_padre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="cedula_padre" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="nacionalidad_padre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="telefono_padre" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="escolaridad_padre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="direccion_padre" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="nombre_encargado" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="cedula_encargado" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="nacionalidad_encargado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="telefono_encargado" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="escolaridad_encargado" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="direccion_encargado" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="autorizados_nombre1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="autorizados_cedula1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="autorizados_telefono1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="autorizados_nombre2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="autorizados_cedula2" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="autorizados_telefono2" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="autorizados_nombre3" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="autorizados_cedula3" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="autorizados_telefono3" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="permiso_educacion_religiosa" Type="Boolean" />
+          <Property Name="permiso_salidas_libres" Type="Boolean" />
+          <Property Name="permiso_imagenes" Type="Boolean" />
+          <Property Name="permiso_autoriza_otro_retirar" Type="Boolean" />
+          <Property Name="comentario_adicional" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="firma_padre_madre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="cedula_firma" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="nombre_funcionario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_firma" Type="DateTime" Precision="0" />
+          <Property Name="fecha_registro" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="Nota">
           <Key>
@@ -1362,6 +1526,7 @@ advertencia 6002: La tabla o vista 'Liceo_BA.dbo.vista_notas_estudiantes' no tie
           <EntitySet Name="Estudiantes" EntityType="Self.Estudiante" />
           <EntitySet Name="Horarios" EntityType="Self.Horario" />
           <EntitySet Name="Materias" EntityType="Self.Materia" />
+          <EntitySet Name="Matriculas" EntityType="Self.Matricula" />
           <EntitySet Name="Notas" EntityType="Self.Nota" />
           <EntitySet Name="Notas_Estandarizadas" EntityType="Self.Notas_Estandarizadas" />
           <EntitySet Name="NotasEstandarizadas" EntityType="Self.NotasEstandarizada" />
@@ -1523,6 +1688,47 @@ advertencia 6002: La tabla o vista 'Liceo_BA.dbo.vista_notas_estudiantes' no tie
           </FunctionImport>
           <FunctionImport Name="SP_insMateria">
             <Parameter Name="nombre_materia" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_insMatricula">
+            <Parameter Name="nombre_estudiante" Mode="In" Type="String" />
+            <Parameter Name="cedula_estudiante" Mode="In" Type="String" />
+            <Parameter Name="fecha_nacimiento" Mode="In" Type="DateTime" />
+            <Parameter Name="genero" Mode="In" Type="String" />
+            <Parameter Name="nacionalidad_estudiante" Mode="In" Type="String" />
+            <Parameter Name="lugar_nacimiento" Mode="In" Type="String" />
+            <Parameter Name="tipo_agrupamiento" Mode="In" Type="String" />
+            <Parameter Name="modalidad_ingreso" Mode="In" Type="String" />
+            <Parameter Name="escuela_procedencia" Mode="In" Type="String" />
+            <Parameter Name="distrito_donde_vive" Mode="In" Type="String" />
+            <Parameter Name="pueblo_donde_vive" Mode="In" Type="String" />
+            <Parameter Name="telefono_estudiante" Mode="In" Type="String" />
+            <Parameter Name="correo_electronico_estudiante" Mode="In" Type="String" />
+            <Parameter Name="nivel_academico" Mode="In" Type="String" />
+            <Parameter Name="grado_academico" Mode="In" Type="String" />
+            <Parameter Name="modalidad_academica" Mode="In" Type="String" />
+            <Parameter Name="recibe_ayuda_economica" Mode="In" Type="Boolean" />
+            <Parameter Name="tipo_ayuda" Mode="In" Type="String" />
+            <Parameter Name="nombre_madre" Mode="In" Type="String" />
+            <Parameter Name="cedula_madre" Mode="In" Type="String" />
+            <Parameter Name="nacionalidad_madre" Mode="In" Type="String" />
+            <Parameter Name="telefono_madre" Mode="In" Type="String" />
+            <Parameter Name="escolaridad_madre" Mode="In" Type="String" />
+            <Parameter Name="direccion_madre" Mode="In" Type="String" />
+            <Parameter Name="nombre_padre" Mode="In" Type="String" />
+            <Parameter Name="cedula_padre" Mode="In" Type="String" />
+            <Parameter Name="nacionalidad_padre" Mode="In" Type="String" />
+            <Parameter Name="telefono_padre" Mode="In" Type="String" />
+            <Parameter Name="escolaridad_padre" Mode="In" Type="String" />
+            <Parameter Name="direccion_padre" Mode="In" Type="String" />
+            <Parameter Name="permiso_educacion_religiosa" Mode="In" Type="Boolean" />
+            <Parameter Name="permiso_salidas_libres" Mode="In" Type="Boolean" />
+            <Parameter Name="permiso_imagenes" Mode="In" Type="Boolean" />
+            <Parameter Name="permiso_autoriza_otro_retirar" Mode="In" Type="Boolean" />
+            <Parameter Name="comentario_adicional" Mode="In" Type="String" />
+            <Parameter Name="firma_padre_madre" Mode="In" Type="String" />
+            <Parameter Name="cedula_firma" Mode="In" Type="String" />
+            <Parameter Name="nombre_funcionario" Mode="In" Type="String" />
+            <Parameter Name="fecha_firma" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="SP_insNota">
             <Parameter Name="id_estudiante" Mode="In" Type="Int32" />
@@ -2053,6 +2259,68 @@ advertencia 6002: La tabla o vista 'Liceo_BA.dbo.vista_notas_estudiantes' no tie
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Matriculas">
+            <EntityTypeMapping TypeName="L_BAModel.Matricula">
+              <MappingFragment StoreEntitySet="Matriculas">
+                <ScalarProperty Name="id_matricula" ColumnName="id_matricula" />
+                <ScalarProperty Name="nombre_estudiante" ColumnName="nombre_estudiante" />
+                <ScalarProperty Name="cedula_estudiante" ColumnName="cedula_estudiante" />
+                <ScalarProperty Name="fecha_nacimiento" ColumnName="fecha_nacimiento" />
+                <ScalarProperty Name="genero" ColumnName="genero" />
+                <ScalarProperty Name="nacionalidad_estudiante" ColumnName="nacionalidad_estudiante" />
+                <ScalarProperty Name="lugar_nacimiento" ColumnName="lugar_nacimiento" />
+                <ScalarProperty Name="tipo_agrupamiento" ColumnName="tipo_agrupamiento" />
+                <ScalarProperty Name="modalidad_ingreso" ColumnName="modalidad_ingreso" />
+                <ScalarProperty Name="escuela_procedencia" ColumnName="escuela_procedencia" />
+                <ScalarProperty Name="distrito_donde_vive" ColumnName="distrito_donde_vive" />
+                <ScalarProperty Name="pueblo_donde_vive" ColumnName="pueblo_donde_vive" />
+                <ScalarProperty Name="telefono_estudiante" ColumnName="telefono_estudiante" />
+                <ScalarProperty Name="correo_electronico_estudiante" ColumnName="correo_electronico_estudiante" />
+                <ScalarProperty Name="nivel_academico" ColumnName="nivel_academico" />
+                <ScalarProperty Name="grado_academico" ColumnName="grado_academico" />
+                <ScalarProperty Name="modalidad_academica" ColumnName="modalidad_academica" />
+                <ScalarProperty Name="recibe_ayuda_economica" ColumnName="recibe_ayuda_economica" />
+                <ScalarProperty Name="tipo_ayuda" ColumnName="tipo_ayuda" />
+                <ScalarProperty Name="nombre_madre" ColumnName="nombre_madre" />
+                <ScalarProperty Name="cedula_madre" ColumnName="cedula_madre" />
+                <ScalarProperty Name="nacionalidad_madre" ColumnName="nacionalidad_madre" />
+                <ScalarProperty Name="telefono_madre" ColumnName="telefono_madre" />
+                <ScalarProperty Name="escolaridad_madre" ColumnName="escolaridad_madre" />
+                <ScalarProperty Name="direccion_madre" ColumnName="direccion_madre" />
+                <ScalarProperty Name="nombre_padre" ColumnName="nombre_padre" />
+                <ScalarProperty Name="cedula_padre" ColumnName="cedula_padre" />
+                <ScalarProperty Name="nacionalidad_padre" ColumnName="nacionalidad_padre" />
+                <ScalarProperty Name="telefono_padre" ColumnName="telefono_padre" />
+                <ScalarProperty Name="escolaridad_padre" ColumnName="escolaridad_padre" />
+                <ScalarProperty Name="direccion_padre" ColumnName="direccion_padre" />
+                <ScalarProperty Name="nombre_encargado" ColumnName="nombre_encargado" />
+                <ScalarProperty Name="cedula_encargado" ColumnName="cedula_encargado" />
+                <ScalarProperty Name="nacionalidad_encargado" ColumnName="nacionalidad_encargado" />
+                <ScalarProperty Name="telefono_encargado" ColumnName="telefono_encargado" />
+                <ScalarProperty Name="escolaridad_encargado" ColumnName="escolaridad_encargado" />
+                <ScalarProperty Name="direccion_encargado" ColumnName="direccion_encargado" />
+                <ScalarProperty Name="autorizados_nombre1" ColumnName="autorizados_nombre1" />
+                <ScalarProperty Name="autorizados_cedula1" ColumnName="autorizados_cedula1" />
+                <ScalarProperty Name="autorizados_telefono1" ColumnName="autorizados_telefono1" />
+                <ScalarProperty Name="autorizados_nombre2" ColumnName="autorizados_nombre2" />
+                <ScalarProperty Name="autorizados_cedula2" ColumnName="autorizados_cedula2" />
+                <ScalarProperty Name="autorizados_telefono2" ColumnName="autorizados_telefono2" />
+                <ScalarProperty Name="autorizados_nombre3" ColumnName="autorizados_nombre3" />
+                <ScalarProperty Name="autorizados_cedula3" ColumnName="autorizados_cedula3" />
+                <ScalarProperty Name="autorizados_telefono3" ColumnName="autorizados_telefono3" />
+                <ScalarProperty Name="permiso_educacion_religiosa" ColumnName="permiso_educacion_religiosa" />
+                <ScalarProperty Name="permiso_salidas_libres" ColumnName="permiso_salidas_libres" />
+                <ScalarProperty Name="permiso_imagenes" ColumnName="permiso_imagenes" />
+                <ScalarProperty Name="permiso_autoriza_otro_retirar" ColumnName="permiso_autoriza_otro_retirar" />
+                <ScalarProperty Name="comentario_adicional" ColumnName="comentario_adicional" />
+                <ScalarProperty Name="firma_padre_madre" ColumnName="firma_padre_madre" />
+                <ScalarProperty Name="cedula_firma" ColumnName="cedula_firma" />
+                <ScalarProperty Name="nombre_funcionario" ColumnName="nombre_funcionario" />
+                <ScalarProperty Name="fecha_firma" ColumnName="fecha_firma" />
+                <ScalarProperty Name="fecha_registro" ColumnName="fecha_registro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Notas">
             <EntityTypeMapping TypeName="L_BAModel.Nota">
               <MappingFragment StoreEntitySet="Notas">
@@ -2212,6 +2480,7 @@ advertencia 6002: La tabla o vista 'Liceo_BA.dbo.vista_notas_estudiantes' no tie
           <FunctionImportMapping FunctionImportName="SP_insCiclo" FunctionName="L_BAModel.Store.SP_insCiclo" />
           <FunctionImportMapping FunctionImportName="SP_insEstudiante" FunctionName="L_BAModel.Store.SP_insEstudiante" />
           <FunctionImportMapping FunctionImportName="SP_insMateria" FunctionName="L_BAModel.Store.SP_insMateria" />
+          <FunctionImportMapping FunctionImportName="SP_insMatricula" FunctionName="L_BAModel.Store.SP_insMatricula" />
           <FunctionImportMapping FunctionImportName="SP_insNota" FunctionName="L_BAModel.Store.SP_insNota" />
           <FunctionImportMapping FunctionImportName="SP_insNotaEstandarizada" FunctionName="L_BAModel.Store.SP_insNotaEstandarizada" />
           <FunctionImportMapping FunctionImportName="SP_insPadre" FunctionName="L_BAModel.Store.SP_insPadre" />

@@ -8,6 +8,6 @@ namespace AccesoDatos.Implementacion
 {
     public class NotaAD
     {
-
+        // AÚN NO....
     }
 }
