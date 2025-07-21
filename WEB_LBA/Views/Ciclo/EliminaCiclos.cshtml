@@ -1,0 +1,31 @@
+﻿@model WEB_LBA.Models.M_Ciclo
+
+@{
+    ViewBag.Title = "Eliminar Ciclo";
+}
+
+<div class="container mt-4">
+    <h2>@ViewBag.Title</h2>
+
+    <h4>¿Estás seguro que deseas eliminar este Ciclo?</h4>
+
+    <dl class="row">
+        <dt class="col-sm-3">@Html.DisplayNameFor(m => m.id_ciclo)</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(m => m.id_ciclo)</dd>
+
+        <dt class="col-sm-3">@Html.DisplayNameFor(m => m.nombre_ciclo)</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(m => m.nombre_ciclo)</dd>
+
+        <dt class="col-sm-3">@Html.DisplayNameFor(m => m.descripcion)</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(m => m.descripcion)</dd>
+    </dl>
+
+    @using (Html.BeginForm("Acciones", "Ciclo", FormMethod.Post, new { id = "frmCiclos" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => m.id_ciclo)
+
+        <button type="submit" class="btn btn-danger" name="submitButton" value="Eliminar" onclick="return confirm('¿Seguro que desea eliminar este ciclo?');">Eliminar</button>
+        @Html.ActionLink("Volver a Ciclos", "ListCiclos", null, new { @class = "btn btn-secondary ms-2" })
+    }
+</div>

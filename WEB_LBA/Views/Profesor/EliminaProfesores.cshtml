@@ -1,0 +1,25 @@
+﻿@model WEB_LBA.Models.M_Profesor
+
+@{
+    ViewBag.Title = "Eliminar Profesor";
+}
+
+<h2>Eliminar Profesor</h2>
+<h4>¿Estás seguro que deseas eliminar este Profesor?</h4>
+
+<div class="mb-3">
+    <strong>ID Profesor:</strong> @Html.DisplayFor(m => m.id_profesor)<br />
+    <strong>Cédula:</strong> @Html.DisplayFor(m => m.cedula)<br />
+    <strong>Nombre:</strong> @Html.DisplayFor(m => m.nombre)
+</div>
+
+@using (Html.BeginForm("Acciones", "Profesor", FormMethod.Post))     
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.id_profesor)
+
+    <div class="col-12">
+        <button type="submit" class="btn btn-danger" name="submitButton" value="Eliminar">Eliminar</button>
+        @Html.ActionLink("Cancelar", "ListProfesores", null, new { @class = "btn btn-secondary ms-2" })
+    </div>
+}

@@ -1,0 +1,42 @@
+﻿@model List<WEB_LBA.Models.M_MateriaPorProfesor>
+
+@{
+    ViewBag.Title = "Materias Asignadas al Profesor";
+}
+
+<h2>Materias Asignadas al Profesor</h2>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>ID Materia</th>
+            <th>Nombre de la Materia</th>
+            <th>ID Profesor</th>
+            <th>Nombre del Profesor</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.id_materia</td>
+                    <td>@item.nombre_materia</td>
+                    <td>@item.id_profesor</td>
+                    <td>@item.nombre_profesor</td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="4" class="text-center text-muted">Este profesor no tiene materias asignadas.</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<p>
+    @Html.ActionLink("Volver a Profesores", "ListProfesores", "Profesor", null, new { @class = "btn btn-secondary" })
+</p>

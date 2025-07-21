@@ -1,0 +1,37 @@
+﻿@model WEB_LBA.Models.M_Padre
+
+@{
+    ViewBag.Title = "Modificar Padre";
+}
+
+<h2>Modificar Padre</h2>
+
+@using (Html.BeginForm("Acciones", "Padre", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(model => model.id_padre)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.cedula)
+        @Html.TextBoxFor(model => model.cedula, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.cedula)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.nombre)
+        @Html.TextBoxFor(model => model.nombre, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.nombre)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.telefono)
+        @Html.TextBoxFor(model => model.telefono, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.telefono)
+    </div>
+
+    <div class="form-group">
+        <button type="submit" name="submitButton" value="Actualizar" class="btn btn-warning">Actualizar</button>
+        @Html.ActionLink("Cancelar", "ListPadres", null, new { @class = "btn btn-secondary" })
+    </div>
+}

@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "Buscar Estudiante por Cédula";
+}
+
+<h2>Buscar Estudiante por Cédula</h2>
+
+@using (Html.BeginForm("BuscarPorCedula", "Estudiante", FormMethod.Post))
+{
+    <div class="mb-3">
+        <label for="cedula" class="form-label">Ingrese Cédula</label>
+        <input type="text" id="cedula" name="cedula" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Buscar</button>
+}
+
+@if (ViewBag.Mensaje != null)
+{
+    <div class="alert alert-warning mt-3">@ViewBag.Mensaje</div>
+}
+
+@Html.ActionLink("Volver a Estudiantes", "ListEstudiantes", null, new { @class = "btn btn-secondary mt-2" })

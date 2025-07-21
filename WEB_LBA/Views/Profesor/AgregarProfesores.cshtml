@@ -1,0 +1,29 @@
+﻿@model WEB_LBA.Models.M_Profesor
+
+@{
+    ViewBag.Title = "Agregar Profesor";
+}
+
+<h2>Agregar Profesor</h2>
+
+@using (Html.BeginForm("Acciones", "Profesor", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group mb-3">
+        @Html.LabelFor(m => m.cedula)
+        @Html.TextBoxFor(m => m.cedula, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.cedula, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group mb-3">
+        @Html.LabelFor(m => m.nombre)
+        @Html.TextBoxFor(m => m.nombre, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.nombre, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="col-12">
+        <button type="submit" class="btn btn-primary" name="submitButton" value="Agregar">Agregar</button>
+        @Html.ActionLink("Volver a Profesores", "listProfesores", null, new { @class = "btn btn-secondary ms-2" })
+    </div>
+}

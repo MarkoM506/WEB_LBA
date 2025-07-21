@@ -1,0 +1,25 @@
+﻿@model WEB_LBA.Models.M_Seccion
+
+@{
+    ViewBag.Title = "Eliminar Sección";
+}
+
+<h2>Eliminar Sección</h2>
+<h4>¿Estás seguro que deseas eliminar esta sección?</h4>
+
+<div class="mb-3">
+    <strong>ID:</strong> @Html.DisplayFor(m => m.id_seccion)<br />
+    <strong>Nombre:</strong> @Html.DisplayFor(m => m.nombre_seccion)<br />
+    <strong>ID Ciclo:</strong> @Html.DisplayFor(m => m.id_ciclo)
+</div>
+
+@using (Html.BeginForm("Acciones", "Seccion", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.id_seccion)
+
+    <div class="col-12">
+        <button type="submit" class="btn btn-danger" name="submitButton" value="Eliminar">Eliminar</button>
+        @Html.ActionLink("Cancelar", "ListSecciones", null, new { @class = "btn btn-secondary ms-2" })
+    </div>
+}

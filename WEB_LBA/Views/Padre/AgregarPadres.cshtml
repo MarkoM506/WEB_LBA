@@ -1,0 +1,33 @@
+﻿@model WEB_LBA.Models.M_Padre
+
+@{
+    ViewBag.Title = "Agregar Padre";
+}
+
+<h2>Agregar Padre</h2>
+
+@using (Html.BeginForm("Acciones", "Padre", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.cedula)
+        @Html.TextBoxFor(model => model.cedula, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.cedula)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.nombre)
+        @Html.TextBoxFor(model => model.nombre, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.nombre)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.telefono)
+        @Html.TextBoxFor(model => model.telefono, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.telefono)
+    </div>
+
+    <button type="submit" name="submitButton" value="Agregar" class="btn btn-success">Agregar</button>
+    @Html.ActionLink("Cancelar", "ListPadres", null, new { @class = "btn btn-default" })
+}

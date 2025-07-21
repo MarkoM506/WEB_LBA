@@ -1,0 +1,24 @@
+﻿@model WEB_LBA.Models.M_Estudiante
+
+@{
+    ViewBag.Title = "Eliminar Estudiante";
+}
+
+<h2>Eliminar Estudiante</h2>
+
+<div class="alert alert-danger">
+    <p>¿Está seguro que desea eliminar al estudiante <strong>@Model.nombre</strong> con cédula <strong>@Model.cedula</strong>?</p>
+</div>
+
+@using (Html.BeginForm("Acciones", "Estudiante", FormMethod.Post))
+{
+    @Html.HiddenFor(m => m.id_estudiante)
+    @Html.HiddenFor(m => m.cedula)
+    @Html.HiddenFor(m => m.nombre)
+    @Html.HiddenFor(m => m.direccion)
+    @Html.HiddenFor(m => m.telefono)
+    @Html.HiddenFor(m => m.id_seccion)
+
+    <button type="submit" name="submitButton" value="Eliminar" class="btn btn-danger">Eliminar</button>
+    @Html.ActionLink("Volver a Estudiantes", "ListEstudiantes", null, new { @class = "btn btn-secondary ms-2" })
+}

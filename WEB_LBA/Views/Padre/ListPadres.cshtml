@@ -1,0 +1,39 @@
+﻿@model IEnumerable<WEB_LBA.Models.M_Padre>
+
+@{
+    ViewBag.Title = "Padres";
+}
+
+<h2>Padres</h2>
+
+<p>
+    @Html.ActionLink("Crear Padre", "AgregarPadres", null, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Buscar por Cédula", "BuscarPorCedula", null, new { @class = "btn btn-primary" })
+</p>
+
+<table class="table table-striped">
+    <tr>
+        <th>ID Padre</th>
+        <th>Cédula</th>
+        <th>Nombre</th>
+        <th>Teléfono</th>
+        <th>Acciones</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.id_padre</td>
+            <td>@item.cedula</td>
+            <td>@item.nombre</td>
+            <td>@item.telefono</td>
+            <td>
+                @Html.ActionLink("Modificar", "ModificaPadres", new { id = item.id_padre }, new { @class = "btn btn-warning btn-sm" }) |
+                @Html.ActionLink("Eliminar", "EliminaPadres", new { id = item.id_padre }, new { @class = "btn btn-danger btn-sm" }) |
+                @Html.ActionLink("Ver Hijos", "VerHijosPorPadre", new { id = item.id_padre }, new { @class = "btn btn-info btn-sm" }) |
+                @Html.ActionLink("Asignar Hijos", "AsignarHijos", new { idPadre = item.id_padre }, new { @class = "btn btn-success btn-sm" })
+             
+
+            </td>
+        </tr>
+    }
+</table>

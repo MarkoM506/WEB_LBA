@@ -1,0 +1,38 @@
+﻿@model List<WEB_LBA.Models.M_Materia>
+
+@{
+    ViewBag.Title = "Lista de Materias";
+}
+
+
+<h2>Lista de Materias</h2>
+
+<p>
+    @Html.ActionLink("Agregar Nueva Materia", "AgregarMateria", null, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Ver Materias y su respectivo profe", "ListMateriasConProfesores", null, new { @class = "btn btn-primary" })
+
+</p>
+
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre de la Materia</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var materia in Model)
+        {
+            <tr>
+                <td>@materia.id_materia</td>
+                <td>@materia.nombre_materia</td>
+                <td>
+                    @Html.ActionLink("Editar", "ModificaMateria", new { id = materia.id_materia }, new { @class = "btn btn-warning btn-sm" }) |
+                    @Html.ActionLink("Eliminar", "EliminaMateria", new { id = materia.id_materia }, new { @class = "btn btn-danger btn-sm" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

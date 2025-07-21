@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "Buscar Padre por Cédula";
+}
+
+<h2>Buscar Padre por Cédula</h2>
+<hr />
+
+@using (Html.BeginForm("BuscarPorCedula", "Padre", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        <label for="cedula">Cédula:</label>
+        <input type="text" name="cedula" class="form-control" required minlength="9" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Buscar</button>
+}
+
+@if (ViewBag.Mensaje != null)
+{
+    <div class="alert alert-warning mt-3">@ViewBag.Mensaje</div>
+}
+
+<p class="mt-3">
+    @Html.ActionLink("Volver a la Lista de Padres", "ListPadres", "Padre", null, new { @class = "btn btn-secondary" })
+</p>

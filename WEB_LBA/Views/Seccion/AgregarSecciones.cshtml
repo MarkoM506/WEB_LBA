@@ -1,0 +1,29 @@
+﻿@model WEB_LBA.Models.M_Seccion
+
+@{
+    ViewBag.Title = "Agregar Sección";
+}
+
+<h2>Agregar Sección</h2>
+
+@using (Html.BeginForm("Acciones", "Seccion", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group mb-3">
+        @Html.LabelFor(m => m.nombre_seccion)
+        @Html.TextBoxFor(m => m.nombre_seccion, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.nombre_seccion, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group mb-3">
+        @Html.LabelFor(m => m.id_ciclo)
+        @Html.TextBoxFor(m => m.id_ciclo, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.id_ciclo, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="col-12">
+        <button type="submit" class="btn btn-primary" name="submitButton" value="Agregar">Agregar</button>
+        @Html.ActionLink("Volver a Secciones", "ListSecciones", null, new { @class = "btn btn-secondary ms-2" })
+    </div>
+}

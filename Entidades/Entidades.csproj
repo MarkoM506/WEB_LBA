@@ -1,0 +1,240 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.5.1\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{01A92D15-C5F9-4EF7-BCBA-7FDD7BCFF894}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Entidades</RootNamespace>
+    <AssemblyName>Entidades</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.5.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.5.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Asistencia.cs">
+      <DependentUpon>LBA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AsistenciaPorSeccionDTO.cs" />
+    <Compile Include="Ciclo.cs">
+      <DependentUpon>LBA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Class1.cs" />
+    <Compile Include="Estados_Asistencia.cs">
+      <DependentUpon>LBA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Estudiante.cs">
+      <DependentUpon>LBA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Horario.cs">
+      <DependentUpon>LBA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LBA.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LBA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Materia.cs">
+      <DependentUpon>LBA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Nota.cs">
+      <DependentUpon>LBA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NotasEstandarizada.cs">
+      <DependentUpon>LBA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Notas_Estandarizadas.cs">
+      <DependentUpon>LBA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Padre.cs">
+      <DependentUpon>LBA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Profesore.cs">
+      <DependentUpon>LBA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReporteAsistenciaMensualDTO.cs" />
+    <Compile Include="Seccione.cs">
+      <DependentUpon>LBA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_recAsistenciaPorId_Result.cs">
+      <DependentUpon>LBA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_recAsistencias_Result.cs">
+      <DependentUpon>LBA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_recCicloPorId_Result.cs">
+      <DependentUpon>LBA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_recCiclos_Result.cs">
+      <DependentUpon>LBA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_recEstadosAsistencia_Result.cs">
+      <DependentUpon>LBA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_recEstudiantePorCedula_Result.cs">
+      <DependentUpon>LBA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_recEstudiantePorId_Result.cs">
+      <DependentUpon>LBA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_recEstudiantesPorPadre_Result.cs">
+      <DependentUpon>LBA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_recEstudiantesPorSeccion_Result.cs">
+      <DependentUpon>LBA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_recEstudiantes_Result.cs">
+      <DependentUpon>LBA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_recMateriaPorId_Result.cs">
+      <DependentUpon>LBA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_recMateriasConProfesores_Result.cs">
+      <DependentUpon>LBA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_recMateriasPorProfesor_Result.cs">
+      <DependentUpon>LBA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_recMaterias_Result.cs">
+      <DependentUpon>LBA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_recNotaPorId_Result.cs">
+      <DependentUpon>LBA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_recNotasEstandarizadasPorEstudiante_Result.cs">
+      <DependentUpon>LBA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_recNotasEstandarizadas_Result.cs">
+      <DependentUpon>LBA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_recNotasPorEstudiante_Result.cs">
+      <DependentUpon>LBA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_recNotas_Result.cs">
+      <DependentUpon>LBA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_recPadrePorCedula_Result.cs">
+      <DependentUpon>LBA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_recPadrePorId_Result.cs">
+      <DependentUpon>LBA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_recPadresPorEstudiante_Result.cs">
+      <DependentUpon>LBA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_recPadres_Result.cs">
+      <DependentUpon>LBA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_recProfesoresConMaterias_Result.cs">
+      <DependentUpon>LBA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_recProfesoresPorMateria_Result.cs">
+      <DependentUpon>LBA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_recProfesores_Result.cs">
+      <DependentUpon>LBA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_recProfesorPorCedula_Result.cs">
+      <DependentUpon>LBA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_recProfesorPorId_Result.cs">
+      <DependentUpon>LBA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_recSeccionesPorCiclo_Result.cs">
+      <DependentUpon>LBA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_recSecciones_Result.cs">
+      <DependentUpon>LBA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_recSeccionPorId_Result.cs">
+      <DependentUpon>LBA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_recUsuarioPorId_Result.cs">
+      <DependentUpon>LBA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_recUsuarios_Result.cs">
+      <DependentUpon>LBA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_reporteMensualAsistencia_Result.cs">
+      <DependentUpon>LBA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TempReporteMensual.cs" />
+    <Compile Include="TiposNota.cs">
+      <DependentUpon>LBA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Usuario.cs">
+      <DependentUpon>LBA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vista_asistencia_detalle.cs">
+      <DependentUpon>LBA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vista_estudiantes_info.cs">
+      <DependentUpon>LBA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vista_notas_estudiantes.cs">
+      <DependentUpon>LBA.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="LBA.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>LBA.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Este proyecto hace referencia a los paquetes NuGet que faltan en este equipo. Use la restauración de paquetes NuGet para descargarlos. Para obtener más información, consulte http://go.microsoft.com/fwlink/?LinkID=322105. El archivo que falta es {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.5.1\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.5.1\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.5.1\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.targets')" />
+</Project>

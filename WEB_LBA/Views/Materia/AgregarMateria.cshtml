@@ -1,0 +1,29 @@
+﻿@model WEB_LBA.Models.M_Materia
+
+@{
+    ViewBag.Title = "Agregar Materia";
+}
+
+<h2>Agregar Nueva Materia</h2>
+
+@using (Html.BeginForm("Acciones", "Materia", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.nombre_materia)
+        @Html.TextBoxFor(model => model.nombre_materia, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.nombre_materia, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Profesores Asignados")
+        @Html.ListBoxFor(model => model.profesores_seleccionados,
+            (MultiSelectList)ViewBag.Profesores,
+            new { @class = "form-control", size = 6 })
+        @Html.ValidationMessageFor(model => model.profesores_seleccionados, "", new { @class = "text-danger" })
+    </div>
+
+    <input type="submit" name="submitButton" value="Agregar" class="btn btn-primary" />
+    @Html.ActionLink("Cancelar", "ListMaterias", null, new { @class = "btn btn-secondary" })
+}

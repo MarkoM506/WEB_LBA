@@ -1,0 +1,52 @@
+﻿@model WEB_LBA.Models.M_SeleccionPeriodoAsistencia
+
+@{
+    ViewBag.Title = "Seleccionar Periodo";
+    var meses = System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.MonthNames
+                .Where(m => !string.IsNullOrEmpty(m))
+                .Select((nombre, index) => new SelectListItem { Text = nombre, Value = (index + 1).ToString() }).ToList();
+}
+
+<h2>Seleccionar Periodo</h2>
+
+@using (Html.BeginForm("SeleccionarPeriodoAsistencia", "Asistencia", FormMethod.Post))
+{
+    <input type="hidden" name="IdSeccion" value="@Model.IdSeccion" />
+
+    <div class="form-group">
+        <label>Año:</label>
+        <input type="number" name="Anio" value="@Model.Anio" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label>Mes:</label>
+        <select name="Mes" class="form-control">
+            @foreach (var mes in meses)
+            {
+                <option value="@mes.Value" @(mes.Value == Model.Mes.ToString() ? "selected" : "")>@mes.Text</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Profesor:</label>
+        <select name="IdProfesor" class="form-control">
+            @foreach (SelectListItem item in ViewBag.Profesores)
+            {
+                <option value="@item.Value">@item.Text</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Materia:</label>
+        <select name="IdMateria" class="form-control">
+            @foreach (SelectListItem item in ViewBag.Materias)
+            {
+                <option value="@item.Value">@item.Text</option>
+            }
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Continuar</button>
+}

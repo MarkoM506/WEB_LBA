@@ -1,0 +1,67 @@
+﻿@model List<WEB_LBA.Models.M_EstudianteConsulta>
+@{
+    ViewBag.Title = "Asignar Hijos";
+    int idPadre = ViewBag.IdPadre;
+    string filtroCedula = Request["filtroCedula"] ?? "";
+}
+
+<h2>Asignar Hijos</h2>
+
+<!-- Filtro por cédula -->
+@using (Html.BeginForm("AsignarHijos", "Padre", FormMethod.Get))
+{
+    <input type="hidden" name="idPadre" value="@idPadre" />
+    <div class="form-group">
+        <label for="filtroCedula">Buscar por Cédula:</label>
+        <input type="text" name="filtroCedula" value="@filtroCedula" class="form-control" placeholder="Ingrese cédula del estudiante" />
+    </div>
+    <button type="submit" class="btn btn-primary mb-3">Buscar</button>
+}
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Cédula</th>
+            <th>Nombre</th>
+            <th>Dirección</th>
+            <th>Teléfono</th>
+            <th>Sección</th>
+            <th>Acción</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Count > 0)
+        {
+            var estudiantesFiltrados = string.IsNullOrEmpty(filtroCedula)
+                ? Model
+                : Model.Where(e => e.cedula.Contains(filtroCedula)).ToList();
+
+            if (estudiantesFiltrados.Any())
+            {
+                foreach (var estudiante in estudiantesFiltrados)
+                {
+                    <tr>
+                        <td>@estudiante.cedula</td>
+                        <td>@estudiante.nombre</td>
+                        <td>@estudiante.direccion</td>
+                        <td>@estudiante.telefono</td>
+                        <td>@estudiante.seccion</td>
+                        <td>
+                            @Html.ActionLink("Asignar", "AsignarHijo", "Padre", new { idPadre = idPadre, idEstudiante = estudiante.id_estudiante }, new { @class = "btn btn-success btn-sm" })
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr><td colspan="6" class="text-center text-warning">No se encontraron estudiantes con esa cédula.</td></tr>
+            }
+        }
+        else
+        {
+            <tr><td colspan="6" class="text-center text-danger">No hay estudiantes disponibles para asignar.</td></tr>
+        }
+    </tbody>
+</table>
+
+<a href="@Url.Action("ListPadres", "Padre")" class="btn btn-secondary">Volver</a>

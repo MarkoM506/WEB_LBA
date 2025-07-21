@@ -1,0 +1,39 @@
+﻿@model IEnumerable<WEB_LBA.Models.M_PadreConsulta>
+
+@{
+    ViewBag.Title = "Ver Padres por Estudiante";
+}
+
+<h2>Padres del Estudiante</h2>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info">Este estudiante no tiene padres asignados.</div>
+    @Html.ActionLink("Volver a Estudiantes", "ListEstudiantes", null, new { @class = "btn btn-secondary ms-2" })
+}
+else
+{
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.First().id_padre)</th>
+                <th>@Html.DisplayNameFor(model => model.First().cedula)</th>
+                <th>@Html.DisplayNameFor(model => model.First().nombre)</th>
+                <th>@Html.DisplayNameFor(model => model.First().telefono)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var padre in Model)
+            {
+                <tr>
+                    <td>@padre.id_padre</td>
+                    <td>@padre.cedula</td>
+                    <td>@padre.nombre</td>
+                    <td>@padre.telefono</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    @Html.ActionLink("Volver a Estudiantes", "ListEstudiantes", null, new { @class = "btn btn-secondary ms-2" })
+}

@@ -1,0 +1,29 @@
+﻿@model List<WEB_LBA.Models.M_MateriaConsulta>
+
+@{
+    ViewBag.Title = "Materias con Profesores";
+}
+
+<h2>Materias con Profesores Asignados</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Nombre de Materia</th>
+            <th>Profesores Asignados</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var materia in Model)
+        {
+            <tr>
+                <td>@materia.nombre_materia</td>
+                <td>@materia.profesores</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<p>
+    @Html.ActionLink("Volver a Materias", "ListMaterias", "Materia", null, new { @class = "btn btn-secondary" })
+</p>

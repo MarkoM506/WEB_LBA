@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Entidades.SP_recSeccionesPorCiclo_Result>
+
+@{
+    ViewBag.Title = "Secciones del Ciclo";
+}
+
+<div class="container mt-4">
+    <h2>@ViewBag.Title</h2>
+
+    <table class="table table-striped table-hover table-bordered">
+        <thead class="table-dark">
+            <tr>
+                <th>Nombre Sección</th>
+                <th>ID Ciclo</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.nombre_seccion</td>
+                    <td>@item.id_ciclo</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <p>
+        @Html.ActionLink("Regresar", "ListCiclos", "Ciclo", null, new { @class = "btn btn-secondary" })
+    </p>
+</div>
