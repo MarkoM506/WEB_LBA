@@ -1,0 +1,57 @@
+﻿body {
+    background-color: #e6f2ff; /* Celeste claro */
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.contenedor-lista {
+    background-color: white;
+    border-radius: 20px;
+    padding: 40px;
+    max-width: 95%;
+    margin: 50px auto;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.encabezado {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+h2 {
+    font-weight: bold;
+    font-size: 30px;
+    color: #333;
+}
+
+.btn-crear {
+    font-weight: bold;
+    padding: 8px 18px;
+    font-size: 16px;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+    .table thead.table-header {
+        background-color: #1f2d3d; /* azul oscuro para encabezados */
+        color: white;
+    }
+
+    .table th, .table td {
+        text-align: center;
+        padding: 12px;
+        border-bottom: 1px solid #dee2e6;
+    }
+
+.btn-sm {
+    font-weight: 500;
+    font-size: 14px;
+    padding: 5px 10px;
+    border-radius: 8px;
+}

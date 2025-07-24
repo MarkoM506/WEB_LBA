@@ -51,17 +51,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Asistencia.cs">
-      <DependentUpon>LBA.tt</DependentUpon>
-    </Compile>
     <Compile Include="AsistenciaPorSeccionDTO.cs" />
     <Compile Include="Ciclo.cs">
       <DependentUpon>LBA.tt</DependentUpon>
     </Compile>
     <Compile Include="Class1.cs" />
-    <Compile Include="Estados_Asistencia.cs">
-      <DependentUpon>LBA.tt</DependentUpon>
-    </Compile>
     <Compile Include="Estudiante.cs">
       <DependentUpon>LBA.tt</DependentUpon>
     </Compile>
@@ -76,16 +70,7 @@
     <Compile Include="Materia.cs">
       <DependentUpon>LBA.tt</DependentUpon>
     </Compile>
-    <Compile Include="Matricula.cs">
-      <DependentUpon>LBA.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Nota.cs">
-      <DependentUpon>LBA.tt</DependentUpon>
-    </Compile>
-    <Compile Include="NotasEstandarizada.cs">
-      <DependentUpon>LBA.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Notas_Estandarizadas.cs">
+    <Compile Include="Noticia.cs">
       <DependentUpon>LBA.tt</DependentUpon>
     </Compile>
     <Compile Include="Padre.cs">
@@ -99,19 +84,13 @@
     <Compile Include="Seccione.cs">
       <DependentUpon>LBA.tt</DependentUpon>
     </Compile>
-    <Compile Include="SP_recAsistenciaPorId_Result.cs">
-      <DependentUpon>LBA.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SP_recAsistencias_Result.cs">
+    <Compile Include="SP_loginUsuario_Result.cs">
       <DependentUpon>LBA.tt</DependentUpon>
     </Compile>
     <Compile Include="SP_recCicloPorId_Result.cs">
       <DependentUpon>LBA.tt</DependentUpon>
     </Compile>
     <Compile Include="SP_recCiclos_Result.cs">
-      <DependentUpon>LBA.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SP_recEstadosAsistencia_Result.cs">
       <DependentUpon>LBA.tt</DependentUpon>
     </Compile>
     <Compile Include="SP_recEstudiantePorCedula_Result.cs">
@@ -141,19 +120,10 @@
     <Compile Include="SP_recMaterias_Result.cs">
       <DependentUpon>LBA.tt</DependentUpon>
     </Compile>
-    <Compile Include="SP_recNotaPorId_Result.cs">
+    <Compile Include="SP_recNoticiaPorId_Result.cs">
       <DependentUpon>LBA.tt</DependentUpon>
     </Compile>
-    <Compile Include="SP_recNotasEstandarizadasPorEstudiante_Result.cs">
-      <DependentUpon>LBA.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SP_recNotasEstandarizadas_Result.cs">
-      <DependentUpon>LBA.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SP_recNotasPorEstudiante_Result.cs">
-      <DependentUpon>LBA.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SP_recNotas_Result.cs">
+    <Compile Include="SP_recNoticias_Result.cs">
       <DependentUpon>LBA.tt</DependentUpon>
     </Compile>
     <Compile Include="SP_recPadrePorCedula_Result.cs">
@@ -177,9 +147,6 @@
     <Compile Include="SP_recProfesores_Result.cs">
       <DependentUpon>LBA.tt</DependentUpon>
     </Compile>
-    <Compile Include="SP_recProfesorPorCedula_Result.cs">
-      <DependentUpon>LBA.tt</DependentUpon>
-    </Compile>
     <Compile Include="SP_recProfesorPorId_Result.cs">
       <DependentUpon>LBA.tt</DependentUpon>
     </Compile>
@@ -198,23 +165,8 @@
     <Compile Include="SP_recUsuarios_Result.cs">
       <DependentUpon>LBA.tt</DependentUpon>
     </Compile>
-    <Compile Include="SP_reporteMensualAsistencia_Result.cs">
-      <DependentUpon>LBA.tt</DependentUpon>
-    </Compile>
     <Compile Include="TempReporteMensual.cs" />
-    <Compile Include="TiposNota.cs">
-      <DependentUpon>LBA.tt</DependentUpon>
-    </Compile>
     <Compile Include="Usuario.cs">
-      <DependentUpon>LBA.tt</DependentUpon>
-    </Compile>
-    <Compile Include="vista_asistencia_detalle.cs">
-      <DependentUpon>LBA.tt</DependentUpon>
-    </Compile>
-    <Compile Include="vista_estudiantes_info.cs">
-      <DependentUpon>LBA.tt</DependentUpon>
-    </Compile>
-    <Compile Include="vista_notas_estudiantes.cs">
       <DependentUpon>LBA.tt</DependentUpon>
     </Compile>
   </ItemGroup>

@@ -1,9 +1,62 @@
 ﻿@{
-    ViewBag.Title = "About";
+    ViewBag.Title = "Sobre el Liceo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<main aria-labelledby="title">
-    <h2 id="title">@ViewBag.Title.</h2>
-    <h3>@ViewBag.Message</h3>
 
-    <p>Use this area to provide additional information.</p>
-</main>
+<link rel="stylesheet" href="~/Content/About.css?v=2" />
+
+<div class="about-page">
+    <h4 class="page-title">SOBRE NOSOTROS</h4>
+
+    <div class="card-container">
+        <div class="card zigzag">
+            <img src="~/Content/imagenesWeb/historia.jpg" alt="Historia" class="card-img">
+            <div class="card-text">
+                <h3>Nuestra Historia</h3>
+                <p>
+                    Fundado con la misión de brindar educación de calidad a la comunidad de Boca de Arenal...
+                </p>
+            </div>
+        </div>
+
+        <div class="card reverse-zigzag">
+            <img src="~/Content/imagenesWeb/mision.jpg" alt="Misión" class="card-img">
+            <div class="card-text">
+                <h3>Nuestra Misión</h3>
+                <p>
+                    Formar ciudadanos íntegros, responsables y comprometidos con su comunidad...
+                </p>
+            </div>
+        </div>
+
+        <div class="card zigzag">
+            <img src="~/Content/imagenesWeb/vision.jpg" alt="Visión" class="card-img">
+            <div class="card-text">
+                <h3>Nuestra Visión</h3>
+                <p>
+                    Ser una institución educativa reconocida a nivel nacional...
+                </p>
+            </div>
+        </div>
+
+        <div class="card reverse-zigzag">
+            <img src=""alt="Docentes" class="card-img">
+            <div class="card-text">
+                <h3>Nuestros Docentes</h3>
+                <p>
+                    Contamos con un equipo docente altamente capacitado...
+                </p>
+            </div>
+        </div>
+
+        <div class="card zigzag">
+            <img src="~/Content/imagenesWeb/instalaciones.jpg" alt="Instalaciones" class="card-img">
+            <div class="card-text">
+                <h3>Instalaciones y Características</h3>
+                <p>
+                    El Liceo cuenta con aulas equipadas, laboratorios, biblioteca y espacios recreativos...
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

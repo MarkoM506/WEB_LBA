@@ -137,15 +137,15 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\AsistenciaController.cs" />
     <Compile Include="Controllers\CicloController.cs" />
     <Compile Include="Controllers\EstudianteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MateriaController.cs" />
-    <Compile Include="Controllers\MatriculaController.cs" />
+    <Compile Include="Controllers\NoticiaController.cs" />
     <Compile Include="Controllers\PadreController.cs" />
     <Compile Include="Controllers\ProfesorController.cs" />
     <Compile Include="Controllers\SeccionController.cs" />
+    <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -153,6 +153,7 @@
     <Compile Include="Models\M_AsistenciaConsulta.cs" />
     <Compile Include="Models\M_AsistenciaReporte.cs" />
     <Compile Include="Models\M_Ciclo.cs" />
+    <Compile Include="Models\M_Contacto.cs" />
     <Compile Include="Models\M_Estudiante.cs" />
     <Compile Include="Models\M_EstudianteConsulta.cs" />
     <Compile Include="Models\M_Materia.cs" />
@@ -161,6 +162,7 @@
     <Compile Include="Models\M_MatriculaMEP.cs" />
     <Compile Include="Models\M_Nota.cs" />
     <Compile Include="Models\M_NotaConsulta.cs" />
+    <Compile Include="Models\M_Noticia.cs" />
     <Compile Include="Models\M_Padre.cs" />
     <Compile Include="Models\M_PadreConsulta.cs" />
     <Compile Include="Models\M_Profesor.cs" />
@@ -168,10 +170,12 @@
     <Compile Include="Models\M_Seccion.cs" />
     <Compile Include="Models\M_SeleccionPeriodoAsistencia.cs" />
     <Compile Include="Models\M_TipoNota.cs" />
+    <Compile Include="Models\M_Usuario.cs" />
     <Compile Include="Models\ReporteAsistenciaMensual.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\About.css" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
@@ -188,6 +192,14 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\Ciclos.css" />
+    <Content Include="Content\Estudiantes.css" />
+    <Content Include="Content\imagenesWeb\admin.jpg" />
+    <Content Include="Content\imagenesWeb\bgcole.jpg" />
+    <Content Include="Content\imagenesWeb\fondo_colegio.jpg" />
+    <Content Include="Content\imagenesWeb\logest.jpg" />
+    <Content Include="Content\Noticias.css" />
+    <Content Include="Content\Secciones.css" />
     <Content Include="favicon.ico" />
     <Content Include="ftEst\209090941.jpg" />
     <Content Include="Global.asax" />
@@ -260,15 +272,17 @@
     <Content Include="Views\Padre\BuscarPorCedula.cshtml" />
     <Content Include="Views\Padre\AsignarHijos.cshtml" />
     <Content Include="Views\Padre\DetallePadrePorCedula.cshtml" />
-    <Content Include="Views\Asistencia\ReporteMensual.cshtml" />
-    <Content Include="Views\Asistencia\TomarAsistencia.cshtml" />
-    <Content Include="Views\Asistencia\SeleccionarPeriodoAsistencia.cshtml" />
-    <Content Include="Views\Asistencia\SeleccionaPeriodoAsistenciaMensual.cshtml" />
-    <Content Include="Views\Matricula\Index.cshtml" />
-    <Content Include="Views\Matricula\Confirmacion.cshtml" />
+    <Content Include="Views\Usuario\LoginAdministrativo.cshtml" />
+    <Content Include="Views\Usuario\LoginEstudiante.cshtml" />
+    <Content Include="Views\Home\PanelAdministrativo.cshtml" />
+    <Content Include="Views\Noticia\ListNoticias.cshtml" />
+    <Content Include="Views\Noticia\AgregarNoticias.cshtml" />
+    <Content Include="Views\Noticia\PanelNoticias.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\ImagenesNoticias\" />
+    <Folder Include="Views\Contacto\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

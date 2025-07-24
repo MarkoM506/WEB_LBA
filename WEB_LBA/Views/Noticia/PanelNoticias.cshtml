@@ -1,0 +1,105 @@
+﻿@model List<Entidades.SP_recNoticias_Result>
+@{
+    ViewBag.Title = "Gestión de Noticias";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    body {
+        background-image: url('@Url.Content("~/Content/imagenesWeb/fondo_colegio.jpg")');
+        background-size: cover;
+        background-attachment: fixed;
+    }
+
+    .panel-container {
+        background-color: rgba(255, 255, 255, 0.92);
+        padding: 30px;
+        border-radius: 15px;
+        max-width: 1100px;
+        margin: 50px auto;
+    }
+
+    .noticia-card {
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 20px;
+        background-color: #fff;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .noticia-card img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 10px;
+        margin-bottom: 15px;
+    }
+
+    .noticia-card h4 {
+        font-weight: bold;
+        color: #0d47a1;
+    }
+
+    .btn-accion {
+        margin-right: 10px;
+    }
+
+    .volver-panel {
+        margin-top: 30px;
+    }
+</style>
+
+<div class="panel-container">
+    <h2 class="text-center mb-4">Gestión de Noticias</h2>
+
+    @foreach (var item in Model)
+    {
+        <div class="noticia-card">
+            <img src="@Url.Content(item.imagen_url)" alt="Imagen de la noticia" />
+            <h4>@item.titulo</h4>
+            <p>@item.contenido</p>
+            <p><strong>Publicado el:</strong> @item.fecha_publicacion.ToShortDateString()</p>
+
+            <!-- Eliminar -->
+            @using (Html.BeginForm("Acciones", "Noticia", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.Hidden("id_noticia", item.id_noticia)
+                <button type="submit" name="submitButton" value="Eliminar" class="btn btn-danger btn-accion">Eliminar</button>
+            }
+
+            <!-- Editar -->
+            @using (Html.BeginForm("Acciones", "Noticia", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <input type="hidden" name="id_noticia" value="@item.id_noticia" />
+                <div class="form-group">
+                    <label>Título</label>
+                    <input type="text" name="titulo" value="@item.titulo" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>Contenido</label>
+                    <textarea name="contenido" class="form-control">@item.contenido</textarea>
+                </div>
+                <div class="form-group">
+                    <label>Fecha de Publicación</label>
+                    <input type="date" name="fecha_publicacion" value="@item.fecha_publicacion.ToString("yyyy-MM-dd")" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>Imagen nueva (opcional)</label>
+                    <input type="file" name="imagen" class="form-control" />
+                </div>
+                <input type="hidden" name="imagen_url" value="@item.imagen_url" />
+                <button type="submit" name="submitButton" value="Actualizar" class="btn btn-primary mt-2">Actualizar</button>
+            }
+        </div>
+    }
+
+    <!-- Botón para agregar noticia -->
+    <div class="text-center mt-4">
+        <a href="@Url.Action("AgregarNoticias", "Noticia")" class="btn btn-success">Agregar Noticia</a>
+    </div>
+
+    <!-- Botón para volver al panel administrativo -->
+    <div class="text-center volver-panel">
+        <a href="@Url.Action("PanelAdministrativo", "Home")" class="btn btn-secondary">Volver al Panel</a>
+    </div>
+</div>

@@ -12,11 +12,14 @@ namespace AccesoDatos.Interfaces
         List<SP_recEstudiantes_Result> recEstudiantee();
 
         List<SP_recEstudiantesPorSeccion_Result> recEstudiantesXSeccion(int idSeccion);
-        List<SP_recPadresPorEstudiante_Result> obtenerPadresPorEstudiante(int idEstudiante);
 
         SP_recEstudiantePorCedula_Result recEstudianteXCedula(string cedula);
 
+        List<SP_recPadresPorEstudiante_Result> obtenerPadresPorEstudiante(int idEstudiante);
+
         SP_recEstudiantePorId_Result recEstudianteXId(int pId);
+
+
 
         bool insEstudiantee(Estudiante pobjEstudiante);
 

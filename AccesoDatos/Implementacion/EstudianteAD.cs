@@ -1,4 +1,5 @@
-﻿using AccesoDatos.Interfaces;
+﻿
+using AccesoDatos.Interfaces;
 using Entidades;
 using System;
 using System.Collections.Generic;
@@ -10,9 +11,9 @@ namespace AccesoDatos.Implementacion
 {
     public class EstudianteAD : IEstudianteAD
     {
-        private L_BAEntities gobjContextoLBA;
+        private BD_LBAEntities gobjContextoLBA;
 
-        public EstudianteAD(L_BAEntities _gobjContexto)
+        public EstudianteAD(BD_LBAEntities _gobjContexto)
         {
             this.gobjContextoLBA = _gobjContexto;
         }
@@ -182,4 +183,3 @@ namespace AccesoDatos.Implementacion
     }
 
 }
-

@@ -14,7 +14,7 @@ namespace LogicaNegocio.Implementacion
 
         public PadreLN()
         {
-            gobjPadreAD = new PadreAD(new L_BAEntities());
+            gobjPadreAD = new PadreAD(new BD_LBAEntities());
         }
 
         // CRUD

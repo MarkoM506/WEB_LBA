@@ -51,23 +51,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
-    <Compile Include="Implementacion\AsistenciaAD.cs" />
     <Compile Include="Implementacion\CicloAD.cs" />
     <Compile Include="Implementacion\EstudianteAD.cs" />
     <Compile Include="Implementacion\MateriaAD.cs" />
-    <Compile Include="Implementacion\MatriculaAD.cs" />
-    <Compile Include="Implementacion\NotaAD.cs" />
+    <Compile Include="Implementacion\NoticiaAD.cs" />
     <Compile Include="Implementacion\PadreAD.cs" />
     <Compile Include="Implementacion\ProfesorAD.cs" />
     <Compile Include="Implementacion\SeccionAD.cs" />
-    <Compile Include="Interfaces\IAsistenciaAD.cs" />
+    <Compile Include="Implementacion\UsuarioAD.cs" />
     <Compile Include="Interfaces\ICicloAD.cs" />
     <Compile Include="Interfaces\IEstudianteAD.cs" />
     <Compile Include="Interfaces\IMateriaAD.cs" />
-    <Compile Include="Interfaces\IMatriculaMEPAD.cs" />
+    <Compile Include="Interfaces\INoticiaAD.cs" />
     <Compile Include="Interfaces\IPadreAD.cs" />
     <Compile Include="Interfaces\IProfesorAD.cs" />
     <Compile Include="Interfaces\ISeccionAD.cs" />
+    <Compile Include="Interfaces\IUsuarioAD.cs" />
     <Compile Include="LBA.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

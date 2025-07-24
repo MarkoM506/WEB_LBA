@@ -1,0 +1,100 @@
+﻿body {
+    background: url('/Content/imagenesWeb/bgcole.jpg') no-repeat center center fixed;
+    
+    /*background-color:aliceblue;*/
+    background-size: cover;
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.about-page {
+    max-width: 1200px;
+    margin: auto;
+    padding: 50px 20px;
+    background-color: rgba(255, 255, 255, 0.85); /* fondo semi para claridad */
+    border-radius: 20px;
+}
+
+.page-title {
+    text-align: center;
+    font-size: 36px;
+    color: #212121;
+    margin-bottom: 40px;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px #fff;
+}
+
+.card-container {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.card {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+    .card:hover {
+        transform: scale(1.01);
+    }
+
+.card-img {
+    width: 50%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-text {
+    padding: 30px;
+    width: 50%;
+}
+
+    .card-text h3 {
+        font-size: 24px;
+        color: #0d47a1;
+        margin-bottom: 15px;
+    }
+
+    .card-text p {
+        font-size: 16px;
+        color: #333;
+        line-height: 1.6;
+    }
+
+.zigzag {
+    flex-direction: row;
+}
+
+.reverse-zigzag {
+    flex-direction: row-reverse;
+}
+
+@media (max-width: 768px) {
+    .card, .zigzag, .reverse-zigzag {
+        flex-direction: column;
+    }
+
+    .card-img, .card-text {
+        width: 100%;
+    }
+
+    .card-text {
+        padding: 20px;
+    }
+
+        .card-text h3 {
+            font-size: 22px;
+            text-align: center;
+        }
+
+        .card-text p {
+            text-align: justify;
+        }
+}

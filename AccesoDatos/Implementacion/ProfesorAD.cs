@@ -10,9 +10,9 @@ namespace AccesoDatos.Implementacion
 {
     public class ProfesorAD : IProfesorAD
     {
-        private L_BAEntities gobjContextoLBA;
+        private BD_LBAEntities gobjContextoLBA;
 
-        public ProfesorAD(L_BAEntities _gobjContexto)
+        public ProfesorAD(BD_LBAEntities _gobjContexto)
         {
             this.gobjContextoLBA = _gobjContexto;
         }

@@ -9,15 +9,13 @@ namespace AccesoDatos.Interfaces
 {
     public interface IProfesorAD
     {
+
+
+
+
         List<SP_recProfesores_Result> recProfesoreS();
 
         SP_recProfesorPorId_Result recProfesoresXId(int pId);
-
-        bool insProfesores(Profesore pobjProfe);
-
-        bool modProfesores(Profesore pobjProfe);
-
-        bool delProfesores(Profesore pobjProfe);
 
         List<SP_recMateriasPorProfesor_Result> obtenerMateriasPorProfesor(int idProfesor);
 
@@ -28,6 +26,15 @@ namespace AccesoDatos.Interfaces
         bool vincularMateriaAProfesor(int idProfesor, int idMateria);
 
         bool removerMateriaDeProfesor(int idProfesor, int idMateria);
+        bool insProfesores(Profesore pobjProfe);
+
+        bool modProfesores(Profesore pobjProfe);
+
+        bool delProfesores(Profesore pobjProfe);
+
+      
+
+  
 
     }
 }

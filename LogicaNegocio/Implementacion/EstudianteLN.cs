@@ -13,7 +13,7 @@ namespace LogicaNegocio.Implementacion
 {
     public class EstudianteLN : IEstudianteLN
     {
-        public static L_BAEntities _gobjContextoLBA = new L_BAEntities();
+        public static BD_LBAEntities _gobjContextoLBA = new BD_LBAEntities();
 
         private readonly IEstudianteAD _objEstudianteAD = new EstudianteAD(_gobjContextoLBA);
 

@@ -1,0 +1,37 @@
+﻿@model WEB_LBA.Models.M_Usuario
+@{
+    ViewBag.Title = "Login Estudiante";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h2 class="text-center mb-4">Login Estudiante</h2>
+
+            @using (Html.BeginForm("LoginEstudiante", "Usuario", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-group mb-3">
+                    @Html.LabelFor(m => m.usuario)
+                    @Html.TextBoxFor(m => m.usuario, new { @class = "form-control", placeholder = "Nombre de usuario" })
+                    @Html.ValidationMessageFor(m => m.usuario, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group mb-4">
+                    @Html.LabelFor(m => m.contrasena)
+                    @Html.PasswordFor(m => m.contrasena, new { @class = "form-control", placeholder = "Contraseña" })
+                    @Html.ValidationMessageFor(m => m.contrasena, "", new { @class = "text-danger" })
+                </div>
+
+                <button type="submit" class="btn btn-success w-100">Ingresar</button>
+            }
+
+            @if (ViewBag.Mensaje != null)
+            {
+                <div class="alert alert-danger mt-3">@ViewBag.Mensaje</div>
+            }
+        </div>
+    </div>
+</div>

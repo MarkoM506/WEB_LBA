@@ -14,7 +14,7 @@ namespace LogicaNegocio.Implementacion
     public class SeccionLN : ISeccionLN
     {
 
-        public static L_BAEntities _gobjContextoLBA = new L_BAEntities();
+        public static BD_LBAEntities _gobjContextoLBA = new BD_LBAEntities();
 
         private readonly ISeccionAD _objSeccionAD = new SeccionAD(_gobjContextoLBA);
 

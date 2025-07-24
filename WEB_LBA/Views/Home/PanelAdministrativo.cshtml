@@ -1,0 +1,119 @@
+﻿@{
+    ViewBag.Title = "Panel Administrativo";
+}
+
+<style>
+    body {
+        background-image: url('@Url.Content("~/Content/imagenesWeb/fondo_colegio.jpg")');
+        background-size: cover;
+        background-attachment: fixed;
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    .panel-container {
+        background-color: rgba(255, 255, 255, 0.93);
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
+        margin: 50px auto;
+        max-width: 1100px;
+    }
+
+    .card-opcion {
+        transition: transform 0.3s ease;
+        border-radius: 15px;
+        border: none;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        height: 180px;
+        text-align: center;
+        padding: 30px 10px;
+        background: #ffffff;
+    }
+
+    .card-opcion:hover {
+        transform: scale(1.05);
+        background-color: #f0f0f0;
+    }
+
+    .card-opcion h5 {
+        font-weight: bold;
+        color: #333;
+    }
+
+    .card-opcion i {
+        font-size: 36px;
+        color: #0d6efd;
+        margin-bottom: 15px;
+    }
+</style>
+
+<div class="container panel-container">
+    <h2 class="text-center mb-5">Panel Administrativo</h2>
+    <div class="row g-4">
+        <div class="col-md-4">
+            <a href="@Url.Action("ListCiclos", "Ciclo")" class="text-decoration-none">
+                <div class="card card-opcion">
+                    <i class="bi bi-calendar-range"></i>
+                    <h5>Ciclos</h5>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-4">
+            <a href="@Url.Action("ListSecciones", "Seccion")" class="text-decoration-none">
+                <div class="card card-opcion">
+                    <i class="bi bi-diagram-3"></i>
+                    <h5>Secciones</h5>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-4">
+            <a href="@Url.Action("ListEstudiantes", "Estudiante")" class="text-decoration-none">
+                <div class="card card-opcion">
+                    <i class="bi bi-person-lines-fill"></i>
+                    <h5>Estudiantes</h5>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-4">
+            <a href="@Url.Action("ListProfesores", "Profesor")" class="text-decoration-none">
+                <div class="card card-opcion">
+                    <i class="bi bi-person-badge"></i>
+                    <h5>Profesores</h5>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-4">
+            <a href="@Url.Action("ListMaterias", "Materia")" class="text-decoration-none">
+                <div class="card card-opcion">
+                    <i class="bi bi-journal-bookmark"></i>
+                    <h5>Materias</h5>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-4">
+            <a href="@Url.Action("ListPadres", "Padre")" class="text-decoration-none">
+                <div class="card card-opcion">
+                    <i class="bi bi-people"></i>
+                    <h5>Padres</h5>
+                </div>
+            </a>
+        </div>
+       
+        <div class="col-md-4">
+            <a href="@Url.Action("ReporteMensual", "Asistencia")" class="text-decoration-none">
+                <div class="card card-opcion">
+                    <i class="bi bi-bar-chart"></i>
+                    <h5>Asistencia Mensual</h5>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-4">
+            <a href="@Url.Action("PanelNoticias", "Noticia")" class="text-decoration-none">
+                <div class="card card-opcion">
+                    <i class="bi bi-megaphone"></i>
+                    <h5>Gestionar Noticias</h5>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>

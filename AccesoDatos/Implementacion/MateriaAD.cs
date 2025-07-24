@@ -8,9 +8,9 @@ namespace AccesoDatos.Implementacion
 {
     public class MateriaAD : IMateriaAD
     {
-        private L_BAEntities gobjContextoLBA;
+        private BD_LBAEntities gobjContextoLBA;
 
-        public MateriaAD(L_BAEntities _gobjContexto)
+        public MateriaAD(BD_LBAEntities _gobjContexto)
         {
             this.gobjContextoLBA = _gobjContexto;
         }

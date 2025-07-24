@@ -13,7 +13,7 @@ namespace LogicaNegocio.Implementacion
 {
     public class ProfesorLN : IProfesorLN
     {
-        public static L_BAEntities _gobjContextoLBA = new L_BAEntities();
+        public static BD_LBAEntities _gobjContextoLBA = new BD_LBAEntities();
         private readonly ProfesorAD _objProfesorAD = new ProfesorAD(_gobjContextoLBA);
 
         public List<SP_recProfesores_Result> recProfesoresLN()
