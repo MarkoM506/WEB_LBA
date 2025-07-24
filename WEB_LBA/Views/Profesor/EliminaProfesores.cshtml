@@ -2,24 +2,75 @@
 
 @{
     ViewBag.Title = "Eliminar Profesor";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Eliminar Profesor</h2>
-<h4>¿Estás seguro que deseas eliminar este Profesor?</h4>
+<style>
+    body {
+        background-color: #f0f4f8;
+    }
 
-<div class="mb-3">
-    <strong>ID Profesor:</strong> @Html.DisplayFor(m => m.id_profesor)<br />
-    <strong>Cédula:</strong> @Html.DisplayFor(m => m.cedula)<br />
-    <strong>Nombre:</strong> @Html.DisplayFor(m => m.nombre)
-</div>
+    .card-eliminar {
+        max-width: 600px;
+        margin: 40px auto;
+        background-color: white;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
 
-@using (Html.BeginForm("Acciones", "Profesor", FormMethod.Post))     
-{
-    @Html.AntiForgeryToken()
-    @Html.HiddenFor(m => m.id_profesor)
+        .card-eliminar h2 {
+            text-align: center;
+            color: #c62828;
+            font-weight: bold;
+        }
 
-    <div class="col-12">
-        <button type="submit" class="btn btn-danger" name="submitButton" value="Eliminar">Eliminar</button>
-        @Html.ActionLink("Cancelar", "ListProfesores", null, new { @class = "btn btn-secondary ms-2" })
+        .card-eliminar h4 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .card-eliminar .info {
+            margin-bottom: 25px;
+            font-size: 16px;
+        }
+
+            .card-eliminar .info strong {
+                display: inline-block;
+                width: 140px;
+            }
+
+    .acciones {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .btn {
+        border-radius: 8px;
+        font-weight: 500;
+    }
+</style>
+
+<div class="card-eliminar">
+    <h2>Eliminar Profesor</h2>
+    <h4>¿Estás seguro que deseas eliminar este Profesor?</h4>
+
+    <div class="info">
+        <p><strong>ID Profesor:</strong> @Model.id_profesor</p>
+        <p><strong>Cédula:</strong> @Model.cedula</p>
+        <p><strong>Nombre:</strong> @Model.nombre</p>
     </div>
-}
+
+    @using (Html.BeginForm("Acciones", "Profesor", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => m.id_profesor)
+
+        <div class="acciones">
+            <button type="submit" class="btn btn-danger" name="submitButton" value="Eliminar">Eliminar</button>
+            @Html.ActionLink("Cancelar", "ListProfesores", null, new { @class = "btn btn-secondary" })
+        </div>
+    }
+</div>

@@ -116,25 +116,32 @@ namespace WEB_LBA.Controllers
             return View();
         }
 
+
         // POST: Usuario/LoginEstudiante
-        [HttpPost]
-        public ActionResult LoginEstudiante(string usuario, string contrasena)
-        {
-            var result = usuarioLN.loginUsuarioLN(usuario, contrasena);
-            if (result != null && result.rol == "estudiante")
-            {
-                Session["usuario"] = result.usuario;
-                Session["rol"] = result.rol;
-                return RedirectToAction("Index", "Home");
-            }
-            ViewBag.Mensaje = "Credenciales inválidas o sin permisos.";
-            return View();
-        }
+
 
         public ActionResult Logout()
         {
             Session.Clear();
             return RedirectToAction("Index", "Home");
+        }
+        // POST: Usuario/LoginEstudiante
+        [HttpPost]
+        public ActionResult LoginEstudiante(string usuario, string contrasena)
+        {
+            var result = usuarioLN.loginUsuarioLN(usuario, contrasena);
+            if (result != null && result.rol.ToLower() == "estudiante")
+            {
+                Session["usuario"] = result.usuario;
+                Session["rol"] = result.rol;
+
+                // 🔁 Redirección corregida aquí:
+                return RedirectToAction("ListNoticias", "Noticia");
+            }
+
+            ViewBag.Mensaje = "Credenciales inválidas o sin permisos.";
+            return View();
+
         }
     }
 }

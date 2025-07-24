@@ -4,25 +4,36 @@
     ViewBag.Title = "Eliminar Padre";
 }
 
-<h2>Eliminar Padre</h2>
+<div class="container mt-4">
+    <h2 class="text-center text-danger">@ViewBag.Title</h2>
 
-<h4>¿Estás seguro que deseas eliminar a este padre?</h4>
-<hr />
+    <div class="alert alert-warning text-center mt-4">
+        <h5>¿Estás seguro que deseas eliminar a este padre?</h5>
+    </div>
 
-<dl class="dl-horizontal">
-    <dt>Cédula</dt>
-    <dd>@Model.cedula</dd>
-    <dt>Nombre</dt>
-    <dd>@Model.nombre</dd>
-    <dt>Teléfono</dt>
-    <dd>@Model.telefono</dd>
-</dl>
+    <div class="card mx-auto" style="max-width: 500px;">
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-4">Cédula:</dt>
+                <dd class="col-sm-8">@Model.cedula</dd>
 
-@using (Html.BeginForm("Acciones", "Padre", FormMethod.Post))
-{
-    @Html.AntiForgeryToken()
-    @Html.HiddenFor(model => model.id_padre)
+                <dt class="col-sm-4">Nombre:</dt>
+                <dd class="col-sm-8">@Model.nombre</dd>
 
-    <button type="submit" name="submitButton" value="Eliminar" class="btn btn-danger">Eliminar</button>
-    @Html.ActionLink("Cancelar", "ListPadres", null, new { @class = "btn btn-default" })
-}
+                <dt class="col-sm-4">Teléfono:</dt>
+                <dd class="col-sm-8">@Model.telefono</dd>
+            </dl>
+
+            @using (Html.BeginForm("Acciones", "Padre", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(model => model.id_padre)
+
+                <div class="text-center mt-4">
+                    <button type="submit" name="submitButton" value="Eliminar" class="btn btn-danger">Eliminar</button>
+                    @Html.ActionLink("Cancelar", "ListPadres", null, new { @class = "btn btn-secondary ms-2" })
+                </div>
+            }
+        </div>
+    </div>
+</div>

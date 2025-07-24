@@ -4,18 +4,45 @@
     ViewBag.Title = "Detalle del Padre";
 }
 
-<h2 class="text-center">Detalle del Padre</h2>
+<style>
+    .detalle-contenedor {
+        max-width: 600px;
+        margin: 50px auto;
+        background-color: #f8f9fa;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+    }
 
-<div class="card mx-auto" style="max-width: 600px;">
-    <div class="card-body text-center">
+        .detalle-contenedor h2 {
+            text-align: center;
+            color: #0d47a1;
+            font-weight: bold;
+            margin-bottom: 25px;
+        }
 
-        <h5 class="card-title">@Model.nombre</h5>
+    .detalle-info {
+        font-size: 18px;
+        line-height: 1.8;
+    }
 
-        <p class="card-text"><strong>Cédula:</strong> @Model.cedula</p>
-        <p class="card-text"><strong>Teléfono:</strong> @Model.telefono</p>
+    .btn-volver {
+        display: flex;
+        justify-content: center;
+        margin-top: 25px;
+    }
+</style>
 
-        <div class="d-flex justify-content-center mt-3">
-            @Html.ActionLink("Volver a Buscar", "BuscarPorCedula", null, new { @class = "btn btn-secondary me-2" })
-        </div>
+<div class="detalle-contenedor">
+    <h2>Detalle del Padre</h2>
+
+    <div class="detalle-info">
+        <p><strong>Nombre:</strong> @Model.nombre</p>
+        <p><strong>Cédula:</strong> @Model.cedula</p>
+        <p><strong>Teléfono:</strong> @Model.telefono</p>
+    </div>
+
+    <div class="btn-volver">
+        @Html.ActionLink("Volver a Buscar", "BuscarPorCedula", null, new { @class = "btn btn-secondary" })
     </div>
 </div>

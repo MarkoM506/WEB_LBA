@@ -2,44 +2,92 @@
 
 @{
     ViewBag.Title = "Modificar Estudiante";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Modificar Estudiante</h2>
+<style>
+    body {
+        background-color: #e3f2fd;
+    }
 
-@using (Html.BeginForm("Acciones", "Estudiante", FormMethod.Post))
-{
-    @Html.HiddenFor(m => m.id_estudiante)
+    .contenedor-formulario {
+        max-width: 600px;
+        margin: 40px auto;
+        background-color: white;
+        padding: 30px;
+        border-radius: 16px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
 
-    <div class="mb-3">
-        @Html.LabelFor(m => m.cedula)
-        @Html.TextBoxFor(m => m.cedula, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.cedula, "", new { @class = "text-danger" })
-    </div>
+        .contenedor-formulario h2 {
+            font-size: 26px;
+            font-weight: bold;
+            color: black;
+            margin-bottom: 25px;
+            text-align: center;
+        }
 
-    <div class="mb-3">
-        @Html.LabelFor(m => m.nombre)
-        @Html.TextBoxFor(m => m.nombre, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.nombre, "", new { @class = "text-danger" })
-    </div>
+    .form-group {
+        margin-bottom: 20px;
+    }
 
-    <div class="mb-3">
-        @Html.LabelFor(m => m.direccion)
-        @Html.TextBoxFor(m => m.direccion, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.direccion, "", new { @class = "text-danger" })
-    </div>
+    .form-control {
+        border-radius: 8px;
+        font-size: 15px;
+        padding: 10px;
+    }
 
-    <div class="mb-3">
-        @Html.LabelFor(m => m.telefono)
-        @Html.TextBoxFor(m => m.telefono, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.telefono, "", new { @class = "text-danger" })
-    </div>
+    .text-danger {
+        font-size: 13px;
+    }
 
-    <div class="mb-3">
-        @Html.LabelFor(m => m.id_seccion)
-        @Html.TextBoxFor(m => m.id_seccion, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.id_seccion, "", new { @class = "text-danger" })
-    </div>
+    .btn {
+        font-weight: bold;
+        border-radius: 8px;
+        padding: 10px 18px;
+        margin-top: 15px;
+        margin-right: 10px;
+    }
+</style>
 
-    <button type="submit" name="submitButton" value="Actualizar" class="btn btn-primary">Guardar Cambios</button>
-    @Html.ActionLink("Volver a Estudiantes", "ListEstudiantes", null, new { @class = "btn btn-secondary ms-2" })
-}
+<div class="contenedor-formulario">
+    <h2>✏️ Modificar Estudiante</h2>
+
+    @using (Html.BeginForm("Acciones", "Estudiante", FormMethod.Post))
+    {
+        @Html.HiddenFor(m => m.id_estudiante)
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.cedula)
+            @Html.TextBoxFor(m => m.cedula, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.cedula, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.nombre)
+            @Html.TextBoxFor(m => m.nombre, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.nombre, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.direccion)
+            @Html.TextBoxFor(m => m.direccion, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.direccion, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.telefono)
+            @Html.TextBoxFor(m => m.telefono, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.telefono, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.id_seccion)
+            @Html.TextBoxFor(m => m.id_seccion, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.id_seccion, "", new { @class = "text-danger" })
+        </div>
+
+        <button type="submit" name="submitButton" value="Actualizar" class="btn btn-primary">Guardar Cambios</button>
+        @Html.ActionLink("Volver a Estudiantes", "ListEstudiantes", null, new { @class = "btn btn-secondary" })
+    }
+</div>

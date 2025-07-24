@@ -2,28 +2,71 @@
 
 @{
     ViewBag.Title = "Materias con Profesores";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Materias con Profesores Asignados</h2>
+<style>
+    body {
+        background-color: #eef3f9;
+    }
 
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>Nombre de Materia</th>
-            <th>Profesores Asignados</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var materia in Model)
-        {
+    .titulo-materias-profesores {
+        text-align: center;
+        margin-top: 30px;
+        font-size: 28px;
+        font-weight: bold;
+        color: #0d47a1;
+    }
+
+    .tabla-contenedor {
+        max-width: 900px;
+        margin: 30px auto;
+        background-color: white;
+        padding: 25px;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .table th {
+        background-color: #0d47a1;
+        color: white;
+        text-align: center;
+    }
+
+    .table td {
+        vertical-align: middle;
+        text-align: center;
+    }
+
+    .btn-volver {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+</style>
+
+<h2 class="titulo-materias-profesores">Materias con Profesores Asignados</h2>
+
+<div class="tabla-contenedor">
+    <table class="table table-striped table-bordered">
+        <thead>
             <tr>
-                <td>@materia.nombre_materia</td>
-                <td>@materia.profesores</td>
+                <th>Nombre de Materia</th>
+                <th>Profesores Asignados</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var materia in Model)
+            {
+                <tr>
+                    <td>@materia.nombre_materia</td>
+                    <td>@materia.profesores</td>
+                </tr>
+            }
+        </tbody>
+    </table>
 
-<p>
-    @Html.ActionLink("Volver a Materias", "ListMaterias", "Materia", null, new { @class = "btn btn-secondary" })
-</p>
+    <div class="btn-volver">
+        @Html.ActionLink("Volver a Materias", "ListMaterias", "Materia", null, new { @class = "btn btn-secondary" })
+    </div>
+</div>
