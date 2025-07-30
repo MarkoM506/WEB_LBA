@@ -4,24 +4,25 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="c6562ff7d0fa4d6b982535be7cfa198e" Name="Diagram1">
-        <EntityTypeShape EntityType="BD_LBAModel.Ciclo" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BD_LBAModel.Estudiante" Width="1.5" PointX="5.25" PointY="4.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="BD_LBAModel.Horario" Width="1.5" PointX="8.25" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="BD_LBAModel.Materia" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BD_LBAModel.Noticia" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BD_LBAModel.Padre" Width="1.5" PointX="7.5" PointY="4.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="BD_LBAModel.Profesore" Width="1.5" PointX="8.25" PointY="7.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="BD_LBAModel.Seccione" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="BD_LBAModel.Usuario" Width="1.5" PointX="10.5" PointY="4.25" IsExpanded="true" />
-        <AssociationConnector Association="BD_LBAModel.FK__Secciones__id_ci__398D8EEE" ManuallyRouted="false" />
-        <AssociationConnector Association="BD_LBAModel.FK__Estudiant__id_se__3D5E1FD2" ManuallyRouted="false" />
-        <AssociationConnector Association="BD_LBAModel.FK__Usuarios__id_est__5535A963" ManuallyRouted="false" />
-        <AssociationConnector Association="BD_LBAModel.FK__Horarios__id_mat__5070F446" ManuallyRouted="false" />
-        <AssociationConnector Association="BD_LBAModel.FK__Horarios__id_sec__4F7CD00D" ManuallyRouted="false" />
-        <AssociationConnector Association="BD_LBAModel.FK__Usuarios__id_pro__5629CD9C" ManuallyRouted="false" />
-        <AssociationConnector Association="BD_LBAModel.Materias_Profesores" ManuallyRouted="false" />
-        <AssociationConnector Association="BD_LBAModel.Padres_Estudiantes" ManuallyRouted="false" />
+      <Diagram DiagramId="a297374b5dfc457b97463209d7c0c7c2" Name="Diagram1">
+        <EntityTypeShape EntityType="L_BAModel.Ciclo" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="L_BAModel.Estudiante" Width="1.5" PointX="5.25" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="L_BAModel.Horario" Width="1.5" PointX="8.25" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="L_BAModel.Materia" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="L_BAModel.Matricula" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="L_BAModel.Noticia" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="L_BAModel.Padre" Width="1.5" PointX="7.5" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="L_BAModel.Profesore" Width="1.5" PointX="8.25" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="L_BAModel.Seccione" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="L_BAModel.Usuario" Width="1.5" PointX="10.5" PointY="4.25" IsExpanded="true" />
+        <AssociationConnector Association="L_BAModel.FK__Secciones__id_ci__398D8EEE" ManuallyRouted="false" />
+        <AssociationConnector Association="L_BAModel.FK__Estudiant__id_se__3D5E1FD2" ManuallyRouted="false" />
+        <AssociationConnector Association="L_BAModel.FK__Usuarios__id_est__5535A963" ManuallyRouted="false" />
+        <AssociationConnector Association="L_BAModel.FK__Horarios__id_mat__5070F446" ManuallyRouted="false" />
+        <AssociationConnector Association="L_BAModel.FK__Horarios__id_sec__4F7CD00D" ManuallyRouted="false" />
+        <AssociationConnector Association="L_BAModel.FK__Usuarios__id_pro__5629CD9C" ManuallyRouted="false" />
+        <AssociationConnector Association="L_BAModel.Materias_Profesores" ManuallyRouted="false" />
+        <AssociationConnector Association="L_BAModel.Padres_Estudiantes" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

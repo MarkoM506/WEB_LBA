@@ -11,7 +11,7 @@ namespace LogicaNegocio.Implementacion
     public class NoticiaLN : INoticiaLN
     {
         // Instancia estática del contexto para mantener consistencia
-        public static BD_LBAEntities _gobjContextoLBA = new BD_LBAEntities();
+        public static L_BAEntities _gobjContextoLBA = new L_BAEntities();
 
         // Acceso a Datos (como en CicloLN)
         private readonly INoticiaAD _objNoticiaAD = new NoticiaAD(_gobjContextoLBA);

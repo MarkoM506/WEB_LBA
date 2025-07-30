@@ -12,9 +12,9 @@ namespace AccesoDatos.Implementacion
     public class CicloAD : ICiclosAD
     {
 
-        private BD_LBAEntities gobjContextoLBA;
+        private L_BAEntities gobjContextoLBA;
 
-        public CicloAD(BD_LBAEntities _gobjContexto)
+        public CicloAD(L_BAEntities _gobjContexto)
         {
             this.gobjContextoLBA = _gobjContexto;
         }

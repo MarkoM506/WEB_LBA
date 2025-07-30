@@ -141,6 +141,7 @@
     <Compile Include="Controllers\EstudianteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MateriaController.cs" />
+    <Compile Include="Controllers\MatriculaController.cs" />
     <Compile Include="Controllers\NoticiaController.cs" />
     <Compile Include="Controllers\PadreController.cs" />
     <Compile Include="Controllers\ProfesorController.cs" />
@@ -278,10 +279,12 @@
     <Content Include="Views\Noticia\ListNoticias.cshtml" />
     <Content Include="Views\Noticia\AgregarNoticias.cshtml" />
     <Content Include="Views\Noticia\PanelNoticias.cshtml" />
+    <Content Include="Views\Matricula\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\ImagenesNoticias\" />
+    <Folder Include="Content\PDFs\" />
     <Folder Include="Views\Contacto\" />
   </ItemGroup>
   <ItemGroup>

@@ -11,9 +11,9 @@ namespace AccesoDatos.Implementacion
     public class SeccionAD : ISeccionAD
     {
 
-        private BD_LBAEntities gobjContextoLBA;
+        private L_BAEntities gobjContextoLBA;
 
-        public SeccionAD(BD_LBAEntities _gobjContexto)
+        public SeccionAD(L_BAEntities _gobjContexto)
         {
             this.gobjContextoLBA = _gobjContexto;
         }

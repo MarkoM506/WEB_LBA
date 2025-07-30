@@ -10,11 +10,11 @@ namespace WEB_LBA.AccesoDatos
 {
     public class UsuarioAD : IUsuarioAD
     {
-        private BD_LBAEntities contexto;
+        private L_BAEntities contexto;
 
         public UsuarioAD()
         {
-            contexto = new BD_LBAEntities();
+            contexto = new L_BAEntities();
             contexto.Configuration.ProxyCreationEnabled = false;
         }
 

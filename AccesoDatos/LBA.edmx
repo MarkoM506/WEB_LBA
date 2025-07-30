@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="BD_LBAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="L_BAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Ciclos">
           <Key>
             <PropertyRef Name="id_ciclo" />
@@ -49,6 +49,25 @@
           </Key>
           <Property Name="id_profesor" Type="int" Nullable="false" />
           <Property Name="id_materia" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Matricula">
+          <Key>
+            <PropertyRef Name="id_matricula" />
+          </Key>
+          <Property Name="id_matricula" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre_estudiante" Type="varchar" MaxLength="100" />
+          <Property Name="cedula_estudiante" Type="varchar" MaxLength="20" />
+          <Property Name="escuela_procedencia" Type="varchar" MaxLength="100" />
+          <Property Name="fecha_nacimiento" Type="date" />
+          <Property Name="telefono_estudiante" Type="varchar" MaxLength="20" />
+          <Property Name="nivel" Type="varchar" MaxLength="20" />
+          <Property Name="nombre_padre" Type="varchar" MaxLength="100" />
+          <Property Name="cedula_padre" Type="varchar" MaxLength="20" />
+          <Property Name="telefono_padre" Type="varchar" MaxLength="20" />
+          <Property Name="direccion_padre" Type="varchar" MaxLength="300" />
+          <Property Name="parentesco" Type="varchar" MaxLength="50" />
+          <Property Name="fecha_cita" Type="date" />
+          <Property Name="hora_cita" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="Noticias">
           <Key>
@@ -275,6 +294,21 @@
         <Function Name="SP_insMateria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="nombre_materia" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="SP_insMatricula" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nombre_estudiante" Type="varchar" Mode="In" />
+          <Parameter Name="cedula_estudiante" Type="varchar" Mode="In" />
+          <Parameter Name="escuela_procedencia" Type="varchar" Mode="In" />
+          <Parameter Name="fecha_nacimiento" Type="date" Mode="In" />
+          <Parameter Name="telefono_estudiante" Type="varchar" Mode="In" />
+          <Parameter Name="nivel" Type="varchar" Mode="In" />
+          <Parameter Name="nombre_padre" Type="varchar" Mode="In" />
+          <Parameter Name="cedula_padre" Type="varchar" Mode="In" />
+          <Parameter Name="telefono_padre" Type="varchar" Mode="In" />
+          <Parameter Name="direccion_padre" Type="varchar" Mode="In" />
+          <Parameter Name="parentesco" Type="varchar" Mode="In" />
+          <Parameter Name="fecha_cita" Type="date" Mode="In" />
+          <Parameter Name="hora_cita" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="SP_insNoticia" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="titulo" Type="varchar" Mode="In" />
           <Parameter Name="contenido" Type="text" Mode="In" />
@@ -430,12 +464,13 @@
           <Parameter Name="id_padre" Type="int" Mode="In" />
           <Parameter Name="id_estudiante" Type="int" Mode="In" />
         </Function>
-        <EntityContainer Name="BD_LBAModelStoreContainer">
+        <EntityContainer Name="L_BAModelStoreContainer">
           <EntitySet Name="Ciclos" EntityType="Self.Ciclos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Estudiantes" EntityType="Self.Estudiantes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Horarios" EntityType="Self.Horarios" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Materias" EntityType="Self.Materias" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Materias_Profesores" EntityType="Self.Materias_Profesores" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Matricula" EntityType="Self.Matricula" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Noticias" EntityType="Self.Noticias" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Padres" EntityType="Self.Padres" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Padres_Estudiantes" EntityType="Self.Padres_Estudiantes" Schema="dbo" store:Type="Tables" />
@@ -487,7 +522,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="BD_LBAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="L_BAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Ciclo">
           <Key>
             <PropertyRef Name="id_ciclo" />
@@ -532,6 +567,25 @@
           <Property Name="nombre_materia" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Horarios" Relationship="Self.FK__Horarios__id_mat__5070F446" FromRole="Materias" ToRole="Horarios" />
           <NavigationProperty Name="Profesores" Relationship="Self.Materias_Profesores" FromRole="Materias" ToRole="Profesores" />
+        </EntityType>
+        <EntityType Name="Matricula">
+          <Key>
+            <PropertyRef Name="id_matricula" />
+          </Key>
+          <Property Name="id_matricula" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre_estudiante" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="cedula_estudiante" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="escuela_procedencia" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_nacimiento" Type="DateTime" Precision="0" />
+          <Property Name="telefono_estudiante" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="nivel" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="nombre_padre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="cedula_padre" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="telefono_padre" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="direccion_padre" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="parentesco" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_cita" Type="DateTime" Precision="0" />
+          <Property Name="hora_cita" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Noticia">
           <Key>
@@ -668,11 +722,12 @@
           <End Role="Estudiantes" Type="Self.Estudiante" Multiplicity="*" />
           <End Role="Padres" Type="Self.Padre" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="BD_LBAEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="L_BAEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Ciclos" EntityType="Self.Ciclo" />
           <EntitySet Name="Estudiantes" EntityType="Self.Estudiante" />
           <EntitySet Name="Horarios" EntityType="Self.Horario" />
           <EntitySet Name="Materias" EntityType="Self.Materia" />
+          <EntitySet Name="Matriculas" EntityType="Self.Matricula" />
           <EntitySet Name="Noticias" EntityType="Self.Noticia" />
           <EntitySet Name="Padres" EntityType="Self.Padre" />
           <EntitySet Name="Profesores" EntityType="Self.Profesore" />
@@ -760,6 +815,21 @@
           <FunctionImport Name="SP_insMateria">
             <Parameter Name="nombre_materia" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="SP_insMatricula">
+            <Parameter Name="nombre_estudiante" Mode="In" Type="String" />
+            <Parameter Name="cedula_estudiante" Mode="In" Type="String" />
+            <Parameter Name="escuela_procedencia" Mode="In" Type="String" />
+            <Parameter Name="fecha_nacimiento" Mode="In" Type="DateTime" />
+            <Parameter Name="telefono_estudiante" Mode="In" Type="String" />
+            <Parameter Name="nivel" Mode="In" Type="String" />
+            <Parameter Name="nombre_padre" Mode="In" Type="String" />
+            <Parameter Name="cedula_padre" Mode="In" Type="String" />
+            <Parameter Name="telefono_padre" Mode="In" Type="String" />
+            <Parameter Name="direccion_padre" Mode="In" Type="String" />
+            <Parameter Name="parentesco" Mode="In" Type="String" />
+            <Parameter Name="fecha_cita" Mode="In" Type="DateTime" />
+            <Parameter Name="hora_cita" Mode="In" Type="String" />
+          </FunctionImport>
           <FunctionImport Name="SP_insNoticia">
             <Parameter Name="titulo" Mode="In" Type="String" />
             <Parameter Name="contenido" Mode="In" Type="String" />
@@ -786,7 +856,7 @@
             <Parameter Name="id_estudiante" Mode="In" Type="Int32" />
             <Parameter Name="id_profesor" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="SP_loginUsuario" ReturnType="Collection(BD_LBAModel.SP_loginUsuario_Result)">
+          <FunctionImport Name="SP_loginUsuario" ReturnType="Collection(L_BAModel.SP_loginUsuario_Result)">
             <Parameter Name="usuario" Mode="In" Type="String" />
             <Parameter Name="contrasena" Mode="In" Type="String" />
           </FunctionImport>
@@ -853,64 +923,64 @@
             <Parameter Name="id_padre" Mode="In" Type="Int32" />
             <Parameter Name="id_estudiante" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="SP_recCicloPorId" ReturnType="Collection(BD_LBAModel.SP_recCicloPorId_Result)">
+          <FunctionImport Name="SP_recCicloPorId" ReturnType="Collection(L_BAModel.SP_recCicloPorId_Result)">
             <Parameter Name="id_ciclo" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="SP_recCiclos" ReturnType="Collection(BD_LBAModel.SP_recCiclos_Result)" />
-          <FunctionImport Name="SP_recEstudiantePorCedula" ReturnType="Collection(BD_LBAModel.SP_recEstudiantePorCedula_Result)">
+          <FunctionImport Name="SP_recCiclos" ReturnType="Collection(L_BAModel.SP_recCiclos_Result)" />
+          <FunctionImport Name="SP_recEstudiantePorCedula" ReturnType="Collection(L_BAModel.SP_recEstudiantePorCedula_Result)">
             <Parameter Name="cedula" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="SP_recEstudiantePorId" ReturnType="Collection(BD_LBAModel.SP_recEstudiantePorId_Result)">
+          <FunctionImport Name="SP_recEstudiantePorId" ReturnType="Collection(L_BAModel.SP_recEstudiantePorId_Result)">
             <Parameter Name="id_estudiante" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="SP_recEstudiantes" ReturnType="Collection(BD_LBAModel.SP_recEstudiantes_Result)" />
-          <FunctionImport Name="SP_recEstudiantesPorPadre" ReturnType="Collection(BD_LBAModel.SP_recEstudiantesPorPadre_Result)">
+          <FunctionImport Name="SP_recEstudiantes" ReturnType="Collection(L_BAModel.SP_recEstudiantes_Result)" />
+          <FunctionImport Name="SP_recEstudiantesPorPadre" ReturnType="Collection(L_BAModel.SP_recEstudiantesPorPadre_Result)">
             <Parameter Name="id_padre" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="SP_recEstudiantesPorSeccion" ReturnType="Collection(BD_LBAModel.SP_recEstudiantesPorSeccion_Result)">
+          <FunctionImport Name="SP_recEstudiantesPorSeccion" ReturnType="Collection(L_BAModel.SP_recEstudiantesPorSeccion_Result)">
             <Parameter Name="id_seccion" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="SP_recMateriaPorId" ReturnType="Collection(BD_LBAModel.SP_recMateriaPorId_Result)">
+          <FunctionImport Name="SP_recMateriaPorId" ReturnType="Collection(L_BAModel.SP_recMateriaPorId_Result)">
             <Parameter Name="id_materia" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="SP_recMaterias" ReturnType="Collection(BD_LBAModel.SP_recMaterias_Result)" />
-          <FunctionImport Name="SP_recMateriasConProfesores" ReturnType="Collection(BD_LBAModel.SP_recMateriasConProfesores_Result)" />
-          <FunctionImport Name="SP_recMateriasPorProfesor" ReturnType="Collection(BD_LBAModel.SP_recMateriasPorProfesor_Result)">
+          <FunctionImport Name="SP_recMaterias" ReturnType="Collection(L_BAModel.SP_recMaterias_Result)" />
+          <FunctionImport Name="SP_recMateriasConProfesores" ReturnType="Collection(L_BAModel.SP_recMateriasConProfesores_Result)" />
+          <FunctionImport Name="SP_recMateriasPorProfesor" ReturnType="Collection(L_BAModel.SP_recMateriasPorProfesor_Result)">
             <Parameter Name="id_profesor" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="SP_recNoticiaPorId" ReturnType="Collection(BD_LBAModel.SP_recNoticiaPorId_Result)">
+          <FunctionImport Name="SP_recNoticiaPorId" ReturnType="Collection(L_BAModel.SP_recNoticiaPorId_Result)">
             <Parameter Name="id_noticia" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="SP_recNoticias" ReturnType="Collection(BD_LBAModel.SP_recNoticias_Result)" />
-          <FunctionImport Name="SP_recPadrePorCedula" ReturnType="Collection(BD_LBAModel.SP_recPadrePorCedula_Result)">
+          <FunctionImport Name="SP_recNoticias" ReturnType="Collection(L_BAModel.SP_recNoticias_Result)" />
+          <FunctionImport Name="SP_recPadrePorCedula" ReturnType="Collection(L_BAModel.SP_recPadrePorCedula_Result)">
             <Parameter Name="cedula" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="SP_recPadrePorId" ReturnType="Collection(BD_LBAModel.SP_recPadrePorId_Result)">
+          <FunctionImport Name="SP_recPadrePorId" ReturnType="Collection(L_BAModel.SP_recPadrePorId_Result)">
             <Parameter Name="id_padre" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="SP_recPadres" ReturnType="Collection(BD_LBAModel.SP_recPadres_Result)" />
-          <FunctionImport Name="SP_recPadresPorEstudiante" ReturnType="Collection(BD_LBAModel.SP_recPadresPorEstudiante_Result)">
+          <FunctionImport Name="SP_recPadres" ReturnType="Collection(L_BAModel.SP_recPadres_Result)" />
+          <FunctionImport Name="SP_recPadresPorEstudiante" ReturnType="Collection(L_BAModel.SP_recPadresPorEstudiante_Result)">
             <Parameter Name="id_estudiante" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="SP_recProfesores" ReturnType="Collection(BD_LBAModel.SP_recProfesores_Result)" />
-          <FunctionImport Name="SP_recProfesoresConMaterias" ReturnType="Collection(BD_LBAModel.SP_recProfesoresConMaterias_Result)" />
-          <FunctionImport Name="SP_recProfesoresPorMateria" ReturnType="Collection(BD_LBAModel.SP_recProfesoresPorMateria_Result)">
+          <FunctionImport Name="SP_recProfesores" ReturnType="Collection(L_BAModel.SP_recProfesores_Result)" />
+          <FunctionImport Name="SP_recProfesoresConMaterias" ReturnType="Collection(L_BAModel.SP_recProfesoresConMaterias_Result)" />
+          <FunctionImport Name="SP_recProfesoresPorMateria" ReturnType="Collection(L_BAModel.SP_recProfesoresPorMateria_Result)">
             <Parameter Name="id_materia" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="SP_recProfesorPorId" ReturnType="Collection(BD_LBAModel.SP_recProfesorPorId_Result)">
+          <FunctionImport Name="SP_recProfesorPorId" ReturnType="Collection(L_BAModel.SP_recProfesorPorId_Result)">
             <Parameter Name="id_profesor" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="SP_recSecciones" ReturnType="Collection(BD_LBAModel.SP_recSecciones_Result)" />
-          <FunctionImport Name="SP_recSeccionesPorCiclo" ReturnType="Collection(BD_LBAModel.SP_recSeccionesPorCiclo_Result)">
+          <FunctionImport Name="SP_recSecciones" ReturnType="Collection(L_BAModel.SP_recSecciones_Result)" />
+          <FunctionImport Name="SP_recSeccionesPorCiclo" ReturnType="Collection(L_BAModel.SP_recSeccionesPorCiclo_Result)">
             <Parameter Name="id_ciclo" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="SP_recSeccionPorId" ReturnType="Collection(BD_LBAModel.SP_recSeccionPorId_Result)">
+          <FunctionImport Name="SP_recSeccionPorId" ReturnType="Collection(L_BAModel.SP_recSeccionPorId_Result)">
             <Parameter Name="id_seccion" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="SP_recUsuarioPorId" ReturnType="Collection(BD_LBAModel.SP_recUsuarioPorId_Result)">
+          <FunctionImport Name="SP_recUsuarioPorId" ReturnType="Collection(L_BAModel.SP_recUsuarioPorId_Result)">
             <Parameter Name="id_usuario" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="SP_recUsuarios" ReturnType="Collection(BD_LBAModel.SP_recUsuarios_Result)" />
+          <FunctionImport Name="SP_recUsuarios" ReturnType="Collection(L_BAModel.SP_recUsuarios_Result)" />
           <FunctionImport Name="SP_relPadreEstudiante">
             <Parameter Name="id_padre" Mode="In" Type="Int32" />
             <Parameter Name="id_estudiante" Mode="In" Type="Int32" />
@@ -1094,9 +1164,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="BD_LBAModelStoreContainer" CdmEntityContainer="BD_LBAEntities">
+        <EntityContainerMapping StorageEntityContainer="L_BAModelStoreContainer" CdmEntityContainer="L_BAEntities">
           <EntitySetMapping Name="Ciclos">
-            <EntityTypeMapping TypeName="BD_LBAModel.Ciclo">
+            <EntityTypeMapping TypeName="L_BAModel.Ciclo">
               <MappingFragment StoreEntitySet="Ciclos">
                 <ScalarProperty Name="id_ciclo" ColumnName="id_ciclo" />
                 <ScalarProperty Name="nombre_ciclo" ColumnName="nombre_ciclo" />
@@ -1105,7 +1175,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Estudiantes">
-            <EntityTypeMapping TypeName="BD_LBAModel.Estudiante">
+            <EntityTypeMapping TypeName="L_BAModel.Estudiante">
               <MappingFragment StoreEntitySet="Estudiantes">
                 <ScalarProperty Name="id_estudiante" ColumnName="id_estudiante" />
                 <ScalarProperty Name="cedula" ColumnName="cedula" />
@@ -1117,7 +1187,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Horarios">
-            <EntityTypeMapping TypeName="BD_LBAModel.Horario">
+            <EntityTypeMapping TypeName="L_BAModel.Horario">
               <MappingFragment StoreEntitySet="Horarios">
                 <ScalarProperty Name="id_horario" ColumnName="id_horario" />
                 <ScalarProperty Name="id_seccion" ColumnName="id_seccion" />
@@ -1129,15 +1199,35 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Materias">
-            <EntityTypeMapping TypeName="BD_LBAModel.Materia">
+            <EntityTypeMapping TypeName="L_BAModel.Materia">
               <MappingFragment StoreEntitySet="Materias">
                 <ScalarProperty Name="id_materia" ColumnName="id_materia" />
                 <ScalarProperty Name="nombre_materia" ColumnName="nombre_materia" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Matriculas">
+            <EntityTypeMapping TypeName="L_BAModel.Matricula">
+              <MappingFragment StoreEntitySet="Matricula">
+                <ScalarProperty Name="id_matricula" ColumnName="id_matricula" />
+                <ScalarProperty Name="nombre_estudiante" ColumnName="nombre_estudiante" />
+                <ScalarProperty Name="cedula_estudiante" ColumnName="cedula_estudiante" />
+                <ScalarProperty Name="escuela_procedencia" ColumnName="escuela_procedencia" />
+                <ScalarProperty Name="fecha_nacimiento" ColumnName="fecha_nacimiento" />
+                <ScalarProperty Name="telefono_estudiante" ColumnName="telefono_estudiante" />
+                <ScalarProperty Name="nivel" ColumnName="nivel" />
+                <ScalarProperty Name="nombre_padre" ColumnName="nombre_padre" />
+                <ScalarProperty Name="cedula_padre" ColumnName="cedula_padre" />
+                <ScalarProperty Name="telefono_padre" ColumnName="telefono_padre" />
+                <ScalarProperty Name="direccion_padre" ColumnName="direccion_padre" />
+                <ScalarProperty Name="parentesco" ColumnName="parentesco" />
+                <ScalarProperty Name="fecha_cita" ColumnName="fecha_cita" />
+                <ScalarProperty Name="hora_cita" ColumnName="hora_cita" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Noticias">
-            <EntityTypeMapping TypeName="BD_LBAModel.Noticia">
+            <EntityTypeMapping TypeName="L_BAModel.Noticia">
               <MappingFragment StoreEntitySet="Noticias">
                 <ScalarProperty Name="id_noticia" ColumnName="id_noticia" />
                 <ScalarProperty Name="titulo" ColumnName="titulo" />
@@ -1148,7 +1238,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Padres">
-            <EntityTypeMapping TypeName="BD_LBAModel.Padre">
+            <EntityTypeMapping TypeName="L_BAModel.Padre">
               <MappingFragment StoreEntitySet="Padres">
                 <ScalarProperty Name="id_padre" ColumnName="id_padre" />
                 <ScalarProperty Name="cedula" ColumnName="cedula" />
@@ -1158,7 +1248,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Profesores">
-            <EntityTypeMapping TypeName="BD_LBAModel.Profesore">
+            <EntityTypeMapping TypeName="L_BAModel.Profesore">
               <MappingFragment StoreEntitySet="Profesores">
                 <ScalarProperty Name="id_profesor" ColumnName="id_profesor" />
                 <ScalarProperty Name="cedula" ColumnName="cedula" />
@@ -1167,7 +1257,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Secciones">
-            <EntityTypeMapping TypeName="BD_LBAModel.Seccione">
+            <EntityTypeMapping TypeName="L_BAModel.Seccione">
               <MappingFragment StoreEntitySet="Secciones">
                 <ScalarProperty Name="id_seccion" ColumnName="id_seccion" />
                 <ScalarProperty Name="nombre_seccion" ColumnName="nombre_seccion" />
@@ -1176,7 +1266,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Usuarios">
-            <EntityTypeMapping TypeName="BD_LBAModel.Usuario">
+            <EntityTypeMapping TypeName="L_BAModel.Usuario">
               <MappingFragment StoreEntitySet="Usuarios">
                 <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
                 <ScalarProperty Name="usuario1" ColumnName="usuario" />
@@ -1188,7 +1278,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="Materias_Profesores" TypeName="BD_LBAModel.Materias_Profesores" StoreEntitySet="Materias_Profesores">
+          <AssociationSetMapping Name="Materias_Profesores" TypeName="L_BAModel.Materias_Profesores" StoreEntitySet="Materias_Profesores">
             <EndProperty Name="Materias">
               <ScalarProperty Name="id_materia" ColumnName="id_materia" />
             </EndProperty>
@@ -1196,7 +1286,7 @@
               <ScalarProperty Name="id_profesor" ColumnName="id_profesor" />
             </EndProperty>
           </AssociationSetMapping>
-          <AssociationSetMapping Name="Padres_Estudiantes" TypeName="BD_LBAModel.Padres_Estudiantes" StoreEntitySet="Padres_Estudiantes">
+          <AssociationSetMapping Name="Padres_Estudiantes" TypeName="L_BAModel.Padres_Estudiantes" StoreEntitySet="Padres_Estudiantes">
             <EndProperty Name="Estudiantes">
               <ScalarProperty Name="id_estudiante" ColumnName="id_estudiante" />
             </EndProperty>
@@ -1204,28 +1294,29 @@
               <ScalarProperty Name="id_padre" ColumnName="id_padre" />
             </EndProperty>
           </AssociationSetMapping>
-          <FunctionImportMapping FunctionImportName="SP_asignarEstudianteAPadre" FunctionName="BD_LBAModel.Store.SP_asignarEstudianteAPadre" />
-          <FunctionImportMapping FunctionImportName="SP_asignarMateriaAProfesor" FunctionName="BD_LBAModel.Store.SP_asignarMateriaAProfesor" />
-          <FunctionImportMapping FunctionImportName="SP_asignarMateriaProfesor" FunctionName="BD_LBAModel.Store.SP_asignarMateriaProfesor" />
-          <FunctionImportMapping FunctionImportName="SP_delCiclo" FunctionName="BD_LBAModel.Store.SP_delCiclo" />
-          <FunctionImportMapping FunctionImportName="SP_delEstudiante" FunctionName="BD_LBAModel.Store.SP_delEstudiante" />
-          <FunctionImportMapping FunctionImportName="SP_delMateria" FunctionName="BD_LBAModel.Store.SP_delMateria" />
-          <FunctionImportMapping FunctionImportName="SP_delNoticia" FunctionName="BD_LBAModel.Store.SP_delNoticia" />
-          <FunctionImportMapping FunctionImportName="SP_delPadre" FunctionName="BD_LBAModel.Store.SP_delPadre" />
-          <FunctionImportMapping FunctionImportName="SP_delProfesor" FunctionName="BD_LBAModel.Store.SP_delProfesor" />
-          <FunctionImportMapping FunctionImportName="SP_delSeccion" FunctionName="BD_LBAModel.Store.SP_delSeccion" />
-          <FunctionImportMapping FunctionImportName="SP_delUsuario" FunctionName="BD_LBAModel.Store.SP_delUsuario" />
-          <FunctionImportMapping FunctionImportName="SP_insCiclo" FunctionName="BD_LBAModel.Store.SP_insCiclo" />
-          <FunctionImportMapping FunctionImportName="SP_insEstudiante" FunctionName="BD_LBAModel.Store.SP_insEstudiante" />
-          <FunctionImportMapping FunctionImportName="SP_insMateria" FunctionName="BD_LBAModel.Store.SP_insMateria" />
-          <FunctionImportMapping FunctionImportName="SP_insNoticia" FunctionName="BD_LBAModel.Store.SP_insNoticia" />
-          <FunctionImportMapping FunctionImportName="SP_insPadre" FunctionName="BD_LBAModel.Store.SP_insPadre" />
-          <FunctionImportMapping FunctionImportName="SP_insProfesor" FunctionName="BD_LBAModel.Store.SP_insProfesor" />
-          <FunctionImportMapping FunctionImportName="SP_insSeccion" FunctionName="BD_LBAModel.Store.SP_insSeccion" />
-          <FunctionImportMapping FunctionImportName="SP_insUsuario" FunctionName="BD_LBAModel.Store.SP_insUsuario" />
-          <FunctionImportMapping FunctionImportName="SP_loginUsuario" FunctionName="BD_LBAModel.Store.SP_loginUsuario">
+          <FunctionImportMapping FunctionImportName="SP_asignarEstudianteAPadre" FunctionName="L_BAModel.Store.SP_asignarEstudianteAPadre" />
+          <FunctionImportMapping FunctionImportName="SP_asignarMateriaAProfesor" FunctionName="L_BAModel.Store.SP_asignarMateriaAProfesor" />
+          <FunctionImportMapping FunctionImportName="SP_asignarMateriaProfesor" FunctionName="L_BAModel.Store.SP_asignarMateriaProfesor" />
+          <FunctionImportMapping FunctionImportName="SP_delCiclo" FunctionName="L_BAModel.Store.SP_delCiclo" />
+          <FunctionImportMapping FunctionImportName="SP_delEstudiante" FunctionName="L_BAModel.Store.SP_delEstudiante" />
+          <FunctionImportMapping FunctionImportName="SP_delMateria" FunctionName="L_BAModel.Store.SP_delMateria" />
+          <FunctionImportMapping FunctionImportName="SP_delNoticia" FunctionName="L_BAModel.Store.SP_delNoticia" />
+          <FunctionImportMapping FunctionImportName="SP_delPadre" FunctionName="L_BAModel.Store.SP_delPadre" />
+          <FunctionImportMapping FunctionImportName="SP_delProfesor" FunctionName="L_BAModel.Store.SP_delProfesor" />
+          <FunctionImportMapping FunctionImportName="SP_delSeccion" FunctionName="L_BAModel.Store.SP_delSeccion" />
+          <FunctionImportMapping FunctionImportName="SP_delUsuario" FunctionName="L_BAModel.Store.SP_delUsuario" />
+          <FunctionImportMapping FunctionImportName="SP_insCiclo" FunctionName="L_BAModel.Store.SP_insCiclo" />
+          <FunctionImportMapping FunctionImportName="SP_insEstudiante" FunctionName="L_BAModel.Store.SP_insEstudiante" />
+          <FunctionImportMapping FunctionImportName="SP_insMateria" FunctionName="L_BAModel.Store.SP_insMateria" />
+          <FunctionImportMapping FunctionImportName="SP_insMatricula" FunctionName="L_BAModel.Store.SP_insMatricula" />
+          <FunctionImportMapping FunctionImportName="SP_insNoticia" FunctionName="L_BAModel.Store.SP_insNoticia" />
+          <FunctionImportMapping FunctionImportName="SP_insPadre" FunctionName="L_BAModel.Store.SP_insPadre" />
+          <FunctionImportMapping FunctionImportName="SP_insProfesor" FunctionName="L_BAModel.Store.SP_insProfesor" />
+          <FunctionImportMapping FunctionImportName="SP_insSeccion" FunctionName="L_BAModel.Store.SP_insSeccion" />
+          <FunctionImportMapping FunctionImportName="SP_insUsuario" FunctionName="L_BAModel.Store.SP_insUsuario" />
+          <FunctionImportMapping FunctionImportName="SP_loginUsuario" FunctionName="L_BAModel.Store.SP_loginUsuario">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="BD_LBAModel.SP_loginUsuario_Result">
+              <ComplexTypeMapping TypeName="L_BAModel.SP_loginUsuario_Result">
                 <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
                 <ScalarProperty Name="usuario" ColumnName="usuario" />
                 <ScalarProperty Name="contrasena" ColumnName="contrasena" />
@@ -1236,39 +1327,39 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SP_modCiclo" FunctionName="BD_LBAModel.Store.SP_modCiclo" />
-          <FunctionImportMapping FunctionImportName="SP_modEstudiante" FunctionName="BD_LBAModel.Store.SP_modEstudiante" />
-          <FunctionImportMapping FunctionImportName="SP_modMateria" FunctionName="BD_LBAModel.Store.SP_modMateria" />
-          <FunctionImportMapping FunctionImportName="SP_modNoticia" FunctionName="BD_LBAModel.Store.SP_modNoticia" />
-          <FunctionImportMapping FunctionImportName="SP_modPadre" FunctionName="BD_LBAModel.Store.SP_modPadre" />
-          <FunctionImportMapping FunctionImportName="SP_modProfesor" FunctionName="BD_LBAModel.Store.SP_modProfesor" />
-          <FunctionImportMapping FunctionImportName="SP_modSeccion" FunctionName="BD_LBAModel.Store.SP_modSeccion" />
-          <FunctionImportMapping FunctionImportName="SP_modUsuario" FunctionName="BD_LBAModel.Store.SP_modUsuario" />
-          <FunctionImportMapping FunctionImportName="SP_quitarEstudianteDePadre" FunctionName="BD_LBAModel.Store.SP_quitarEstudianteDePadre" />
-          <FunctionImportMapping FunctionImportName="SP_quitarMateriaDeProfesor" FunctionName="BD_LBAModel.Store.SP_quitarMateriaDeProfesor" />
-          <FunctionImportMapping FunctionImportName="SP_quitarMateriaProfesor" FunctionName="BD_LBAModel.Store.SP_quitarMateriaProfesor" />
-          <FunctionImportMapping FunctionImportName="SP_quitarRelacionPadreEstudiante" FunctionName="BD_LBAModel.Store.SP_quitarRelacionPadreEstudiante" />
-          <FunctionImportMapping FunctionImportName="SP_recCicloPorId" FunctionName="BD_LBAModel.Store.SP_recCicloPorId">
+          <FunctionImportMapping FunctionImportName="SP_modCiclo" FunctionName="L_BAModel.Store.SP_modCiclo" />
+          <FunctionImportMapping FunctionImportName="SP_modEstudiante" FunctionName="L_BAModel.Store.SP_modEstudiante" />
+          <FunctionImportMapping FunctionImportName="SP_modMateria" FunctionName="L_BAModel.Store.SP_modMateria" />
+          <FunctionImportMapping FunctionImportName="SP_modNoticia" FunctionName="L_BAModel.Store.SP_modNoticia" />
+          <FunctionImportMapping FunctionImportName="SP_modPadre" FunctionName="L_BAModel.Store.SP_modPadre" />
+          <FunctionImportMapping FunctionImportName="SP_modProfesor" FunctionName="L_BAModel.Store.SP_modProfesor" />
+          <FunctionImportMapping FunctionImportName="SP_modSeccion" FunctionName="L_BAModel.Store.SP_modSeccion" />
+          <FunctionImportMapping FunctionImportName="SP_modUsuario" FunctionName="L_BAModel.Store.SP_modUsuario" />
+          <FunctionImportMapping FunctionImportName="SP_quitarEstudianteDePadre" FunctionName="L_BAModel.Store.SP_quitarEstudianteDePadre" />
+          <FunctionImportMapping FunctionImportName="SP_quitarMateriaDeProfesor" FunctionName="L_BAModel.Store.SP_quitarMateriaDeProfesor" />
+          <FunctionImportMapping FunctionImportName="SP_quitarMateriaProfesor" FunctionName="L_BAModel.Store.SP_quitarMateriaProfesor" />
+          <FunctionImportMapping FunctionImportName="SP_quitarRelacionPadreEstudiante" FunctionName="L_BAModel.Store.SP_quitarRelacionPadreEstudiante" />
+          <FunctionImportMapping FunctionImportName="SP_recCicloPorId" FunctionName="L_BAModel.Store.SP_recCicloPorId">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="BD_LBAModel.SP_recCicloPorId_Result">
+              <ComplexTypeMapping TypeName="L_BAModel.SP_recCicloPorId_Result">
                 <ScalarProperty Name="id_ciclo" ColumnName="id_ciclo" />
                 <ScalarProperty Name="nombre_ciclo" ColumnName="nombre_ciclo" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SP_recCiclos" FunctionName="BD_LBAModel.Store.SP_recCiclos">
+          <FunctionImportMapping FunctionImportName="SP_recCiclos" FunctionName="L_BAModel.Store.SP_recCiclos">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="BD_LBAModel.SP_recCiclos_Result">
+              <ComplexTypeMapping TypeName="L_BAModel.SP_recCiclos_Result">
                 <ScalarProperty Name="id_ciclo" ColumnName="id_ciclo" />
                 <ScalarProperty Name="nombre_ciclo" ColumnName="nombre_ciclo" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SP_recEstudiantePorCedula" FunctionName="BD_LBAModel.Store.SP_recEstudiantePorCedula">
+          <FunctionImportMapping FunctionImportName="SP_recEstudiantePorCedula" FunctionName="L_BAModel.Store.SP_recEstudiantePorCedula">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="BD_LBAModel.SP_recEstudiantePorCedula_Result">
+              <ComplexTypeMapping TypeName="L_BAModel.SP_recEstudiantePorCedula_Result">
                 <ScalarProperty Name="id_estudiante" ColumnName="id_estudiante" />
                 <ScalarProperty Name="cedula" ColumnName="cedula" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -1278,9 +1369,9 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SP_recEstudiantePorId" FunctionName="BD_LBAModel.Store.SP_recEstudiantePorId">
+          <FunctionImportMapping FunctionImportName="SP_recEstudiantePorId" FunctionName="L_BAModel.Store.SP_recEstudiantePorId">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="BD_LBAModel.SP_recEstudiantePorId_Result">
+              <ComplexTypeMapping TypeName="L_BAModel.SP_recEstudiantePorId_Result">
                 <ScalarProperty Name="id_estudiante" ColumnName="id_estudiante" />
                 <ScalarProperty Name="cedula" ColumnName="cedula" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -1291,9 +1382,9 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SP_recEstudiantes" FunctionName="BD_LBAModel.Store.SP_recEstudiantes">
+          <FunctionImportMapping FunctionImportName="SP_recEstudiantes" FunctionName="L_BAModel.Store.SP_recEstudiantes">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="BD_LBAModel.SP_recEstudiantes_Result">
+              <ComplexTypeMapping TypeName="L_BAModel.SP_recEstudiantes_Result">
                 <ScalarProperty Name="id_estudiante" ColumnName="id_estudiante" />
                 <ScalarProperty Name="cedula" ColumnName="cedula" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -1304,9 +1395,9 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SP_recEstudiantesPorPadre" FunctionName="BD_LBAModel.Store.SP_recEstudiantesPorPadre">
+          <FunctionImportMapping FunctionImportName="SP_recEstudiantesPorPadre" FunctionName="L_BAModel.Store.SP_recEstudiantesPorPadre">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="BD_LBAModel.SP_recEstudiantesPorPadre_Result">
+              <ComplexTypeMapping TypeName="L_BAModel.SP_recEstudiantesPorPadre_Result">
                 <ScalarProperty Name="id_estudiante" ColumnName="id_estudiante" />
                 <ScalarProperty Name="cedula" ColumnName="cedula" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -1316,9 +1407,9 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SP_recEstudiantesPorSeccion" FunctionName="BD_LBAModel.Store.SP_recEstudiantesPorSeccion">
+          <FunctionImportMapping FunctionImportName="SP_recEstudiantesPorSeccion" FunctionName="L_BAModel.Store.SP_recEstudiantesPorSeccion">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="BD_LBAModel.SP_recEstudiantesPorSeccion_Result">
+              <ComplexTypeMapping TypeName="L_BAModel.SP_recEstudiantesPorSeccion_Result">
                 <ScalarProperty Name="id_estudiante" ColumnName="id_estudiante" />
                 <ScalarProperty Name="cedula" ColumnName="cedula" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -1328,34 +1419,34 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SP_recMateriaPorId" FunctionName="BD_LBAModel.Store.SP_recMateriaPorId">
+          <FunctionImportMapping FunctionImportName="SP_recMateriaPorId" FunctionName="L_BAModel.Store.SP_recMateriaPorId">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="BD_LBAModel.SP_recMateriaPorId_Result">
+              <ComplexTypeMapping TypeName="L_BAModel.SP_recMateriaPorId_Result">
                 <ScalarProperty Name="id_materia" ColumnName="id_materia" />
                 <ScalarProperty Name="nombre_materia" ColumnName="nombre_materia" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SP_recMaterias" FunctionName="BD_LBAModel.Store.SP_recMaterias">
+          <FunctionImportMapping FunctionImportName="SP_recMaterias" FunctionName="L_BAModel.Store.SP_recMaterias">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="BD_LBAModel.SP_recMaterias_Result">
+              <ComplexTypeMapping TypeName="L_BAModel.SP_recMaterias_Result">
                 <ScalarProperty Name="id_materia" ColumnName="id_materia" />
                 <ScalarProperty Name="nombre_materia" ColumnName="nombre_materia" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SP_recMateriasConProfesores" FunctionName="BD_LBAModel.Store.SP_recMateriasConProfesores">
+          <FunctionImportMapping FunctionImportName="SP_recMateriasConProfesores" FunctionName="L_BAModel.Store.SP_recMateriasConProfesores">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="BD_LBAModel.SP_recMateriasConProfesores_Result">
+              <ComplexTypeMapping TypeName="L_BAModel.SP_recMateriasConProfesores_Result">
                 <ScalarProperty Name="id_materia" ColumnName="id_materia" />
                 <ScalarProperty Name="nombre_materia" ColumnName="nombre_materia" />
                 <ScalarProperty Name="profesores" ColumnName="profesores" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SP_recMateriasPorProfesor" FunctionName="BD_LBAModel.Store.SP_recMateriasPorProfesor">
+          <FunctionImportMapping FunctionImportName="SP_recMateriasPorProfesor" FunctionName="L_BAModel.Store.SP_recMateriasPorProfesor">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="BD_LBAModel.SP_recMateriasPorProfesor_Result">
+              <ComplexTypeMapping TypeName="L_BAModel.SP_recMateriasPorProfesor_Result">
                 <ScalarProperty Name="id_materia" ColumnName="id_materia" />
                 <ScalarProperty Name="nombre_materia" ColumnName="nombre_materia" />
                 <ScalarProperty Name="id_profesor" ColumnName="id_profesor" />
@@ -1363,9 +1454,9 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SP_recNoticiaPorId" FunctionName="BD_LBAModel.Store.SP_recNoticiaPorId">
+          <FunctionImportMapping FunctionImportName="SP_recNoticiaPorId" FunctionName="L_BAModel.Store.SP_recNoticiaPorId">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="BD_LBAModel.SP_recNoticiaPorId_Result">
+              <ComplexTypeMapping TypeName="L_BAModel.SP_recNoticiaPorId_Result">
                 <ScalarProperty Name="id_noticia" ColumnName="id_noticia" />
                 <ScalarProperty Name="titulo" ColumnName="titulo" />
                 <ScalarProperty Name="contenido" ColumnName="contenido" />
@@ -1374,9 +1465,9 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SP_recNoticias" FunctionName="BD_LBAModel.Store.SP_recNoticias">
+          <FunctionImportMapping FunctionImportName="SP_recNoticias" FunctionName="L_BAModel.Store.SP_recNoticias">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="BD_LBAModel.SP_recNoticias_Result">
+              <ComplexTypeMapping TypeName="L_BAModel.SP_recNoticias_Result">
                 <ScalarProperty Name="id_noticia" ColumnName="id_noticia" />
                 <ScalarProperty Name="titulo" ColumnName="titulo" />
                 <ScalarProperty Name="contenido" ColumnName="contenido" />
@@ -1385,9 +1476,9 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SP_recPadrePorCedula" FunctionName="BD_LBAModel.Store.SP_recPadrePorCedula">
+          <FunctionImportMapping FunctionImportName="SP_recPadrePorCedula" FunctionName="L_BAModel.Store.SP_recPadrePorCedula">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="BD_LBAModel.SP_recPadrePorCedula_Result">
+              <ComplexTypeMapping TypeName="L_BAModel.SP_recPadrePorCedula_Result">
                 <ScalarProperty Name="id_padre" ColumnName="id_padre" />
                 <ScalarProperty Name="cedula" ColumnName="cedula" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -1395,9 +1486,9 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SP_recPadrePorId" FunctionName="BD_LBAModel.Store.SP_recPadrePorId">
+          <FunctionImportMapping FunctionImportName="SP_recPadrePorId" FunctionName="L_BAModel.Store.SP_recPadrePorId">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="BD_LBAModel.SP_recPadrePorId_Result">
+              <ComplexTypeMapping TypeName="L_BAModel.SP_recPadrePorId_Result">
                 <ScalarProperty Name="id_padre" ColumnName="id_padre" />
                 <ScalarProperty Name="cedula" ColumnName="cedula" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -1405,9 +1496,9 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SP_recPadres" FunctionName="BD_LBAModel.Store.SP_recPadres">
+          <FunctionImportMapping FunctionImportName="SP_recPadres" FunctionName="L_BAModel.Store.SP_recPadres">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="BD_LBAModel.SP_recPadres_Result">
+              <ComplexTypeMapping TypeName="L_BAModel.SP_recPadres_Result">
                 <ScalarProperty Name="id_padre" ColumnName="id_padre" />
                 <ScalarProperty Name="cedula" ColumnName="cedula" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -1415,9 +1506,9 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SP_recPadresPorEstudiante" FunctionName="BD_LBAModel.Store.SP_recPadresPorEstudiante">
+          <FunctionImportMapping FunctionImportName="SP_recPadresPorEstudiante" FunctionName="L_BAModel.Store.SP_recPadresPorEstudiante">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="BD_LBAModel.SP_recPadresPorEstudiante_Result">
+              <ComplexTypeMapping TypeName="L_BAModel.SP_recPadresPorEstudiante_Result">
                 <ScalarProperty Name="id_padre" ColumnName="id_padre" />
                 <ScalarProperty Name="cedula" ColumnName="cedula" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -1425,28 +1516,18 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SP_recProfesores" FunctionName="BD_LBAModel.Store.SP_recProfesores">
+          <FunctionImportMapping FunctionImportName="SP_recProfesores" FunctionName="L_BAModel.Store.SP_recProfesores">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="BD_LBAModel.SP_recProfesores_Result">
+              <ComplexTypeMapping TypeName="L_BAModel.SP_recProfesores_Result">
                 <ScalarProperty Name="id_profesor" ColumnName="id_profesor" />
                 <ScalarProperty Name="cedula" ColumnName="cedula" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SP_recProfesoresConMaterias" FunctionName="BD_LBAModel.Store.SP_recProfesoresConMaterias">
+          <FunctionImportMapping FunctionImportName="SP_recProfesoresConMaterias" FunctionName="L_BAModel.Store.SP_recProfesoresConMaterias">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="BD_LBAModel.SP_recProfesoresConMaterias_Result">
-                <ScalarProperty Name="id_profesor" ColumnName="id_profesor" />
-                <ScalarProperty Name="nombre_profesor" ColumnName="nombre_profesor" />
-                <ScalarProperty Name="id_materia" ColumnName="id_materia" />
-                <ScalarProperty Name="nombre_materia" ColumnName="nombre_materia" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SP_recProfesoresPorMateria" FunctionName="BD_LBAModel.Store.SP_recProfesoresPorMateria">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="BD_LBAModel.SP_recProfesoresPorMateria_Result">
+              <ComplexTypeMapping TypeName="L_BAModel.SP_recProfesoresConMaterias_Result">
                 <ScalarProperty Name="id_profesor" ColumnName="id_profesor" />
                 <ScalarProperty Name="nombre_profesor" ColumnName="nombre_profesor" />
                 <ScalarProperty Name="id_materia" ColumnName="id_materia" />
@@ -1454,45 +1535,55 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SP_recProfesorPorId" FunctionName="BD_LBAModel.Store.SP_recProfesorPorId">
+          <FunctionImportMapping FunctionImportName="SP_recProfesoresPorMateria" FunctionName="L_BAModel.Store.SP_recProfesoresPorMateria">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="BD_LBAModel.SP_recProfesorPorId_Result">
+              <ComplexTypeMapping TypeName="L_BAModel.SP_recProfesoresPorMateria_Result">
+                <ScalarProperty Name="id_profesor" ColumnName="id_profesor" />
+                <ScalarProperty Name="nombre_profesor" ColumnName="nombre_profesor" />
+                <ScalarProperty Name="id_materia" ColumnName="id_materia" />
+                <ScalarProperty Name="nombre_materia" ColumnName="nombre_materia" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_recProfesorPorId" FunctionName="L_BAModel.Store.SP_recProfesorPorId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="L_BAModel.SP_recProfesorPorId_Result">
                 <ScalarProperty Name="id_profesor" ColumnName="id_profesor" />
                 <ScalarProperty Name="cedula" ColumnName="cedula" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SP_recSecciones" FunctionName="BD_LBAModel.Store.SP_recSecciones">
+          <FunctionImportMapping FunctionImportName="SP_recSecciones" FunctionName="L_BAModel.Store.SP_recSecciones">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="BD_LBAModel.SP_recSecciones_Result">
+              <ComplexTypeMapping TypeName="L_BAModel.SP_recSecciones_Result">
                 <ScalarProperty Name="id_seccion" ColumnName="id_seccion" />
                 <ScalarProperty Name="nombre_seccion" ColumnName="nombre_seccion" />
                 <ScalarProperty Name="id_ciclo" ColumnName="id_ciclo" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SP_recSeccionesPorCiclo" FunctionName="BD_LBAModel.Store.SP_recSeccionesPorCiclo">
+          <FunctionImportMapping FunctionImportName="SP_recSeccionesPorCiclo" FunctionName="L_BAModel.Store.SP_recSeccionesPorCiclo">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="BD_LBAModel.SP_recSeccionesPorCiclo_Result">
+              <ComplexTypeMapping TypeName="L_BAModel.SP_recSeccionesPorCiclo_Result">
                 <ScalarProperty Name="id_seccion" ColumnName="id_seccion" />
                 <ScalarProperty Name="nombre_seccion" ColumnName="nombre_seccion" />
                 <ScalarProperty Name="id_ciclo" ColumnName="id_ciclo" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SP_recSeccionPorId" FunctionName="BD_LBAModel.Store.SP_recSeccionPorId">
+          <FunctionImportMapping FunctionImportName="SP_recSeccionPorId" FunctionName="L_BAModel.Store.SP_recSeccionPorId">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="BD_LBAModel.SP_recSeccionPorId_Result">
+              <ComplexTypeMapping TypeName="L_BAModel.SP_recSeccionPorId_Result">
                 <ScalarProperty Name="id_seccion" ColumnName="id_seccion" />
                 <ScalarProperty Name="nombre_seccion" ColumnName="nombre_seccion" />
                 <ScalarProperty Name="id_ciclo" ColumnName="id_ciclo" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SP_recUsuarioPorId" FunctionName="BD_LBAModel.Store.SP_recUsuarioPorId">
+          <FunctionImportMapping FunctionImportName="SP_recUsuarioPorId" FunctionName="L_BAModel.Store.SP_recUsuarioPorId">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="BD_LBAModel.SP_recUsuarioPorId_Result">
+              <ComplexTypeMapping TypeName="L_BAModel.SP_recUsuarioPorId_Result">
                 <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
                 <ScalarProperty Name="usuario" ColumnName="usuario" />
                 <ScalarProperty Name="contrasena" ColumnName="contrasena" />
@@ -1503,9 +1594,9 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SP_recUsuarios" FunctionName="BD_LBAModel.Store.SP_recUsuarios">
+          <FunctionImportMapping FunctionImportName="SP_recUsuarios" FunctionName="L_BAModel.Store.SP_recUsuarios">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="BD_LBAModel.SP_recUsuarios_Result">
+              <ComplexTypeMapping TypeName="L_BAModel.SP_recUsuarios_Result">
                 <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
                 <ScalarProperty Name="usuario" ColumnName="usuario" />
                 <ScalarProperty Name="contrasena" ColumnName="contrasena" />
@@ -1516,7 +1607,7 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SP_relPadreEstudiante" FunctionName="BD_LBAModel.Store.SP_relPadreEstudiante" />
+          <FunctionImportMapping FunctionImportName="SP_relPadreEstudiante" FunctionName="L_BAModel.Store.SP_relPadreEstudiante" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

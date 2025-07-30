@@ -16,10 +16,10 @@ namespace AccesoDatos
     using System.Linq;
     using Entidades;
     
-    public partial class BD_LBAEntities : DbContext
+    public partial class L_BAEntities : DbContext
     {
-        public BD_LBAEntities()
-            : base("name=BD_LBAEntities")
+        public L_BAEntities()
+            : base("name=L_BAEntities")
         {
         }
     
@@ -32,6 +32,7 @@ namespace AccesoDatos
         public virtual DbSet<Estudiante> Estudiantes { get; set; }
         public virtual DbSet<Horario> Horarios { get; set; }
         public virtual DbSet<Materia> Materias { get; set; }
+        public virtual DbSet<Matricula> Matriculas { get; set; }
         public virtual DbSet<Noticia> Noticias { get; set; }
         public virtual DbSet<Padre> Padres { get; set; }
         public virtual DbSet<Profesore> Profesores { get; set; }
@@ -194,6 +195,63 @@ namespace AccesoDatos
                 new ObjectParameter("nombre_materia", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_insMateria", nombre_materiaParameter);
+        }
+    
+        public virtual int SP_insMatricula(string nombre_estudiante, string cedula_estudiante, string escuela_procedencia, Nullable<System.DateTime> fecha_nacimiento, string telefono_estudiante, string nivel, string nombre_padre, string cedula_padre, string telefono_padre, string direccion_padre, string parentesco, Nullable<System.DateTime> fecha_cita, string hora_cita)
+        {
+            var nombre_estudianteParameter = nombre_estudiante != null ?
+                new ObjectParameter("nombre_estudiante", nombre_estudiante) :
+                new ObjectParameter("nombre_estudiante", typeof(string));
+    
+            var cedula_estudianteParameter = cedula_estudiante != null ?
+                new ObjectParameter("cedula_estudiante", cedula_estudiante) :
+                new ObjectParameter("cedula_estudiante", typeof(string));
+    
+            var escuela_procedenciaParameter = escuela_procedencia != null ?
+                new ObjectParameter("escuela_procedencia", escuela_procedencia) :
+                new ObjectParameter("escuela_procedencia", typeof(string));
+    
+            var fecha_nacimientoParameter = fecha_nacimiento.HasValue ?
+                new ObjectParameter("fecha_nacimiento", fecha_nacimiento) :
+                new ObjectParameter("fecha_nacimiento", typeof(System.DateTime));
+    
+            var telefono_estudianteParameter = telefono_estudiante != null ?
+                new ObjectParameter("telefono_estudiante", telefono_estudiante) :
+                new ObjectParameter("telefono_estudiante", typeof(string));
+    
+            var nivelParameter = nivel != null ?
+                new ObjectParameter("nivel", nivel) :
+                new ObjectParameter("nivel", typeof(string));
+    
+            var nombre_padreParameter = nombre_padre != null ?
+                new ObjectParameter("nombre_padre", nombre_padre) :
+                new ObjectParameter("nombre_padre", typeof(string));
+    
+            var cedula_padreParameter = cedula_padre != null ?
+                new ObjectParameter("cedula_padre", cedula_padre) :
+                new ObjectParameter("cedula_padre", typeof(string));
+    
+            var telefono_padreParameter = telefono_padre != null ?
+                new ObjectParameter("telefono_padre", telefono_padre) :
+                new ObjectParameter("telefono_padre", typeof(string));
+    
+            var direccion_padreParameter = direccion_padre != null ?
+                new ObjectParameter("direccion_padre", direccion_padre) :
+                new ObjectParameter("direccion_padre", typeof(string));
+    
+            var parentescoParameter = parentesco != null ?
+                new ObjectParameter("parentesco", parentesco) :
+                new ObjectParameter("parentesco", typeof(string));
+    
+            var fecha_citaParameter = fecha_cita.HasValue ?
+                new ObjectParameter("fecha_cita", fecha_cita) :
+                new ObjectParameter("fecha_cita", typeof(System.DateTime));
+    
+            var hora_citaParameter = hora_cita != null ?
+                new ObjectParameter("hora_cita", hora_cita) :
+                new ObjectParameter("hora_cita", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_insMatricula", nombre_estudianteParameter, cedula_estudianteParameter, escuela_procedenciaParameter, fecha_nacimientoParameter, telefono_estudianteParameter, nivelParameter, nombre_padreParameter, cedula_padreParameter, telefono_padreParameter, direccion_padreParameter, parentescoParameter, fecha_citaParameter, hora_citaParameter);
         }
     
         public virtual int SP_insNoticia(string titulo, string contenido, Nullable<System.DateTime> fecha_publicacion, string imagen_url)

@@ -8,9 +8,9 @@ namespace AccesoDatos.Implementacion
 {
     public class NoticiaAD : INoticiaAD
     {
-        private BD_LBAEntities gobjContextoLBA;
+        private L_BAEntities gobjContextoLBA;
 
-        public NoticiaAD(BD_LBAEntities _gobjContexto)
+        public NoticiaAD(L_BAEntities _gobjContexto)
         {
             this.gobjContextoLBA = _gobjContexto;
         }

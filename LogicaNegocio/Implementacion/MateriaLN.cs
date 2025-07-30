@@ -13,10 +13,10 @@ namespace LogicaNegocio.Implementacion
 
         public MateriaLN()
         {
-            gobjMateriaAD = new MateriaAD(new BD_LBAEntities());
+            gobjMateriaAD = new MateriaAD(new L_BAEntities());
         }
 
-        public MateriaLN(BD_LBAEntities contexto)
+        public MateriaLN(L_BAEntities contexto)
         {
             gobjMateriaAD = new MateriaAD(contexto);
         }

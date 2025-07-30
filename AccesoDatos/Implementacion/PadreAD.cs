@@ -8,10 +8,10 @@ namespace AccesoDatos.Implementacion
 {
     public class PadreAD : IPadreAD
     {
-        private BD_LBAEntities gobjContextoLBA;
+        private L_BAEntities gobjContextoLBA;
 
-        public PadreAD(BD_LBAEntities contexto)
-        {
+        public PadreAD(L_BAEntities contexto)
+        {   
             gobjContextoLBA = contexto;
         }
 

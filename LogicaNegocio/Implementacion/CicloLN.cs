@@ -15,7 +15,7 @@ namespace LogicaNegocio.Implementacion
     {
 
         //VER A DETALLE ESTOS PRIVS
-        public static BD_LBAEntities _gobjContextoLBA = new BD_LBAEntities();
+        public static L_BAEntities _gobjContextoLBA = new L_BAEntities();
 
         private readonly ICiclosAD _objCicloAD = new CicloAD(_gobjContextoLBA);
 

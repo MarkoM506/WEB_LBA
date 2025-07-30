@@ -10,7 +10,7 @@ namespace LogicaNegocio
 {
     public class UsuarioLN : IUsuarioLN
     {
-        private static BD_LBAEntities contexto = new BD_LBAEntities();
+        private static  L_BAEntities  contexto = new L_BAEntities();
         private UsuarioAD usuarioAD = new UsuarioAD();
 
         public List<SP_recUsuarios_Result> recUsuariosLN()

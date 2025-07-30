@@ -54,6 +54,7 @@
     <Compile Include="Implementacion\CicloAD.cs" />
     <Compile Include="Implementacion\EstudianteAD.cs" />
     <Compile Include="Implementacion\MateriaAD.cs" />
+    <Compile Include="Implementacion\MatriculaAD.cs" />
     <Compile Include="Implementacion\NoticiaAD.cs" />
     <Compile Include="Implementacion\PadreAD.cs" />
     <Compile Include="Implementacion\ProfesorAD.cs" />
@@ -62,6 +63,7 @@
     <Compile Include="Interfaces\ICicloAD.cs" />
     <Compile Include="Interfaces\IEstudianteAD.cs" />
     <Compile Include="Interfaces\IMateriaAD.cs" />
+    <Compile Include="Interfaces\IMatriculaAD.cs" />
     <Compile Include="Interfaces\INoticiaAD.cs" />
     <Compile Include="Interfaces\IPadreAD.cs" />
     <Compile Include="Interfaces\IProfesorAD.cs" />

@@ -11,9 +11,9 @@ namespace AccesoDatos.Implementacion
 {
     public class EstudianteAD : IEstudianteAD
     {
-        private BD_LBAEntities gobjContextoLBA;
+        private L_BAEntities gobjContextoLBA;
 
-        public EstudianteAD(BD_LBAEntities _gobjContexto)
+        public EstudianteAD(L_BAEntities _gobjContexto)
         {
             this.gobjContextoLBA = _gobjContexto;
         }

@@ -45,6 +45,7 @@
     <Compile Include="Implementacion\CicloLN.cs" />
     <Compile Include="Implementacion\EstudianteLN.cs" />
     <Compile Include="Implementacion\MateriaLN.cs" />
+    <Compile Include="Implementacion\MatriculaLN.cs" />
     <Compile Include="Implementacion\NoticiaLN.cs" />
     <Compile Include="Implementacion\PadreLN.cs" />
     <Compile Include="Implementacion\ProfesorLN.cs" />
@@ -53,6 +54,7 @@
     <Compile Include="Interfaces\ICicloLN.cs" />
     <Compile Include="Interfaces\IEstudianteLN.cs" />
     <Compile Include="Interfaces\IMateriaLN.cs" />
+    <Compile Include="Interfaces\IMatriculaLN.cs" />
     <Compile Include="Interfaces\INoticiaLN.cs" />
     <Compile Include="Interfaces\IPadreLN.cs" />
     <Compile Include="Interfaces\IProfesorLN.cs" />
