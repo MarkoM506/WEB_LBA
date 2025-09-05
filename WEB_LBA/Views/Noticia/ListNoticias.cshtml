@@ -4,53 +4,37 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<!-- Inyecta la ruta de la imagen para el fondo -->
 <style>
-    body {
-        background-image: url('@Url.Content("~/Content/imagenesWeb/fondo_colegio.jpg")');
-        background-size: cover;
-        background-attachment: fixed;
-    }
-
-    .noticia-container {
-        background-color: rgba(255, 255, 255, 0.95);
-        padding: 30px;
-        border-radius: 15px;
-        max-width: 1100px;
-        margin: 50px auto;
-    }
-
-    .noticia-card {
-        border: 1px solid #ddd;
-        border-radius: 10px;
-        padding: 20px;
-        margin-bottom: 20px;
-        background-color: #fff;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
-
-    .noticia-card img {
-        max-width: 100%;
-        height: auto;
-        border-radius: 10px;
-        margin-bottom: 15px;
-    }
-
-    .noticia-card h4 {
-        font-weight: bold;
-        color: #0d47a1;
-    }
+  :root { --bg-url: url('@Url.Content("~/Content/imagenesWeb/bgg.png")'); }
 </style>
 
-<div class="noticia-container">
-    <h2 class="text-center mb-4">Últimas Noticias</h2>
+<link rel="stylesheet" href="~/Content/ListNoticias.css?v=3" />
 
-    @foreach (var item in Model)
-    {
-        <div class="noticia-card">
-            <img src="@Url.Content(item.imagen_url)" alt="Imagen de la noticia" />
-            <h4>@item.titulo</h4>
-            <p>@item.contenido</p>
-            <p><strong>Publicado el:</strong> @item.fecha_publicacion.ToShortDateString()</p>
-        </div>
-    }
+<div class="page-bg" aria-hidden="true"></div>
+
+<div class="landing-wrap">
+    <div class="glass hero">
+        <h2>Últimas Noticias</h2>
+        <p class="subtitle">Mantente al día con lo más reciente de nuestro colegio.</p>
+        <div class="divider"></div>
+    </div>
+
+    <div class="noticia-container">
+        @foreach (var item in Model)
+        {
+            <article class="noticia-card glass" tabindex="0">
+                <div class="noticia-media">
+                    <img src="@Url.Content(item.imagen_url)"
+                         alt="Imagen de la noticia: @item.titulo"
+                         loading="lazy" />
+                </div>
+                <div class="noticia-text">
+                    <h4 class="noticia-title">@item.titulo</h4>
+                    <p>@item.contenido</p>
+                    <p class="noticia-date"><strong>Publicado el:</strong> @item.fecha_publicacion.ToShortDateString()</p>
+                </div>
+            </article>
+        }
+    </div>
 </div>

@@ -184,43 +184,36 @@ namespace WEB_LBA.Controllers
             return View("ListCiclos", lstModeloCiclo);
 
         }
-        [HttpPost]
 
+        [HttpPost]
         public ActionResult Acciones(string submitButton, M_Ciclo pCiclo)
         {
-            try
+            // Verificar si el modelo es válido
+            if (!ModelState.IsValid)
             {
-                Ciclo objCiCLO = new Ciclo();
-
-                objCiCLO.id_ciclo = pCiclo.id_ciclo;
-
-                objCiCLO.nombre_ciclo = pCiclo.nombre_ciclo;
-
-                objCiCLO.descripcion = pCiclo.descripcion;
-
-                switch (submitButton)
-                {
-                    case "Agregar":
-                        return IngresarCiclo(objCiCLO);
-
-                    case "Actualizar":
-                        return ModificarCiclo(objCiCLO);
-
-                    case "Eliminar":
-                        return EliminarCiclo(objCiCLO);
-
-                    default:
-
-                        return RedirectToAction("ListCiclos", "ciclo");
-                }
-
-
-            }
-            catch (Exception ex)
-            {
-                return View("Error", new HandleErrorInfo(ex, "ciclo", "Acciones"));
+                // Si no es válido, regresar a la vista con los errores
+                return View("AgregarCiclos", pCiclo);  // Regresamos a la vista AgregarCiclos con los errores
             }
 
+            Ciclo objCiCLO = new Ciclo
+            {
+                id_ciclo = pCiclo.id_ciclo,
+                nombre_ciclo = pCiclo.nombre_ciclo,
+                descripcion = pCiclo.descripcion
+            };
+
+            switch (submitButton)
+            {
+                case "Agregar":
+                    return IngresarCiclo(objCiCLO);
+                case "Actualizar":
+                    return ModificarCiclo(objCiCLO);
+                case "Eliminar":
+                    return EliminarCiclo(objCiCLO);
+                default:
+                    return RedirectToAction("ListCiclos", "Ciclo");
+            }
         }
+
     }
 }

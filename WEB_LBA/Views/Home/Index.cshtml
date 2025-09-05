@@ -1,117 +1,66 @@
 ﻿@{
     ViewBag.Title = "Inicio";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<style>
-    body {
-        margin: 0;
-        padding: 0;
-        background-image: url('@Url.Content("~/Content/imagenesWeb/bgcole.jpg")');
-        background-size: cover;
-        background-position:  center;
-        background-attachment: fixed;
-        font-family: 'Segoe UI', sans-serif;
-    }
 
-    .container-login {
-        background-color: rgba(255, 255, 255, 0.85);
-        padding: 40px;
-        border-radius: 15px;
-        box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
-        margin-top: 100px;
-        margin-bottom: 60px;
-    }
+<link rel="stylesheet" href="~/Content/Index.css?v=5" />
 
-    .card-login {
-        width: 220px; /* MISMO TAMAÑO para ambas tarjetas */
-        height: 220px;
-        transition: transform 0.3s ease;
-        cursor: pointer;
-        border: none;
-        border-radius: 15px;
-        padding: 20px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
+<div class="page-bg" aria-hidden="true"></div>
 
-    .card-login:hover {
-        transform: scale(1.05);
-    }
+<div class="landing-wrap">
+    <main class="hero glass" role="main" aria-label="Accesos y bienvenida">
+        <h1>Bienvenidos</h1>
+        <p class="subtitle">
+            Plataforma del <b>Liceo Boca de Arenal</b>.<br />
+            Elegí el tipo de acceso para continuar.
+        </p>
+        <div class="divider" aria-hidden="true"></div>
 
-    .card-login img {
-        height: 130px;
-        object-fit: contain;
-        margin-bottom: 10px;
-    }
+        <!-- Accesos -->
+        <div class="login-grid" role="list">
+            <a role="listitem"
+               class="login-card"
+               href="@Url.Action("LoginAdministrativo", "Usuario")"
+               aria-label="Ingresar: Login Administrativo">
+                <img loading="lazy"
+                     src="@Url.Content("~/Content/imagenesWeb/admin.jpg")"
+                     alt="Ícono acceso administrativo">
+                <h5>Login Administrativo</h5>
+            </a>
 
-    .login-title {
-        text-align: center;
-        color: #212529;
-        font-weight: bold;
-        margin-bottom: 20px;
-    }
-
-    .info-bajo {
-        background-color: rgba(255, 255, 255, 0.85);
-        padding: 40px;
-        border-radius: 15px;
-        box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-        max-width: 900px;
-        margin: 0 auto 60px auto;
-    }
-
-    a.card-link {
-        text-decoration: none;
-        color: inherit;
-    }
-</style>
-
-<div class="container d-flex justify-content-center align-items-center min-vh-100 flex-column">
-
-    <!-- Cuadro de login -->
-    <div class="container-login text-center">
-        <h2 class="login-title">Bienvenidos </h2>
-        <br />
-        
-        <div class="row mt-4">
-            <div class="col-md-6 mb-4">
-                <a href="@Url.Action("LoginAdministrativo", "Usuario")" class="card-link">
-                    <div class="card card-login p-4">
-                        <img src="@Url.Content("~/Content/imagenesWeb/admin.jpg")" class="img-fluid mx-auto d-block" alt="Login Admin" />
-                        <h5 class="mt-3">Login Administrativo</h5>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-6 mb-4">
-                <a href="@Url.Action("LoginEstudiante", "Usuario")" class="card-link">
-                    <div class="card card-login p-4">
-                        <img src="@Url.Content("~/Content/imagenesWeb/logest.jpg")" class="img-fluid mx-auto d-block" alt="Login Estudiante" />
-                        <h5 class="mt-3">Login Estudiantes</h5>
-                    </div>
-                </a>
-            </div>
+            <a role="listitem"
+               class="login-card"
+               href="@Url.Action("LoginEstudiante", "Usuario")"
+               aria-label="Ingresar: Login Estudiantes">
+                <img loading="lazy"
+                     src="@Url.Content("~/Content/imagenesWeb/logest.jpg")"
+                     alt="Ícono acceso estudiantes">
+                <h5>Login Estudiantes</h5>
+            </a>
         </div>
-    </div>
 
-    <!-- Información institucional -->
-    <div class="info-bajo text-center mt-4">
-        <hr class="my-4" style="max-width: 300px; margin: auto;" />
-        <h4>Acerca del Liceo Boca de Arenal</h4>
-        <p>
-            Somos una institución pública comprometida con la formación académica y humana de nuestros estudiantes.
-            Creemos en el respeto, la inclusión y la excelencia.
-        </p>
-        <p>
-            <strong>Dirección:</strong> Boca de Arenal, San Carlos<br />
-            <strong>Teléfono:</strong> 8480 0101<br />
-            <strong>Correo:</strong> liceoba03@gmail.com
-        </p>
-        <div class="mt-4">
-            <ul class="list-unstyled">
-                <li>📩 Si tenés problemas de acceso, escribí a: <em>liceoba03@gmail.com</em></li>
+        <!-- Información institucional -->
+        <section class="info glass" aria-label="Información institucional">
+            <h4>Acerca del Liceo Boca de Arenal</h4>
+            <p>
+                Somos una institución pública comprometida con la formación académica y humana de nuestros estudiantes.
+                Creemos en el respeto, la inclusión y la excelencia.
+            </p>
+
+            <ul class="info-list">
+                <li class="info-item"><b>Dirección:</b><br>Boca de Arenal, San Carlos</li>
+                <li class="info-item"><b>Teléfono:</b><br>8480 0101</li>
+                <li class="info-item">
+                    <b>Correo:</b><br>
+                    <a href="mailto:liceoba03@gmail.com">liceoba03@gmail.com</a>
+                </li>
             </ul>
-        </div>
-    </div>
 
+            <p class="help-line">
+                📩 ¿Problemas de acceso? Escribí a <em>liceoba03@gmail.com</em>
+            </p>
+        </section>
+    </main>
 </div>
+
+

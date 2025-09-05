@@ -70,7 +70,7 @@ namespace WEB_LBA.Controllers
             {
                 string mensaje = $"Buenos días, estimada organización del Liceo Boca de Arenal. Esta es la matrícula de mi hijo: {model.nombre_estudiante}, {model.cedula_estudiante}. Por favor recuerde adjuntar el PDF anteriormente descargado." +
                     $"En caso de no ser adjuntado el PDF el proceso de Matricula no será tomado";
-                string url = $"https://wa.me/50662801987?text={Uri.EscapeDataString(mensaje)}";
+                string url = $"https://wa.me/50684800101?text={Uri.EscapeDataString(mensaje)}";
                 return Redirect(url);
             }
 
