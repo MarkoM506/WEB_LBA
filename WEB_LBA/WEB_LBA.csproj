@@ -205,6 +205,7 @@
     <Content Include="Content\imagenesWeb\fondo_colegio.jpg" />
     <Content Include="Content\imagenesWeb\logest.jpg" />
     <Content Include="Content\Index.css" />
+    <Content Include="Content\ListCiclos.css" />
     <Content Include="Content\ListNoticias.css" />
     <Content Include="Content\LoginAdmin.css" />
     <Content Include="Content\Matricula.css" />

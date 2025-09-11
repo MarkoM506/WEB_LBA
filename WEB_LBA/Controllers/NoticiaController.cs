@@ -34,13 +34,20 @@ namespace WEB_LBA.Controllers
                 lstModeloNoticias.Add(model);
             }
 
+            var mensaje = TempData["Mensaje"] as string;
+            ViewBag.Mensaje = mensaje;
+
             return View(lstModeloNoticias);
         }
 
         // VISTA: Agregar Noticia
         public ActionResult AgregarNoticias()
         {
-            return View();
+            var model = new M_Noticia
+            {
+                fecha_publicacion = DateTime.Now // Asigna la fecha actual
+            };
+            return View(model);
         }
 
         // VISTA: Modificar Noticia
@@ -58,6 +65,8 @@ namespace WEB_LBA.Controllers
 
             return View(model);
         }
+
+        // VISTA: Panel de Noticias
         public ActionResult PanelNoticias()
         {
             var noticias = objNoticiaLN.recNoticiasLN();
@@ -87,7 +96,8 @@ namespace WEB_LBA.Controllers
             {
                 if (objNoticiaLN.insNoticiaLN(noticia))
                 {
-                    return RedirectToAction("ListNoticias");
+                    TempData["Mensaje"] = "Noticia subida exitosamente. Ya puedes verla en el apartado de noticias.";
+                    return RedirectToAction("PanelNoticias");  // Redirige al panel de noticias después de la operación
                 }
                 return View("Error");
             }
@@ -104,13 +114,14 @@ namespace WEB_LBA.Controllers
             {
                 if (objNoticiaLN.modNoticiaLN(noticia))
                 {
-                    return RedirectToAction("ListNoticias");
+                    TempData["Mensaje"] = "Noticia actualizada exitosamente. Ya puedes verla en el apartado de noticias.";
+                    return RedirectToAction("PanelNoticias");  // Redirige al panel de noticias después de la operación
                 }
                 return View("Error");
             }
             catch (Exception ex)
             {
-                return View("Error", new HandleErrorInfo(ex, "Noticia", "ModificarNoticias"));
+                return View("Error", new HandleErrorInfo(ex, "Noticia", "ModificarNoticia"));
             }
         }
 
@@ -121,15 +132,17 @@ namespace WEB_LBA.Controllers
             {
                 if (objNoticiaLN.delNoticiaLN(noticia))
                 {
-                    return RedirectToAction("ListNoticias");
+                    TempData["Mensaje"] = "Noticia eliminada exitosamente.";
+                    return RedirectToAction("PanelNoticias");  // Redirige al panel de noticias después de la operación
                 }
                 return View("Error");
             }
             catch (Exception ex)
             {
-                return View("Error", new HandleErrorInfo(ex, "Noticia", "EliminarNoticias"));
+                return View("Error", new HandleErrorInfo(ex, "Noticia", "EliminarNoticia"));
             }
         }
+
         [HttpPost]
         public ActionResult Acciones(string submitButton, M_Noticia model, HttpPostedFileBase imagen)
         {
@@ -164,7 +177,7 @@ namespace WEB_LBA.Controllers
                         return EliminarNoticia(noticia);
 
                     default:
-                        return RedirectToAction("ListNoticias");
+                        return RedirectToAction("PanelNoticias");
                 }
             }
             catch (Exception ex)

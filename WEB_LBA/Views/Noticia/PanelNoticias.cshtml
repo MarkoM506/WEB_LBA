@@ -4,53 +4,156 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<style>
-    body {
-        background-image: url('@Url.Content("~/Content/imagenesWeb/fondo_colegio.jpg")');
-        background-size: cover;
-        background-attachment: fixed;
-    }
+@section styles {
+    <style>
+        body {
+            background-image: url('@Url.Content("~/Content/imagenesWeb/bgg.png")');
+            background-size: cover;
+            background-attachment: fixed;
+            font-family: 'Arial', sans-serif;
+        }
 
-    .panel-container {
-        background-color: rgba(255, 255, 255, 0.92);
-        padding: 30px;
-        border-radius: 15px;
-        max-width: 1100px;
-        margin: 50px auto;
-    }
+        /* Contenedor principal */
+        .panel-container {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 15px;
+            max-width: 1100px;
+            margin: 50px auto;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+        }
 
-    .noticia-card {
-        border: 1px solid #ddd;
-        border-radius: 10px;
-        padding: 20px;
-        margin-bottom: 20px;
-        background-color: #fff;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
+        /* Título de la página */
+        .panel-container h2 {
+            font-size: 32px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 30px;
+        }
 
-    .noticia-card img {
-        max-width: 100%;
-        height: auto;
-        border-radius: 10px;
-        margin-bottom: 15px;
-    }
+        /* Tarjeta de noticia */
+        .noticia-card {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 25px;
+            background-color: #fff;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease-in-out;
+        }
 
-    .noticia-card h4 {
-        font-weight: bold;
-        color: #0d47a1;
-    }
+        .noticia-card:hover {
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
 
-    .btn-accion {
-        margin-right: 10px;
-    }
+        .noticia-card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
 
-    .volver-panel {
-        margin-top: 30px;
-    }
-</style>
+        .noticia-card h4 {
+            font-weight: bold;
+            color: #0d47a1;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .noticia-card p {
+            font-size: 16px;
+            color: #555;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .noticia-card .fecha-publicacion {
+            font-size: 14px;
+            color: #777;
+        }
+
+        /* Botones */
+        .btn-accion {
+            margin-right: 10px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background-color: #c82333;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        .btn-success {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .btn-success:hover {
+            background-color: #218838;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+
+        /* Espaciado y botones */
+        .volver-panel {
+            margin-top: 30px;
+        }
+
+        /* Botón de agregar noticia */
+        .text-center a {
+            padding: 12px 25px;
+            font-size: 18px;
+            border-radius: 8px;
+            margin: 15px 0;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-success {
+            background-color: #28a745;
+        }
+
+        .btn-success:hover {
+            background-color: #218838;
+        }
+    </style>
+}
 
 <div class="panel-container">
     <h2 class="text-center mb-4">Gestión de Noticias</h2>
+
+    @if (TempData["Mensaje"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["Mensaje"]
+        </div>
+    }
 
     @foreach (var item in Model)
     {
@@ -58,7 +161,7 @@
             <img src="@Url.Content(item.imagen_url)" alt="Imagen de la noticia" />
             <h4>@item.titulo</h4>
             <p>@item.contenido</p>
-            <p><strong>Publicado el:</strong> @item.fecha_publicacion.ToShortDateString()</p>
+            <p class="fecha-publicacion"><strong>Publicado el:</strong> @item.fecha_publicacion.ToShortDateString()</p>
 
             <!-- Eliminar -->
             @using (Html.BeginForm("Acciones", "Noticia", FormMethod.Post, new { enctype = "multipart/form-data" }))
@@ -99,7 +202,7 @@
     </div>
 
     <!-- Botón para volver al panel administrativo -->
-    <div class="text-center volver">
-        <a href="@Url.Action("PanelAdministrativo", "Home")" class="btn btn-secondary">Volver al Panel</a>
+    <div class="text-center volver-panel">
+        <a href="@Url.Action("PanelAdministrativo", "Home")" class="btn btn-secondary">Volver a Panel Administrativo</a>
     </div>
 </div>
