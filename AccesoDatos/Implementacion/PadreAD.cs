@@ -11,7 +11,7 @@ namespace AccesoDatos.Implementacion
         private L_BAEntities gobjContextoLBA;
 
         public PadreAD(L_BAEntities contexto)
-        {
+        {   
             gobjContextoLBA = contexto;
         }
 

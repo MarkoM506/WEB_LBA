@@ -12,7 +12,7 @@ namespace AccesoDatos.Implementacion
     {
         private L_BAEntities gobjContextoLBA;
 
-        public ProfesorAD(L_BAEntities _gobjContexto)
+        public ProfesorAD(  L_BAEntities _gobjContexto)
         {
             this.gobjContextoLBA = _gobjContexto;
         }

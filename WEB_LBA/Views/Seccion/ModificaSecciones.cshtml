@@ -2,29 +2,62 @@
 
 @{
     ViewBag.Title = "Modificar Sección";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Modificar Sección</h2>
+<style>
+    body {
+        background-color: #f0f4f8;
+    }
 
-@using (Html.BeginForm("Acciones", "Seccion", FormMethod.Post))
-{
-    @Html.AntiForgeryToken()
-    @Html.HiddenFor(m => m.id_seccion)
+    .formulario-editar {
+        max-width: 600px;
+        margin: 40px auto;
+        background-color: white;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
 
-    <div class="form-group mb-3">
-        @Html.LabelFor(m => m.nombre_seccion)
-        @Html.TextBoxFor(m => m.nombre_seccion, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.nombre_seccion, "", new { @class = "text-danger" })
-    </div>
+        .formulario-editar h2 {
+            text-align: center;
+            color: #0d47a1;
+            margin-bottom: 25px;
+        }
 
-    <div class="form-group mb-3">
-        @Html.LabelFor(m => m.id_ciclo)
-        @Html.TextBoxFor(m => m.id_ciclo, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.id_ciclo, "", new { @class = "text-danger" })
-    </div>
+    .form-group label {
+        font-weight: 600;
+    }
 
-    <div class="col-12">
-        <button type="submit" class="btn btn-primary" name="submitButton" value="Actualizar">Actualizar</button>
-        @Html.ActionLink("Volver a Secciones", "ListSecciones", null, new { @class = "btn btn-secondary ms-2" })
-    </div>
-}
+    .btn {
+        border-radius: 8px;
+        font-weight: 500;
+    }
+</style>
+
+<div class="formulario-editar">
+    <h2>Modificar Sección</h2>
+
+    @using (Html.BeginForm("Acciones", "Seccion", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => m.id_seccion)
+
+        <div class="form-group mb-3">
+            @Html.LabelFor(m => m.nombre_seccion)
+            @Html.TextBoxFor(m => m.nombre_seccion, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.nombre_seccion, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group mb-4">
+            @Html.LabelFor(m => m.id_ciclo)
+            @Html.TextBoxFor(m => m.id_ciclo, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.id_ciclo, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary me-2" name="submitButton" value="Actualizar">Actualizar</button>
+            @Html.ActionLink("Volver", "ListSecciones", null, new { @class = "btn btn-secondary" })
+        </div>
+    }
+</div>

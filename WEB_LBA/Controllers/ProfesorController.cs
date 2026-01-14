@@ -95,6 +95,14 @@ namespace WEB_LBA.Controllers
         [HttpPost]
         public ActionResult Acciones(string submitButton, M_Profesor p)
         {
+            // Verificar si el modelo es válido
+            if (!ModelState.IsValid)
+            {
+                // Si el modelo no es válido, regresar a la vista con los errores
+                return View("AgregarProfesores", p); // Regresar a la vista "AgregarProfesores" con los errores de validación
+            }
+
+            // Crear el objeto 'Profesore' con los datos del modelo
             Profesore profe = new Profesore
             {
                 id_profesor = p.id_profesor,
@@ -105,13 +113,13 @@ namespace WEB_LBA.Controllers
             switch (submitButton)
             {
                 case "Agregar":
-                    return IngresarProfesor(profe);
+                    return IngresarProfesor(profe);  // Llamar al método para agregar el profesor
                 case "Actualizar":
-                    return ModificarProfesor(profe);
+                    return ModificarProfesor(profe);  // Llamar al método para actualizar el profesor
                 case "Eliminar":
-                    return EliminarProfesor(profe);
+                    return EliminarProfesor(profe);  // Llamar al método para eliminar el profesor
                 default:
-                    return RedirectToAction("ListProfesores");
+                    return RedirectToAction("ListProfesores");  // Si no se especifica un botón válido, redirigir a la lista de profesores
             }
         }
 

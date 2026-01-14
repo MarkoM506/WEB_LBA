@@ -2,38 +2,85 @@
 
 @{
     ViewBag.Title = "Agregar Ciclo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="container mt-4">
-    <h2>@ViewBag.Title</h2>
+<style>
+    body {
+        background-color: #e3f2fd;
+    }
+
+    .contenedor-formulario {
+        max-width: 800px;
+        margin: 40px auto;
+        background-color: white;
+        padding: 30px;
+        border-radius: 16px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+        text-align: center;
+        font-size: 26px;
+        font-weight: bold;
+        color: black;
+        margin-bottom: 25px;
+    }
+
+    label {
+        font-weight: bold;
+    }
+
+    .form-control {
+        border-radius: 8px;
+        padding: 10px;
+        font-size: 15px;
+    }
+
+    .text-danger {
+        font-size: 13px;
+    }
+
+    .btn {
+        font-weight: bold;
+        border-radius: 8px;
+        padding: 10px 18px;
+        margin-top: 20px;
+    }
+
+        .btn + .btn {
+            margin-left: 10px;
+        }
+</style>
+
+<div class="contenedor-formulario">
+    <h2>📘 Agregar Ciclo</h2>
 
     @using (Html.BeginForm("Acciones", "Ciclo", FormMethod.Post, new { enctype = "multipart/form-data", id = "frmCiclos" }))
     {
         @Html.AntiForgeryToken()
 
-        <div class="row g-3 align-items-start">
-            <div class="col-md-6">
-                @Html.LabelFor(m => m.id_ciclo, new { @class = "form-label" })
-                @Html.EditorFor(m => m.id_ciclo, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(m => m.id_ciclo, "", new { @class = "text-danger" })
-            </div>
+        <div class="mb-3">
+            @Html.LabelFor(m => m.id_ciclo)
+            @Html.EditorFor(m => m.id_ciclo, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(m => m.id_ciclo, "", new { @class = "text-danger" })
+        </div>
 
-            <div class="col-md-6">
-                @Html.LabelFor(m => m.nombre_ciclo, new { @class = "form-label" })
-                @Html.EditorFor(m => m.nombre_ciclo, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(m => m.nombre_ciclo, "", new { @class = "text-danger" })
-            </div>
+        <div class="mb-3">
+            @Html.LabelFor(m => m.nombre_ciclo)
+            @Html.EditorFor(m => m.nombre_ciclo, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(m => m.nombre_ciclo, "", new { @class = "text-danger" })
+        </div>
 
-            <div class="col-12">
-                @Html.LabelFor(m => m.descripcion, new { @class = "form-label" })
-                @Html.EditorFor(m => m.descripcion, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(m => m.descripcion, "", new { @class = "text-danger" })
-            </div>
+        <div class="mb-3">
+            @Html.LabelFor(m => m.descripcion)
+            @Html.EditorFor(m => m.descripcion, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(m => m.descripcion, "", new { @class = "text-danger" })
+        </div>
 
-            <div class="col-12">
-                <button type="submit" class="btn btn-primary" name="submitButton" value="Agregar">Agregar</button>
-                @Html.ActionLink("Volver a Ciclos", "ListCiclos", null, new { @class = "btn btn-secondary ms-2" })
-            </div>
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary" name="submitButton" value="Agregar">Agregar</button>
+            @Html.ActionLink("Volver", "ListCiclos", null, new { @class = "btn btn-secondary" })
         </div>
     }
 </div>

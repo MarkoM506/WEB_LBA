@@ -1,0 +1,84 @@
+﻿@{
+    ViewBag.Title = "Panel Administrativo";
+}
+
+<link rel="stylesheet" href="~/Content/PanelAdmin.css" />
+
+<div class="container panel-container">
+    <h2 class="text-center mb-5 page-title">Panel Administrativo</h2>
+    <div class="row g-4">
+        <!-- Ciclos -->
+        <div class="col-md-4">
+            <a href="@Url.Action("ListCiclos", "Ciclo")" class="text-decoration-none">
+                <div class="card card-opcion">
+                    <i class="bi bi-calendar-range"></i>
+                    <h5>Ciclos</h5>
+                </div>
+            </a>
+        </div>
+
+        <!-- Secciones -->
+        <div class="col-md-4">
+            <a href="@Url.Action("ListSecciones", "Seccion")" class="text-decoration-none">
+                <div class="card card-opcion">
+                    <i class="bi bi-diagram-3"></i>
+                    <h5>Secciones</h5>
+                </div>
+            </a>
+        </div>
+
+        <!-- Estudiantes -->
+        <div class="col-md-4">
+            <a href="@Url.Action("ListEstudiantes", "Estudiante")" class="text-decoration-none">
+                <div class="card card-opcion">
+                    <i class="bi bi-person-lines-fill"></i>
+                    <h5>Estudiantes</h5>
+                </div>
+            </a>
+        </div>
+
+        <!-- Profesores -->
+        <div class="col-md-4">
+            <a href="@Url.Action("ListProfesores", "Profesor")" class="text-decoration-none">
+                <div class="card card-opcion">
+                    <i class="bi bi-person-badge"></i>
+                    <h5>Profesores</h5>
+                </div>
+            </a>
+        </div>
+
+        <!-- Materias -->
+        <div class="col-md-4">
+            <a href="@Url.Action("ListMaterias", "Materia")" class="text-decoration-none">
+                <div class="card card-opcion">
+                    <i class="bi bi-journal-bookmark"></i>
+                    <h5>Materias</h5>
+                </div>
+            </a>
+        </div>
+
+        <!-- Padres -->
+        <div class="col-md-4">
+            <a href="@Url.Action("ListPadres", "Padre")" class="text-decoration-none">
+                <div class="card card-opcion">
+                    <i class="bi bi-people"></i>
+                    <h5>Padres</h5>
+                </div>
+            </a>
+        </div>
+
+        <!-- Noticias -->
+        <div class="col-md-4">
+            <a href="@Url.Action("PanelNoticias", "Noticia")" class="text-decoration-none">
+                <div class="card card-opcion">
+                    <i class="bi bi-megaphone"></i>
+                    <h5>Gestionar Noticias</h5>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+<div class="form-group text-center">
+    
+    @Html.ActionLink("volver", "Index","Home", null, new { @class = "btn btn-secondary" })
+</div>

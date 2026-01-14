@@ -2,26 +2,51 @@
     ViewBag.Title = "Buscar Padre por Cédula";
 }
 
-<h2>Buscar Padre por Cédula</h2>
-<hr />
+<style>
+    .contenedor-busqueda {
+        background-color: #ffffff;
+        padding: 30px;
+        max-width: 600px;
+        margin: 40px auto;
+        border-radius: 12px;
+        box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
 
-@using (Html.BeginForm("BuscarPorCedula", "Padre", FormMethod.Post))
-{
-    @Html.AntiForgeryToken()
+    .titulo {
+        color: #0d47a1;
+        text-align: center;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
 
-    <div class="form-group">
-        <label for="cedula">Cédula:</label>
-        <input type="text" name="cedula" class="form-control" required minlength="9" />
+    .btn-group-custom {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+    }
+</style>
+
+<div class="contenedor-busqueda">
+    <h2 class="titulo">Buscar Padre por Cédula</h2>
+
+    @using (Html.BeginForm("BuscarPorCedula", "Padre", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="mb-3">
+            <label for="cedula" class="form-label">Cédula del Padre:</label>
+            <input type="text" name="cedula" class="form-control" placeholder="Ingrese la cédula" required minlength="9" />
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100">Buscar</button>
+    }
+
+    @if (ViewBag.Mensaje != null)
+    {
+        <div class="alert alert-warning mt-4">@ViewBag.Mensaje</div>
+    }
+
+    <div class="btn-group-custom">
+        @Html.ActionLink("Volver", "ListPadres", "Padre", null, new { @class = "btn btn-secondary" })
     </div>
-
-    <button type="submit" class="btn btn-primary">Buscar</button>
-}
-
-@if (ViewBag.Mensaje != null)
-{
-    <div class="alert alert-warning mt-3">@ViewBag.Mensaje</div>
-}
-
-<p class="mt-3">
-    @Html.ActionLink("Volver a la Lista de Padres", "ListPadres", "Padre", null, new { @class = "btn btn-secondary" })
-</p>
+</div>

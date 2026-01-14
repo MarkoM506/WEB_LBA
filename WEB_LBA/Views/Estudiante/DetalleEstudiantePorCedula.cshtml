@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Detalle Estudiante";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 
     var cedula = Model.cedula;
     var rutaFoto = $"~/ftEst/{cedula}.jpg";
@@ -11,25 +12,65 @@
     var rutaFinal = Url.Content(existeFoto ? rutaFoto : rutaPorDefecto);
 }
 
-<h2 class="text-center">Detalle del Estudiante</h2>
+<style>
+    body {
+        background-color: #e3f2fd;
+    }
 
-<div class="card mx-auto" style="max-width: 600px;">
-    <div class="card-body text-center">
+    .contenedor-detalle {
+        max-width: 600px;
+        margin: 40px auto;
+        background-color: white;
+        padding: 30px;
+        border-radius: 16px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
 
-        <img src="@rutaFinal" alt="Foto del estudiante"
-             class="img-thumbnail mb-3"
-             style="max-width: 200px;" />
+        .contenedor-detalle h2 {
+            font-size: 26px;
+            font-weight: bold;
+            color: black;
+            margin-bottom: 25px;
+        }
 
-        <h5 class="card-title">@Model.nombre</h5>
+        .contenedor-detalle img {
+            max-width: 200px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
 
-        <p class="card-text"><strong>Cédula:</strong> @Model.cedula</p>
-        <p class="card-text"><strong>Dirección:</strong> @Model.direccion</p>
-        <p class="card-text"><strong>Teléfono:</strong> @Model.telefono</p>
-        <p class="card-text"><strong>Sección:</strong> @Model.seccion</p>
+        .contenedor-detalle p {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
 
-        <div class="d-flex justify-content-center mt-3">
-            @Html.ActionLink("Volver a Buscar", "BuscarPorCedula", null, new { @class = "btn btn-secondary me-2" })
-            @Html.ActionLink("Volver a Estudiantes", "ListEstudiantes", null, new { @class = "btn btn-primary" })
-        </div>
+        .contenedor-detalle strong {
+            color: #0d47a1;
+        }
+
+    .btn {
+        font-weight: bold;
+        border-radius: 8px;
+        padding: 10px 18px;
+        margin: 5px;
+    }
+</style>
+
+<div class="contenedor-detalle">
+    <h2>🔍 Detalle del Estudiante</h2>
+
+    <img src="@rutaFinal" alt="Foto del estudiante" class="img-thumbnail" />
+
+    <h4 class="mt-3">@Model.nombre</h4>
+
+    <p><strong>Cédula:</strong> @Model.cedula</p>
+    <p><strong>Dirección:</strong> @Model.direccion</p>
+    <p><strong>Teléfono:</strong> @Model.telefono</p>
+    <p><strong>Sección:</strong> @Model.seccion</p>
+
+    <div class="text-center mt-3">
+        @Html.ActionLink("🔎 Volver a Buscar", "BuscarPorCedula", null, new { @class = "btn btn-secondary" })
+        @Html.ActionLink("📋 Volver", "ListEstudiantes", null, new { @class = "btn btn-primary" })
     </div>
 </div>

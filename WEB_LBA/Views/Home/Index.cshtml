@@ -1,33 +1,66 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Inicio";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<main>
-    <section class="row" aria-labelledby="aspnetTitle">
-        <h1 id="title">ASP.NET</h1>
-        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-        <p><a href="https://asp.net" class="btn btn-primary btn-md">Learn more &raquo;</a></p>
-    </section>
+<link rel="stylesheet" href="~/Content/Index.css?v=5" />
 
-    <div class="row">
-        <section class="col-md-4" aria-labelledby="gettingStartedTitle">
-            <h2 id="gettingStartedTitle">Getting started</h2>
+<div class="page-bg" aria-hidden="true"></div>
+
+<div class="landing-wrap">
+    <main class="hero glass" role="main" aria-label="Accesos y bienvenida">
+        <h1>Bienvenidos</h1>
+        <p class="subtitle">
+            Plataforma del <b>Liceo Boca de Arenal</b>.<br />
+            Elegí el tipo de acceso para continuar.
+        </p>
+        <div class="divider" aria-hidden="true"></div>
+
+        <!-- Accesos -->
+        <div class="login-grid" role="list">
+            <a role="listitem"
+               class="login-card"
+               href="@Url.Action("LoginAdministrativo", "Usuario")"
+               aria-label="Ingresar: Login Administrativo">
+                <img loading="lazy"
+                     src="@Url.Content("~/Content/imagenesWeb/admin.jpg")"
+                     alt="Ícono acceso administrativo">
+                <h5>Login Administrativo</h5>
+            </a>
+
+            <a role="listitem"
+               class="login-card"
+               href="@Url.Action("LoginEstudiante", "Usuario")"
+               aria-label="Ingresar: Login Estudiantes">
+                <img loading="lazy"
+                     src="@Url.Content("~/Content/imagenesWeb/logest.jpg")"
+                     alt="Ícono acceso estudiantes">
+                <h5>Login Estudiantes</h5>
+            </a>
+        </div>
+
+        <!-- Información institucional -->
+        <section class="info glass" aria-label="Información institucional">
+            <h4>Acerca del Liceo Boca de Arenal</h4>
             <p>
-                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-                enables a clean separation of concerns and gives you full control over markup
-                for enjoyable, agile development.
+                Somos una institución pública comprometida con la formación académica y humana de nuestros estudiantes.
+                Creemos en el respeto, la inclusión y la excelencia.
             </p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+
+            <ul class="info-list">
+                <li class="info-item"><b>Dirección:</b><br>Boca de Arenal, San Carlos</li>
+                <li class="info-item"><b>Teléfono:</b><br>8480 0101</li>
+                <li class="info-item">
+                    <b>Correo:</b><br>
+                    <a href="mailto:liceoba03@gmail.com">liceoba03@gmail.com</a>
+                </li>
+            </ul>
+
+            <p class="help-line">
+                📩 ¿Problemas de acceso? Escribí a <em>liceoba03@gmail.com</em>
+            </p>
         </section>
-        <section class="col-md-4" aria-labelledby="librariesTitle">
-            <h2 id="librariesTitle">Get more libraries</h2>
-            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-        </section>
-        <section class="col-md-4" aria-labelledby="hostingTitle">
-            <h2 id="hostingTitle">Web Hosting</h2>
-            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-        </section>
-    </div>
-</main>
+    </main>
+</div>
+
+

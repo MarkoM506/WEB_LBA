@@ -5,18 +5,6 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="L_BAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Asistencia">
-          <Key>
-            <PropertyRef Name="id_asistencia" />
-          </Key>
-          <Property Name="id_asistencia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="id_estudiante" Type="int" />
-          <Property Name="id_materia" Type="int" />
-          <Property Name="id_profesor" Type="int" />
-          <Property Name="fecha" Type="date" />
-          <Property Name="observaciones" Type="text" />
-          <Property Name="id_estado" Type="int" />
-        </EntityType>
         <EntityType Name="Ciclos">
           <Key>
             <PropertyRef Name="id_ciclo" />
@@ -24,14 +12,6 @@
           <Property Name="id_ciclo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre_ciclo" Type="varchar" MaxLength="50" />
           <Property Name="descripcion" Type="text" />
-        </EntityType>
-        <EntityType Name="Estados_Asistencia">
-          <Key>
-            <PropertyRef Name="id_estado" />
-          </Key>
-          <Property Name="id_estado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="nombre_estado" Type="varchar" MaxLength="20" />
-          <Property Name="simbolo" Type="nvarchar" MaxLength="5" />
         </EntityType>
         <EntityType Name="Estudiantes">
           <Key>
@@ -70,42 +50,34 @@
           <Property Name="id_profesor" Type="int" Nullable="false" />
           <Property Name="id_materia" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="Notas">
+        <EntityType Name="Matricula">
           <Key>
-            <PropertyRef Name="id_nota" />
+            <PropertyRef Name="id_matricula" />
           </Key>
-          <Property Name="id_nota" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="id_estudiante" Type="int" Nullable="false" />
-          <Property Name="id_materia" Type="int" Nullable="false" />
-          <Property Name="id_profesor" Type="int" Nullable="false" />
-          <Property Name="id_tipo_nota" Type="int" Nullable="false" />
-          <Property Name="nota" Type="decimal" Precision="5" Scale="2" Nullable="false" />
-          <Property Name="observaciones" Type="text" />
-          <Property Name="fecha" Type="date" Nullable="false" />
+          <Property Name="id_matricula" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre_estudiante" Type="varchar" MaxLength="100" />
+          <Property Name="cedula_estudiante" Type="varchar" MaxLength="20" />
+          <Property Name="escuela_procedencia" Type="varchar" MaxLength="100" />
+          <Property Name="fecha_nacimiento" Type="date" />
+          <Property Name="telefono_estudiante" Type="varchar" MaxLength="20" />
+          <Property Name="nivel" Type="varchar" MaxLength="20" />
+          <Property Name="nombre_padre" Type="varchar" MaxLength="100" />
+          <Property Name="cedula_padre" Type="varchar" MaxLength="20" />
+          <Property Name="telefono_padre" Type="varchar" MaxLength="20" />
+          <Property Name="direccion_padre" Type="varchar" MaxLength="300" />
+          <Property Name="parentesco" Type="varchar" MaxLength="50" />
+          <Property Name="fecha_cita" Type="date" />
+          <Property Name="hora_cita" Type="varchar" MaxLength="10" />
         </EntityType>
-        <EntityType Name="Notas_Estandarizadas">
+        <EntityType Name="Noticias">
           <Key>
-            <PropertyRef Name="id_estandarizada" />
+            <PropertyRef Name="id_noticia" />
           </Key>
-          <Property Name="id_estandarizada" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="id_estudiante" Type="int" Nullable="false" />
-          <Property Name="id_materia" Type="int" Nullable="false" />
-          <Property Name="id_profesor" Type="int" Nullable="false" />
-          <Property Name="semestre" Type="int" Nullable="false" />
-          <Property Name="nota_estandarizada" Type="decimal" Precision="5" Scale="2" Nullable="false" />
-          <Property Name="fecha" Type="date" Nullable="false" />
-        </EntityType>
-        <EntityType Name="NotasEstandarizadas">
-          <Key>
-            <PropertyRef Name="id_nota_est" />
-          </Key>
-          <Property Name="id_nota_est" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="id_estudiante" Type="int" Nullable="false" />
-          <Property Name="id_materia" Type="int" Nullable="false" />
-          <Property Name="id_profesor" Type="int" Nullable="false" />
-          <Property Name="nota" Type="decimal" Precision="5" Scale="2" Nullable="false" />
-          <Property Name="observaciones" Type="text" />
-          <Property Name="fecha" Type="date" Nullable="false" />
+          <Property Name="id_noticia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="titulo" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="contenido" Type="text" Nullable="false" />
+          <Property Name="fecha_publicacion" Type="date" Nullable="false" />
+          <Property Name="imagen_url" Type="varchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="Padres">
           <Key>
@@ -140,13 +112,6 @@
           <Property Name="nombre_seccion" Type="varchar" MaxLength="20" />
           <Property Name="id_ciclo" Type="int" />
         </EntityType>
-        <EntityType Name="TiposNota">
-          <Key>
-            <PropertyRef Name="id_tipo_nota" />
-          </Key>
-          <Property Name="id_tipo_nota" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
-        </EntityType>
         <EntityType Name="Usuarios">
           <Key>
             <PropertyRef Name="id_usuario" />
@@ -159,83 +124,6 @@
           <Property Name="id_profesor" Type="int" />
           <Property Name="activo" Type="bit" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'Liceo_BA.dbo.vista_asistencia_detalle' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
-        <EntityType Name="vista_asistencia_detalle">
-          <Key>
-            <PropertyRef Name="id_asistencia" />
-          </Key>
-          <Property Name="id_asistencia" Type="int" Nullable="false" />
-          <Property Name="estudiante" Type="varchar" MaxLength="100" />
-          <Property Name="nombre_materia" Type="varchar" MaxLength="100" />
-          <Property Name="profesor" Type="varchar" MaxLength="100" />
-          <Property Name="fecha" Type="date" />
-          <Property Name="estado" Type="varchar" MaxLength="15" />
-          <Property Name="observaciones" Type="text" />
-        </EntityType>
-        <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'Liceo_BA.dbo.vista_estudiantes_info' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
-        <EntityType Name="vista_estudiantes_info">
-          <Key>
-            <PropertyRef Name="id_estudiante" />
-          </Key>
-          <Property Name="id_estudiante" Type="int" Nullable="false" />
-          <Property Name="nombre_estudiante" Type="varchar" MaxLength="100" />
-          <Property Name="direccion" Type="varchar" MaxLength="255" />
-          <Property Name="telefono" Type="varchar" MaxLength="20" />
-          <Property Name="nombre_seccion" Type="varchar" MaxLength="20" />
-          <Property Name="nombre_ciclo" Type="varchar" MaxLength="50" />
-        </EntityType>
-        <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'Liceo_BA.dbo.vista_notas_estudiantes' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
-        <EntityType Name="vista_notas_estudiantes">
-          <Key>
-            <PropertyRef Name="id_nota" />
-          </Key>
-          <Property Name="id_nota" Type="int" Nullable="false" />
-          <Property Name="estudiante" Type="varchar" MaxLength="100" />
-          <Property Name="nombre_materia" Type="varchar" MaxLength="100" />
-          <Property Name="profesor" Type="varchar" MaxLength="100" />
-          <Property Name="nota" Type="decimal" Precision="5" Scale="2" />
-          <Property Name="observaciones" Type="text" />
-          <Property Name="fecha" Type="date" />
-        </EntityType>
-        <Association Name="FK__Asistenci__id_es__5535A963">
-          <End Role="Estudiantes" Type="Self.Estudiantes" Multiplicity="0..1" />
-          <End Role="Asistencia" Type="Self.Asistencia" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Estudiantes">
-              <PropertyRef Name="id_estudiante" />
-            </Principal>
-            <Dependent Role="Asistencia">
-              <PropertyRef Name="id_estudiante" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Asistenci__id_ma__5629CD9C">
-          <End Role="Materias" Type="Self.Materias" Multiplicity="0..1" />
-          <End Role="Asistencia" Type="Self.Asistencia" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Materias">
-              <PropertyRef Name="id_materia" />
-            </Principal>
-            <Dependent Role="Asistencia">
-              <PropertyRef Name="id_materia" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Asistenci__id_pr__571DF1D5">
-          <End Role="Profesores" Type="Self.Profesores" Multiplicity="0..1" />
-          <End Role="Asistencia" Type="Self.Asistencia" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Profesores">
-              <PropertyRef Name="id_profesor" />
-            </Principal>
-            <Dependent Role="Asistencia">
-              <PropertyRef Name="id_profesor" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__Estudiant__id_se__3D5E1FD2">
           <End Role="Secciones" Type="Self.Secciones" Multiplicity="0..1" />
           <End Role="Estudiantes" Type="Self.Estudiantes" Multiplicity="*" />
@@ -248,7 +136,7 @@ advertencia 6002: La tabla o vista 'Liceo_BA.dbo.vista_notas_estudiantes' no tie
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Horarios__id_mat__4D94879B">
+        <Association Name="FK__Horarios__id_mat__5070F446">
           <End Role="Materias" Type="Self.Materias" Multiplicity="0..1" />
           <End Role="Horarios" Type="Self.Horarios" Multiplicity="*" />
           <ReferentialConstraint>
@@ -260,7 +148,7 @@ advertencia 6002: La tabla o vista 'Liceo_BA.dbo.vista_notas_estudiantes' no tie
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Horarios__id_sec__4CA06362">
+        <Association Name="FK__Horarios__id_sec__4F7CD00D">
           <End Role="Secciones" Type="Self.Secciones" Multiplicity="0..1" />
           <End Role="Horarios" Type="Self.Horarios" Multiplicity="*" />
           <ReferentialConstraint>
@@ -272,7 +160,7 @@ advertencia 6002: La tabla o vista 'Liceo_BA.dbo.vista_notas_estudiantes' no tie
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Materias___id_ma__49C3F6B7">
+        <Association Name="FK__Materias___id_ma__4CA06362">
           <End Role="Materias" Type="Self.Materias" Multiplicity="1" />
           <End Role="Materias_Profesores" Type="Self.Materias_Profesores" Multiplicity="*" />
           <ReferentialConstraint>
@@ -284,7 +172,7 @@ advertencia 6002: La tabla o vista 'Liceo_BA.dbo.vista_notas_estudiantes' no tie
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Materias___id_pr__48CFD27E">
+        <Association Name="FK__Materias___id_pr__4BAC3F29">
           <End Role="Profesores" Type="Self.Profesores" Multiplicity="1" />
           <End Role="Materias_Profesores" Type="Self.Materias_Profesores" Multiplicity="*" />
           <ReferentialConstraint>
@@ -296,127 +184,7 @@ advertencia 6002: La tabla o vista 'Liceo_BA.dbo.vista_notas_estudiantes' no tie
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Notas__id_estudi__03BB8E22">
-          <End Role="Estudiantes" Type="Self.Estudiantes" Multiplicity="1" />
-          <End Role="Notas" Type="Self.Notas" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Estudiantes">
-              <PropertyRef Name="id_estudiante" />
-            </Principal>
-            <Dependent Role="Notas">
-              <PropertyRef Name="id_estudiante" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Notas__id_materi__04AFB25B">
-          <End Role="Materias" Type="Self.Materias" Multiplicity="1" />
-          <End Role="Notas" Type="Self.Notas" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Materias">
-              <PropertyRef Name="id_materia" />
-            </Principal>
-            <Dependent Role="Notas">
-              <PropertyRef Name="id_materia" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Notas__id_profes__05A3D694">
-          <End Role="Profesores" Type="Self.Profesores" Multiplicity="1" />
-          <End Role="Notas" Type="Self.Notas" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Profesores">
-              <PropertyRef Name="id_profesor" />
-            </Principal>
-            <Dependent Role="Notas">
-              <PropertyRef Name="id_profesor" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Notas__id_tipo_n__0697FACD">
-          <End Role="TiposNota" Type="Self.TiposNota" Multiplicity="1" />
-          <End Role="Notas" Type="Self.Notas" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TiposNota">
-              <PropertyRef Name="id_tipo_nota" />
-            </Principal>
-            <Dependent Role="Notas">
-              <PropertyRef Name="id_tipo_nota" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Notas_Est__id_es__41EDCAC5">
-          <End Role="Estudiantes" Type="Self.Estudiantes" Multiplicity="1" />
-          <End Role="Notas_Estandarizadas" Type="Self.Notas_Estandarizadas" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Estudiantes">
-              <PropertyRef Name="id_estudiante" />
-            </Principal>
-            <Dependent Role="Notas_Estandarizadas">
-              <PropertyRef Name="id_estudiante" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Notas_Est__id_ma__42E1EEFE">
-          <End Role="Materias" Type="Self.Materias" Multiplicity="1" />
-          <End Role="Notas_Estandarizadas" Type="Self.Notas_Estandarizadas" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Materias">
-              <PropertyRef Name="id_materia" />
-            </Principal>
-            <Dependent Role="Notas_Estandarizadas">
-              <PropertyRef Name="id_materia" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Notas_Est__id_pr__43D61337">
-          <End Role="Profesores" Type="Self.Profesores" Multiplicity="1" />
-          <End Role="Notas_Estandarizadas" Type="Self.Notas_Estandarizadas" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Profesores">
-              <PropertyRef Name="id_profesor" />
-            </Principal>
-            <Dependent Role="Notas_Estandarizadas">
-              <PropertyRef Name="id_profesor" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__NotasEsta__id_es__09746778">
-          <End Role="Estudiantes" Type="Self.Estudiantes" Multiplicity="1" />
-          <End Role="NotasEstandarizadas" Type="Self.NotasEstandarizadas" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Estudiantes">
-              <PropertyRef Name="id_estudiante" />
-            </Principal>
-            <Dependent Role="NotasEstandarizadas">
-              <PropertyRef Name="id_estudiante" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__NotasEsta__id_ma__0A688BB1">
-          <End Role="Materias" Type="Self.Materias" Multiplicity="1" />
-          <End Role="NotasEstandarizadas" Type="Self.NotasEstandarizadas" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Materias">
-              <PropertyRef Name="id_materia" />
-            </Principal>
-            <Dependent Role="NotasEstandarizadas">
-              <PropertyRef Name="id_materia" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__NotasEsta__id_pr__0B5CAFEA">
-          <End Role="Profesores" Type="Self.Profesores" Multiplicity="1" />
-          <End Role="NotasEstandarizadas" Type="Self.NotasEstandarizadas" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Profesores">
-              <PropertyRef Name="id_profesor" />
-            </Principal>
-            <Dependent Role="NotasEstandarizadas">
-              <PropertyRef Name="id_profesor" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Padres_Es__id_es__1AD3FDA4">
+        <Association Name="FK__Padres_Es__id_es__440B1D61">
           <End Role="Estudiantes" Type="Self.Estudiantes" Multiplicity="1" />
           <End Role="Padres_Estudiantes" Type="Self.Padres_Estudiantes" Multiplicity="*" />
           <ReferentialConstraint>
@@ -428,7 +196,7 @@ advertencia 6002: La tabla o vista 'Liceo_BA.dbo.vista_notas_estudiantes' no tie
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Padres_Es__id_pa__19DFD96B">
+        <Association Name="FK__Padres_Es__id_pa__4316F928">
           <End Role="Padres" Type="Self.Padres" Multiplicity="1" />
           <End Role="Padres_Estudiantes" Type="Self.Padres_Estudiantes" Multiplicity="*" />
           <ReferentialConstraint>
@@ -452,7 +220,7 @@ advertencia 6002: La tabla o vista 'Liceo_BA.dbo.vista_notas_estudiantes' no tie
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Usuarios__id_est__5BE2A6F2">
+        <Association Name="FK__Usuarios__id_est__5535A963">
           <End Role="Estudiantes" Type="Self.Estudiantes" Multiplicity="0..1" />
           <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
           <ReferentialConstraint>
@@ -464,7 +232,7 @@ advertencia 6002: La tabla o vista 'Liceo_BA.dbo.vista_notas_estudiantes' no tie
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Usuarios__id_pro__5CD6CB2B">
+        <Association Name="FK__Usuarios__id_pro__5629CD9C">
           <End Role="Profesores" Type="Self.Profesores" Multiplicity="0..1" />
           <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
           <ReferentialConstraint>
@@ -476,18 +244,6 @@ advertencia 6002: La tabla o vista 'Liceo_BA.dbo.vista_notas_estudiantes' no tie
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Asistencia_Estado">
-          <End Role="Estados_Asistencia" Type="Self.Estados_Asistencia" Multiplicity="0..1" />
-          <End Role="Asistencia" Type="Self.Asistencia" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Estados_Asistencia">
-              <PropertyRef Name="id_estado" />
-            </Principal>
-            <Dependent Role="Asistencia">
-              <PropertyRef Name="id_estado" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Function Name="SP_asignarEstudianteAPadre" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id_padre" Type="int" Mode="In" />
           <Parameter Name="id_estudiante" Type="int" Mode="In" />
@@ -496,12 +252,7 @@ advertencia 6002: La tabla o vista 'Liceo_BA.dbo.vista_notas_estudiantes' no tie
           <Parameter Name="id_profesor" Type="int" Mode="In" />
           <Parameter Name="id_materia" Type="int" Mode="In" />
         </Function>
-        <Function Name="SP_delAsistencia" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="id_asistencia" Type="int" Mode="In" />
-        </Function>
-        <Function Name="SP_delAsistenciaPorFecha" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="id_estudiante" Type="int" Mode="In" />
-          <Parameter Name="fecha" Type="date" Mode="In" />
+        <Function Name="SP_asignarMateriaProfesor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id_profesor" Type="int" Mode="In" />
           <Parameter Name="id_materia" Type="int" Mode="In" />
         </Function>
@@ -514,8 +265,8 @@ advertencia 6002: La tabla o vista 'Liceo_BA.dbo.vista_notas_estudiantes' no tie
         <Function Name="SP_delMateria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id_materia" Type="int" Mode="In" />
         </Function>
-        <Function Name="SP_delNota" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="id_nota" Type="int" Mode="In" />
+        <Function Name="SP_delNoticia" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_noticia" Type="int" Mode="In" />
         </Function>
         <Function Name="SP_delPadre" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id_padre" Type="int" Mode="In" />
@@ -529,16 +280,8 @@ advertencia 6002: La tabla o vista 'Liceo_BA.dbo.vista_notas_estudiantes' no tie
         <Function Name="SP_delUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id_usuario" Type="int" Mode="In" />
         </Function>
-        <Function Name="SP_insAsistencia" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="id_estudiante" Type="int" Mode="In" />
-          <Parameter Name="id_materia" Type="int" Mode="In" />
-          <Parameter Name="id_profesor" Type="int" Mode="In" />
-          <Parameter Name="fecha" Type="date" Mode="In" />
-          <Parameter Name="id_estado" Type="int" Mode="In" />
-          <Parameter Name="observaciones" Type="text" Mode="In" />
-        </Function>
         <Function Name="SP_insCiclo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="nombre" Type="varchar" Mode="In" />
+          <Parameter Name="nombre_ciclo" Type="varchar" Mode="In" />
           <Parameter Name="descripcion" Type="text" Mode="In" />
         </Function>
         <Function Name="SP_insEstudiante" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -551,22 +294,26 @@ advertencia 6002: La tabla o vista 'Liceo_BA.dbo.vista_notas_estudiantes' no tie
         <Function Name="SP_insMateria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="nombre_materia" Type="varchar" Mode="In" />
         </Function>
-        <Function Name="SP_insNota" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="id_estudiante" Type="int" Mode="In" />
-          <Parameter Name="id_materia" Type="int" Mode="In" />
-          <Parameter Name="id_profesor" Type="int" Mode="In" />
-          <Parameter Name="id_tipo_nota" Type="int" Mode="In" />
-          <Parameter Name="nota" Type="decimal" Mode="In" />
-          <Parameter Name="observaciones" Type="text" Mode="In" />
-          <Parameter Name="fecha" Type="date" Mode="In" />
+        <Function Name="SP_insMatricula" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nombre_estudiante" Type="varchar" Mode="In" />
+          <Parameter Name="cedula_estudiante" Type="varchar" Mode="In" />
+          <Parameter Name="escuela_procedencia" Type="varchar" Mode="In" />
+          <Parameter Name="fecha_nacimiento" Type="date" Mode="In" />
+          <Parameter Name="telefono_estudiante" Type="varchar" Mode="In" />
+          <Parameter Name="nivel" Type="varchar" Mode="In" />
+          <Parameter Name="nombre_padre" Type="varchar" Mode="In" />
+          <Parameter Name="cedula_padre" Type="varchar" Mode="In" />
+          <Parameter Name="telefono_padre" Type="varchar" Mode="In" />
+          <Parameter Name="direccion_padre" Type="varchar" Mode="In" />
+          <Parameter Name="parentesco" Type="varchar" Mode="In" />
+          <Parameter Name="fecha_cita" Type="date" Mode="In" />
+          <Parameter Name="hora_cita" Type="varchar" Mode="In" />
         </Function>
-        <Function Name="SP_insNotaEstandarizada" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="id_estudiante" Type="int" Mode="In" />
-          <Parameter Name="id_materia" Type="int" Mode="In" />
-          <Parameter Name="id_profesor" Type="int" Mode="In" />
-          <Parameter Name="nota" Type="decimal" Mode="In" />
-          <Parameter Name="observaciones" Type="text" Mode="In" />
-          <Parameter Name="fecha" Type="date" Mode="In" />
+        <Function Name="SP_insNoticia" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="titulo" Type="varchar" Mode="In" />
+          <Parameter Name="contenido" Type="text" Mode="In" />
+          <Parameter Name="fecha_publicacion" Type="date" Mode="In" />
+          <Parameter Name="imagen_url" Type="varchar" Mode="In" />
         </Function>
         <Function Name="SP_insPadre" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="cedula" Type="varchar" Mode="In" />
@@ -578,11 +325,8 @@ advertencia 6002: La tabla o vista 'Liceo_BA.dbo.vista_notas_estudiantes' no tie
           <Parameter Name="nombre" Type="varchar" Mode="In" />
         </Function>
         <Function Name="SP_insSeccion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="nombre" Type="varchar" Mode="In" />
+          <Parameter Name="nombre_seccion" Type="varchar" Mode="In" />
           <Parameter Name="id_ciclo" Type="int" Mode="In" />
-        </Function>
-        <Function Name="SP_insTipoNota" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="nombre_tipo" Type="varchar" Mode="In" />
         </Function>
         <Function Name="SP_insUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="usuario" Type="varchar" Mode="In" />
@@ -591,14 +335,13 @@ advertencia 6002: La tabla o vista 'Liceo_BA.dbo.vista_notas_estudiantes' no tie
           <Parameter Name="id_estudiante" Type="int" Mode="In" />
           <Parameter Name="id_profesor" Type="int" Mode="In" />
         </Function>
-        <Function Name="SP_modAsistencia" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="id_asistencia" Type="int" Mode="In" />
-          <Parameter Name="id_estado" Type="int" Mode="In" />
-          <Parameter Name="observaciones" Type="text" Mode="In" />
+        <Function Name="SP_loginUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="usuario" Type="varchar" Mode="In" />
+          <Parameter Name="contrasena" Type="varchar" Mode="In" />
         </Function>
         <Function Name="SP_modCiclo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id_ciclo" Type="int" Mode="In" />
-          <Parameter Name="nombre" Type="varchar" Mode="In" />
+          <Parameter Name="nombre_ciclo" Type="varchar" Mode="In" />
           <Parameter Name="descripcion" Type="text" Mode="In" />
         </Function>
         <Function Name="SP_modEstudiante" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -613,11 +356,12 @@ advertencia 6002: La tabla o vista 'Liceo_BA.dbo.vista_notas_estudiantes' no tie
           <Parameter Name="id_materia" Type="int" Mode="In" />
           <Parameter Name="nombre_materia" Type="varchar" Mode="In" />
         </Function>
-        <Function Name="SP_modNota" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="id_nota" Type="int" Mode="In" />
-          <Parameter Name="nota" Type="decimal" Mode="In" />
-          <Parameter Name="observaciones" Type="text" Mode="In" />
-          <Parameter Name="fecha" Type="date" Mode="In" />
+        <Function Name="SP_modNoticia" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_noticia" Type="int" Mode="In" />
+          <Parameter Name="titulo" Type="varchar" Mode="In" />
+          <Parameter Name="contenido" Type="text" Mode="In" />
+          <Parameter Name="fecha_publicacion" Type="date" Mode="In" />
+          <Parameter Name="imagen_url" Type="varchar" Mode="In" />
         </Function>
         <Function Name="SP_modPadre" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id_padre" Type="int" Mode="In" />
@@ -632,7 +376,7 @@ advertencia 6002: La tabla o vista 'Liceo_BA.dbo.vista_notas_estudiantes' no tie
         </Function>
         <Function Name="SP_modSeccion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id_seccion" Type="int" Mode="In" />
-          <Parameter Name="nombre" Type="varchar" Mode="In" />
+          <Parameter Name="nombre_seccion" Type="varchar" Mode="In" />
           <Parameter Name="id_ciclo" Type="int" Mode="In" />
         </Function>
         <Function Name="SP_modUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -650,15 +394,18 @@ advertencia 6002: La tabla o vista 'Liceo_BA.dbo.vista_notas_estudiantes' no tie
           <Parameter Name="id_profesor" Type="int" Mode="In" />
           <Parameter Name="id_materia" Type="int" Mode="In" />
         </Function>
-        <Function Name="SP_recAsistenciaPorId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="id_asistencia" Type="int" Mode="In" />
+        <Function Name="SP_quitarMateriaProfesor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_profesor" Type="int" Mode="In" />
+          <Parameter Name="id_materia" Type="int" Mode="In" />
         </Function>
-        <Function Name="SP_recAsistencias" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_quitarRelacionPadreEstudiante" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_padre" Type="int" Mode="In" />
+          <Parameter Name="id_estudiante" Type="int" Mode="In" />
+        </Function>
         <Function Name="SP_recCicloPorId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id_ciclo" Type="int" Mode="In" />
         </Function>
         <Function Name="SP_recCiclos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="SP_recEstadosAsistencia" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="SP_recEstudiantePorCedula" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="cedula" Type="varchar" Mode="In" />
         </Function>
@@ -680,23 +427,10 @@ advertencia 6002: La tabla o vista 'Liceo_BA.dbo.vista_notas_estudiantes' no tie
         <Function Name="SP_recMateriasPorProfesor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id_profesor" Type="int" Mode="In" />
         </Function>
-        <Function Name="SP_recNotaPorId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="id_nota" Type="int" Mode="In" />
+        <Function Name="SP_recNoticiaPorId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_noticia" Type="int" Mode="In" />
         </Function>
-        <Function Name="SP_recNotas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="SP_recNotasEstandarizadas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="SP_recNotasEstandarizadasPorEstudiante" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="id_estudiante" Type="int" Mode="In" />
-        </Function>
-        <Function Name="SP_recNotasPorEstudiante" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="id_estudiante" Type="int" Mode="In" />
-        </Function>
-        <Function Name="SP_recNotasPorMateria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="id_materia" Type="int" Mode="In" />
-        </Function>
-        <Function Name="SP_recNotasPorProfesor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="id_profesor" Type="int" Mode="In" />
-        </Function>
+        <Function Name="SP_recNoticias" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="SP_recPadrePorCedula" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="cedula" Type="varchar" Mode="In" />
         </Function>
@@ -712,9 +446,6 @@ advertencia 6002: La tabla o vista 'Liceo_BA.dbo.vista_notas_estudiantes' no tie
         <Function Name="SP_recProfesoresPorMateria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id_materia" Type="int" Mode="In" />
         </Function>
-        <Function Name="SP_recProfesorPorCedula" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="cedula" Type="varchar" Mode="In" />
-        </Function>
         <Function Name="SP_recProfesorPorId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id_profesor" Type="int" Mode="In" />
         </Function>
@@ -729,142 +460,48 @@ advertencia 6002: La tabla o vista 'Liceo_BA.dbo.vista_notas_estudiantes' no tie
           <Parameter Name="id_usuario" Type="int" Mode="In" />
         </Function>
         <Function Name="SP_recUsuarios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="SP_reporteAsistenciaPorSeccion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="id_seccion" Type="int" Mode="In" />
-        </Function>
-        <Function Name="SP_reporteMensualAsistencia" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="anio" Type="int" Mode="In" />
-          <Parameter Name="mes" Type="int" Mode="In" />
-          <Parameter Name="idProfesor" Type="int" Mode="In" />
-          <Parameter Name="idSeccion" Type="int" Mode="In" />
-          <Parameter Name="idMateria" Type="int" Mode="In" />
+        <Function Name="SP_relPadreEstudiante" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_padre" Type="int" Mode="In" />
+          <Parameter Name="id_estudiante" Type="int" Mode="In" />
         </Function>
         <EntityContainer Name="L_BAModelStoreContainer">
-          <EntitySet Name="Asistencia" EntityType="Self.Asistencia" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ciclos" EntityType="Self.Ciclos" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Estados_Asistencia" EntityType="Self.Estados_Asistencia" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Estudiantes" EntityType="Self.Estudiantes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Horarios" EntityType="Self.Horarios" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Materias" EntityType="Self.Materias" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Materias_Profesores" EntityType="Self.Materias_Profesores" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Notas" EntityType="Self.Notas" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Notas_Estandarizadas" EntityType="Self.Notas_Estandarizadas" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="NotasEstandarizadas" EntityType="Self.NotasEstandarizadas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Matricula" EntityType="Self.Matricula" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Noticias" EntityType="Self.Noticias" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Padres" EntityType="Self.Padres" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Padres_Estudiantes" EntityType="Self.Padres_Estudiantes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Profesores" EntityType="Self.Profesores" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Secciones" EntityType="Self.Secciones" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TiposNota" EntityType="Self.TiposNota" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="vista_asistencia_detalle" EntityType="Self.vista_asistencia_detalle" store:Type="Views" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [vista_asistencia_detalle].[id_asistencia] AS [id_asistencia], 
-    [vista_asistencia_detalle].[estudiante] AS [estudiante], 
-    [vista_asistencia_detalle].[nombre_materia] AS [nombre_materia], 
-    [vista_asistencia_detalle].[profesor] AS [profesor], 
-    [vista_asistencia_detalle].[fecha] AS [fecha], 
-    [vista_asistencia_detalle].[estado] AS [estado], 
-    [vista_asistencia_detalle].[observaciones] AS [observaciones]
-    FROM [dbo].[vista_asistencia_detalle] AS [vista_asistencia_detalle]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="vista_estudiantes_info" EntityType="Self.vista_estudiantes_info" store:Type="Views" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [vista_estudiantes_info].[id_estudiante] AS [id_estudiante], 
-    [vista_estudiantes_info].[nombre_estudiante] AS [nombre_estudiante], 
-    [vista_estudiantes_info].[direccion] AS [direccion], 
-    [vista_estudiantes_info].[telefono] AS [telefono], 
-    [vista_estudiantes_info].[nombre_seccion] AS [nombre_seccion], 
-    [vista_estudiantes_info].[nombre_ciclo] AS [nombre_ciclo]
-    FROM [dbo].[vista_estudiantes_info] AS [vista_estudiantes_info]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="vista_notas_estudiantes" EntityType="Self.vista_notas_estudiantes" store:Type="Views" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [vista_notas_estudiantes].[id_nota] AS [id_nota], 
-    [vista_notas_estudiantes].[estudiante] AS [estudiante], 
-    [vista_notas_estudiantes].[nombre_materia] AS [nombre_materia], 
-    [vista_notas_estudiantes].[profesor] AS [profesor], 
-    [vista_notas_estudiantes].[nota] AS [nota], 
-    [vista_notas_estudiantes].[observaciones] AS [observaciones], 
-    [vista_notas_estudiantes].[fecha] AS [fecha]
-    FROM [dbo].[vista_notas_estudiantes] AS [vista_notas_estudiantes]</DefiningQuery>
-          </EntitySet>
-          <AssociationSet Name="FK__Asistenci__id_es__5535A963" Association="Self.FK__Asistenci__id_es__5535A963">
-            <End Role="Estudiantes" EntitySet="Estudiantes" />
-            <End Role="Asistencia" EntitySet="Asistencia" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Asistenci__id_ma__5629CD9C" Association="Self.FK__Asistenci__id_ma__5629CD9C">
-            <End Role="Materias" EntitySet="Materias" />
-            <End Role="Asistencia" EntitySet="Asistencia" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Asistenci__id_pr__571DF1D5" Association="Self.FK__Asistenci__id_pr__571DF1D5">
-            <End Role="Profesores" EntitySet="Profesores" />
-            <End Role="Asistencia" EntitySet="Asistencia" />
-          </AssociationSet>
           <AssociationSet Name="FK__Estudiant__id_se__3D5E1FD2" Association="Self.FK__Estudiant__id_se__3D5E1FD2">
             <End Role="Secciones" EntitySet="Secciones" />
             <End Role="Estudiantes" EntitySet="Estudiantes" />
           </AssociationSet>
-          <AssociationSet Name="FK__Horarios__id_mat__4D94879B" Association="Self.FK__Horarios__id_mat__4D94879B">
+          <AssociationSet Name="FK__Horarios__id_mat__5070F446" Association="Self.FK__Horarios__id_mat__5070F446">
             <End Role="Materias" EntitySet="Materias" />
             <End Role="Horarios" EntitySet="Horarios" />
           </AssociationSet>
-          <AssociationSet Name="FK__Horarios__id_sec__4CA06362" Association="Self.FK__Horarios__id_sec__4CA06362">
+          <AssociationSet Name="FK__Horarios__id_sec__4F7CD00D" Association="Self.FK__Horarios__id_sec__4F7CD00D">
             <End Role="Secciones" EntitySet="Secciones" />
             <End Role="Horarios" EntitySet="Horarios" />
           </AssociationSet>
-          <AssociationSet Name="FK__Materias___id_ma__49C3F6B7" Association="Self.FK__Materias___id_ma__49C3F6B7">
+          <AssociationSet Name="FK__Materias___id_ma__4CA06362" Association="Self.FK__Materias___id_ma__4CA06362">
             <End Role="Materias" EntitySet="Materias" />
             <End Role="Materias_Profesores" EntitySet="Materias_Profesores" />
           </AssociationSet>
-          <AssociationSet Name="FK__Materias___id_pr__48CFD27E" Association="Self.FK__Materias___id_pr__48CFD27E">
+          <AssociationSet Name="FK__Materias___id_pr__4BAC3F29" Association="Self.FK__Materias___id_pr__4BAC3F29">
             <End Role="Profesores" EntitySet="Profesores" />
             <End Role="Materias_Profesores" EntitySet="Materias_Profesores" />
           </AssociationSet>
-          <AssociationSet Name="FK__Notas__id_estudi__03BB8E22" Association="Self.FK__Notas__id_estudi__03BB8E22">
-            <End Role="Estudiantes" EntitySet="Estudiantes" />
-            <End Role="Notas" EntitySet="Notas" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Notas__id_materi__04AFB25B" Association="Self.FK__Notas__id_materi__04AFB25B">
-            <End Role="Materias" EntitySet="Materias" />
-            <End Role="Notas" EntitySet="Notas" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Notas__id_profes__05A3D694" Association="Self.FK__Notas__id_profes__05A3D694">
-            <End Role="Profesores" EntitySet="Profesores" />
-            <End Role="Notas" EntitySet="Notas" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Notas__id_tipo_n__0697FACD" Association="Self.FK__Notas__id_tipo_n__0697FACD">
-            <End Role="TiposNota" EntitySet="TiposNota" />
-            <End Role="Notas" EntitySet="Notas" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Notas_Est__id_es__41EDCAC5" Association="Self.FK__Notas_Est__id_es__41EDCAC5">
-            <End Role="Estudiantes" EntitySet="Estudiantes" />
-            <End Role="Notas_Estandarizadas" EntitySet="Notas_Estandarizadas" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Notas_Est__id_ma__42E1EEFE" Association="Self.FK__Notas_Est__id_ma__42E1EEFE">
-            <End Role="Materias" EntitySet="Materias" />
-            <End Role="Notas_Estandarizadas" EntitySet="Notas_Estandarizadas" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Notas_Est__id_pr__43D61337" Association="Self.FK__Notas_Est__id_pr__43D61337">
-            <End Role="Profesores" EntitySet="Profesores" />
-            <End Role="Notas_Estandarizadas" EntitySet="Notas_Estandarizadas" />
-          </AssociationSet>
-          <AssociationSet Name="FK__NotasEsta__id_es__09746778" Association="Self.FK__NotasEsta__id_es__09746778">
-            <End Role="Estudiantes" EntitySet="Estudiantes" />
-            <End Role="NotasEstandarizadas" EntitySet="NotasEstandarizadas" />
-          </AssociationSet>
-          <AssociationSet Name="FK__NotasEsta__id_ma__0A688BB1" Association="Self.FK__NotasEsta__id_ma__0A688BB1">
-            <End Role="Materias" EntitySet="Materias" />
-            <End Role="NotasEstandarizadas" EntitySet="NotasEstandarizadas" />
-          </AssociationSet>
-          <AssociationSet Name="FK__NotasEsta__id_pr__0B5CAFEA" Association="Self.FK__NotasEsta__id_pr__0B5CAFEA">
-            <End Role="Profesores" EntitySet="Profesores" />
-            <End Role="NotasEstandarizadas" EntitySet="NotasEstandarizadas" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Padres_Es__id_es__1AD3FDA4" Association="Self.FK__Padres_Es__id_es__1AD3FDA4">
+          <AssociationSet Name="FK__Padres_Es__id_es__440B1D61" Association="Self.FK__Padres_Es__id_es__440B1D61">
             <End Role="Estudiantes" EntitySet="Estudiantes" />
             <End Role="Padres_Estudiantes" EntitySet="Padres_Estudiantes" />
           </AssociationSet>
-          <AssociationSet Name="FK__Padres_Es__id_pa__19DFD96B" Association="Self.FK__Padres_Es__id_pa__19DFD96B">
+          <AssociationSet Name="FK__Padres_Es__id_pa__4316F928" Association="Self.FK__Padres_Es__id_pa__4316F928">
             <End Role="Padres" EntitySet="Padres" />
             <End Role="Padres_Estudiantes" EntitySet="Padres_Estudiantes" />
           </AssociationSet>
@@ -872,17 +509,13 @@ advertencia 6002: La tabla o vista 'Liceo_BA.dbo.vista_notas_estudiantes' no tie
             <End Role="Ciclos" EntitySet="Ciclos" />
             <End Role="Secciones" EntitySet="Secciones" />
           </AssociationSet>
-          <AssociationSet Name="FK__Usuarios__id_est__5BE2A6F2" Association="Self.FK__Usuarios__id_est__5BE2A6F2">
+          <AssociationSet Name="FK__Usuarios__id_est__5535A963" Association="Self.FK__Usuarios__id_est__5535A963">
             <End Role="Estudiantes" EntitySet="Estudiantes" />
             <End Role="Usuarios" EntitySet="Usuarios" />
           </AssociationSet>
-          <AssociationSet Name="FK__Usuarios__id_pro__5CD6CB2B" Association="Self.FK__Usuarios__id_pro__5CD6CB2B">
+          <AssociationSet Name="FK__Usuarios__id_pro__5629CD9C" Association="Self.FK__Usuarios__id_pro__5629CD9C">
             <End Role="Profesores" EntitySet="Profesores" />
             <End Role="Usuarios" EntitySet="Usuarios" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Asistencia_Estado" Association="Self.FK_Asistencia_Estado">
-            <End Role="Estados_Asistencia" EntitySet="Estados_Asistencia" />
-            <End Role="Asistencia" EntitySet="Asistencia" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -890,22 +523,6 @@ advertencia 6002: La tabla o vista 'Liceo_BA.dbo.vista_notas_estudiantes' no tie
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="L_BAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Asistencia">
-          <Key>
-            <PropertyRef Name="id_asistencia" />
-          </Key>
-          <Property Name="id_asistencia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="id_estudiante" Type="Int32" />
-          <Property Name="id_materia" Type="Int32" />
-          <Property Name="id_profesor" Type="Int32" />
-          <Property Name="fecha" Type="DateTime" Precision="0" />
-          <Property Name="observaciones" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="id_estado" Type="Int32" />
-          <NavigationProperty Name="Estudiante" Relationship="Self.FK__Asistenci__id_es__5535A963" FromRole="Asistencia" ToRole="Estudiantes" />
-          <NavigationProperty Name="Materia" Relationship="Self.FK__Asistenci__id_ma__5629CD9C" FromRole="Asistencia" ToRole="Materias" />
-          <NavigationProperty Name="Profesore" Relationship="Self.FK__Asistenci__id_pr__571DF1D5" FromRole="Asistencia" ToRole="Profesores" />
-          <NavigationProperty Name="Estados_Asistencia" Relationship="Self.FK_Asistencia_Estado" FromRole="Asistencia" ToRole="Estados_Asistencia" />
-        </EntityType>
         <EntityType Name="Ciclo">
           <Key>
             <PropertyRef Name="id_ciclo" />
@@ -914,15 +531,6 @@ advertencia 6002: La tabla o vista 'Liceo_BA.dbo.vista_notas_estudiantes' no tie
           <Property Name="nombre_ciclo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Secciones" Relationship="Self.FK__Secciones__id_ci__398D8EEE" FromRole="Ciclos" ToRole="Secciones" />
-        </EntityType>
-        <EntityType Name="Estados_Asistencia">
-          <Key>
-            <PropertyRef Name="id_estado" />
-          </Key>
-          <Property Name="id_estado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nombre_estado" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="simbolo" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Asistencias" Relationship="Self.FK_Asistencia_Estado" FromRole="Estados_Asistencia" ToRole="Asistencia" />
         </EntityType>
         <EntityType Name="Estudiante">
           <Key>
@@ -934,12 +542,8 @@ advertencia 6002: La tabla o vista 'Liceo_BA.dbo.vista_notas_estudiantes' no tie
           <Property Name="direccion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="id_seccion" Type="Int32" />
-          <NavigationProperty Name="Asistencias" Relationship="Self.FK__Asistenci__id_es__5535A963" FromRole="Estudiantes" ToRole="Asistencia" />
           <NavigationProperty Name="Seccione" Relationship="Self.FK__Estudiant__id_se__3D5E1FD2" FromRole="Estudiantes" ToRole="Secciones" />
-          <NavigationProperty Name="Notas" Relationship="Self.FK__Notas__id_estudi__03BB8E22" FromRole="Estudiantes" ToRole="Notas" />
-          <NavigationProperty Name="Notas_Estandarizadas" Relationship="Self.FK__Notas_Est__id_es__41EDCAC5" FromRole="Estudiantes" ToRole="Notas_Estandarizadas" />
-          <NavigationProperty Name="NotasEstandarizadas" Relationship="Self.FK__NotasEsta__id_es__09746778" FromRole="Estudiantes" ToRole="NotasEstandarizadas" />
-          <NavigationProperty Name="Usuarios" Relationship="Self.FK__Usuarios__id_est__5BE2A6F2" FromRole="Estudiantes" ToRole="Usuarios" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK__Usuarios__id_est__5535A963" FromRole="Estudiantes" ToRole="Usuarios" />
           <NavigationProperty Name="Padres" Relationship="Self.Padres_Estudiantes" FromRole="Estudiantes" ToRole="Padres" />
         </EntityType>
         <EntityType Name="Horario">
@@ -952,8 +556,8 @@ advertencia 6002: La tabla o vista 'Liceo_BA.dbo.vista_notas_estudiantes' no tie
           <Property Name="hora_inicio" Type="Time" Precision="7" />
           <Property Name="hora_fin" Type="Time" Precision="7" />
           <Property Name="id_materia" Type="Int32" />
-          <NavigationProperty Name="Materia" Relationship="Self.FK__Horarios__id_mat__4D94879B" FromRole="Horarios" ToRole="Materias" />
-          <NavigationProperty Name="Seccione" Relationship="Self.FK__Horarios__id_sec__4CA06362" FromRole="Horarios" ToRole="Secciones" />
+          <NavigationProperty Name="Materia" Relationship="Self.FK__Horarios__id_mat__5070F446" FromRole="Horarios" ToRole="Materias" />
+          <NavigationProperty Name="Seccione" Relationship="Self.FK__Horarios__id_sec__4F7CD00D" FromRole="Horarios" ToRole="Secciones" />
         </EntityType>
         <EntityType Name="Materia">
           <Key>
@@ -961,59 +565,37 @@ advertencia 6002: La tabla o vista 'Liceo_BA.dbo.vista_notas_estudiantes' no tie
           </Key>
           <Property Name="id_materia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre_materia" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Asistencias" Relationship="Self.FK__Asistenci__id_ma__5629CD9C" FromRole="Materias" ToRole="Asistencia" />
-          <NavigationProperty Name="Horarios" Relationship="Self.FK__Horarios__id_mat__4D94879B" FromRole="Materias" ToRole="Horarios" />
-          <NavigationProperty Name="Notas" Relationship="Self.FK__Notas__id_materi__04AFB25B" FromRole="Materias" ToRole="Notas" />
-          <NavigationProperty Name="Notas_Estandarizadas" Relationship="Self.FK__Notas_Est__id_ma__42E1EEFE" FromRole="Materias" ToRole="Notas_Estandarizadas" />
-          <NavigationProperty Name="NotasEstandarizadas" Relationship="Self.FK__NotasEsta__id_ma__0A688BB1" FromRole="Materias" ToRole="NotasEstandarizadas" />
+          <NavigationProperty Name="Horarios" Relationship="Self.FK__Horarios__id_mat__5070F446" FromRole="Materias" ToRole="Horarios" />
           <NavigationProperty Name="Profesores" Relationship="Self.Materias_Profesores" FromRole="Materias" ToRole="Profesores" />
         </EntityType>
-        <EntityType Name="Nota">
+        <EntityType Name="Matricula">
           <Key>
-            <PropertyRef Name="id_nota" />
+            <PropertyRef Name="id_matricula" />
           </Key>
-          <Property Name="id_nota" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="id_estudiante" Type="Int32" Nullable="false" />
-          <Property Name="id_materia" Type="Int32" Nullable="false" />
-          <Property Name="id_profesor" Type="Int32" Nullable="false" />
-          <Property Name="id_tipo_nota" Type="Int32" Nullable="false" />
-          <Property Name="nota1" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
-          <Property Name="observaciones" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="Estudiante" Relationship="Self.FK__Notas__id_estudi__03BB8E22" FromRole="Notas" ToRole="Estudiantes" />
-          <NavigationProperty Name="Materia" Relationship="Self.FK__Notas__id_materi__04AFB25B" FromRole="Notas" ToRole="Materias" />
-          <NavigationProperty Name="Profesore" Relationship="Self.FK__Notas__id_profes__05A3D694" FromRole="Notas" ToRole="Profesores" />
-          <NavigationProperty Name="TiposNota" Relationship="Self.FK__Notas__id_tipo_n__0697FACD" FromRole="Notas" ToRole="TiposNota" />
+          <Property Name="id_matricula" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre_estudiante" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="cedula_estudiante" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="escuela_procedencia" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_nacimiento" Type="DateTime" Precision="0" />
+          <Property Name="telefono_estudiante" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="nivel" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="nombre_padre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="cedula_padre" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="telefono_padre" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="direccion_padre" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="parentesco" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_cita" Type="DateTime" Precision="0" />
+          <Property Name="hora_cita" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="Notas_Estandarizadas">
+        <EntityType Name="Noticia">
           <Key>
-            <PropertyRef Name="id_estandarizada" />
+            <PropertyRef Name="id_noticia" />
           </Key>
-          <Property Name="id_estandarizada" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="id_estudiante" Type="Int32" Nullable="false" />
-          <Property Name="id_materia" Type="Int32" Nullable="false" />
-          <Property Name="id_profesor" Type="Int32" Nullable="false" />
-          <Property Name="semestre" Type="Int32" Nullable="false" />
-          <Property Name="nota_estandarizada" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
-          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="Estudiante" Relationship="Self.FK__Notas_Est__id_es__41EDCAC5" FromRole="Notas_Estandarizadas" ToRole="Estudiantes" />
-          <NavigationProperty Name="Materia" Relationship="Self.FK__Notas_Est__id_ma__42E1EEFE" FromRole="Notas_Estandarizadas" ToRole="Materias" />
-          <NavigationProperty Name="Profesore" Relationship="Self.FK__Notas_Est__id_pr__43D61337" FromRole="Notas_Estandarizadas" ToRole="Profesores" />
-        </EntityType>
-        <EntityType Name="NotasEstandarizada">
-          <Key>
-            <PropertyRef Name="id_nota_est" />
-          </Key>
-          <Property Name="id_nota_est" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="id_estudiante" Type="Int32" Nullable="false" />
-          <Property Name="id_materia" Type="Int32" Nullable="false" />
-          <Property Name="id_profesor" Type="Int32" Nullable="false" />
-          <Property Name="nota" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
-          <Property Name="observaciones" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="Estudiante" Relationship="Self.FK__NotasEsta__id_es__09746778" FromRole="NotasEstandarizadas" ToRole="Estudiantes" />
-          <NavigationProperty Name="Materia" Relationship="Self.FK__NotasEsta__id_ma__0A688BB1" FromRole="NotasEstandarizadas" ToRole="Materias" />
-          <NavigationProperty Name="Profesore" Relationship="Self.FK__NotasEsta__id_pr__0B5CAFEA" FromRole="NotasEstandarizadas" ToRole="Profesores" />
+          <Property Name="id_noticia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="titulo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="contenido" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fecha_publicacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="imagen_url" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Padre">
           <Key>
@@ -1032,11 +614,7 @@ advertencia 6002: La tabla o vista 'Liceo_BA.dbo.vista_notas_estudiantes' no tie
           <Property Name="id_profesor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="cedula" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Asistencias" Relationship="Self.FK__Asistenci__id_pr__571DF1D5" FromRole="Profesores" ToRole="Asistencia" />
-          <NavigationProperty Name="Notas" Relationship="Self.FK__Notas__id_profes__05A3D694" FromRole="Profesores" ToRole="Notas" />
-          <NavigationProperty Name="Notas_Estandarizadas" Relationship="Self.FK__Notas_Est__id_pr__43D61337" FromRole="Profesores" ToRole="Notas_Estandarizadas" />
-          <NavigationProperty Name="NotasEstandarizadas" Relationship="Self.FK__NotasEsta__id_pr__0B5CAFEA" FromRole="Profesores" ToRole="NotasEstandarizadas" />
-          <NavigationProperty Name="Usuarios" Relationship="Self.FK__Usuarios__id_pro__5CD6CB2B" FromRole="Profesores" ToRole="Usuarios" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK__Usuarios__id_pro__5629CD9C" FromRole="Profesores" ToRole="Usuarios" />
           <NavigationProperty Name="Materias" Relationship="Self.Materias_Profesores" FromRole="Profesores" ToRole="Materias" />
         </EntityType>
         <EntityType Name="Seccione">
@@ -1048,15 +626,7 @@ advertencia 6002: La tabla o vista 'Liceo_BA.dbo.vista_notas_estudiantes' no tie
           <Property Name="id_ciclo" Type="Int32" />
           <NavigationProperty Name="Ciclo" Relationship="Self.FK__Secciones__id_ci__398D8EEE" FromRole="Secciones" ToRole="Ciclos" />
           <NavigationProperty Name="Estudiantes" Relationship="Self.FK__Estudiant__id_se__3D5E1FD2" FromRole="Secciones" ToRole="Estudiantes" />
-          <NavigationProperty Name="Horarios" Relationship="Self.FK__Horarios__id_sec__4CA06362" FromRole="Secciones" ToRole="Horarios" />
-        </EntityType>
-        <EntityType Name="TiposNota">
-          <Key>
-            <PropertyRef Name="id_tipo_nota" />
-          </Key>
-          <Property Name="id_tipo_nota" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Notas" Relationship="Self.FK__Notas__id_tipo_n__0697FACD" FromRole="TiposNota" ToRole="Notas" />
+          <NavigationProperty Name="Horarios" Relationship="Self.FK__Horarios__id_sec__4F7CD00D" FromRole="Secciones" ToRole="Horarios" />
         </EntityType>
         <EntityType Name="Usuario">
           <Key>
@@ -1069,92 +639,9 @@ advertencia 6002: La tabla o vista 'Liceo_BA.dbo.vista_notas_estudiantes' no tie
           <Property Name="id_estudiante" Type="Int32" />
           <Property Name="id_profesor" Type="Int32" />
           <Property Name="activo" Type="Boolean" />
-          <NavigationProperty Name="Estudiante" Relationship="Self.FK__Usuarios__id_est__5BE2A6F2" FromRole="Usuarios" ToRole="Estudiantes" />
-          <NavigationProperty Name="Profesore" Relationship="Self.FK__Usuarios__id_pro__5CD6CB2B" FromRole="Usuarios" ToRole="Profesores" />
+          <NavigationProperty Name="Estudiante" Relationship="Self.FK__Usuarios__id_est__5535A963" FromRole="Usuarios" ToRole="Estudiantes" />
+          <NavigationProperty Name="Profesore" Relationship="Self.FK__Usuarios__id_pro__5629CD9C" FromRole="Usuarios" ToRole="Profesores" />
         </EntityType>
-        <EntityType Name="vista_asistencia_detalle">
-          <Key>
-            <PropertyRef Name="id_asistencia" />
-          </Key>
-          <Property Name="id_asistencia" Type="Int32" Nullable="false" />
-          <Property Name="estudiante" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="nombre_materia" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="profesor" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="fecha" Type="DateTime" Precision="0" />
-          <Property Name="estado" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="observaciones" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="vista_estudiantes_info">
-          <Key>
-            <PropertyRef Name="id_estudiante" />
-          </Key>
-          <Property Name="id_estudiante" Type="Int32" Nullable="false" />
-          <Property Name="nombre_estudiante" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="direccion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="nombre_seccion" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="nombre_ciclo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="vista_notas_estudiantes">
-          <Key>
-            <PropertyRef Name="id_nota" />
-          </Key>
-          <Property Name="id_nota" Type="Int32" Nullable="false" />
-          <Property Name="estudiante" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="nombre_materia" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="profesor" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="nota" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="observaciones" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="fecha" Type="DateTime" Precision="0" />
-        </EntityType>
-        <Association Name="FK__Asistenci__id_es__5535A963">
-          <End Role="Estudiantes" Type="Self.Estudiante" Multiplicity="0..1" />
-          <End Role="Asistencia" Type="Self.Asistencia" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Estudiantes">
-              <PropertyRef Name="id_estudiante" />
-            </Principal>
-            <Dependent Role="Asistencia">
-              <PropertyRef Name="id_estudiante" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Asistenci__id_ma__5629CD9C">
-          <End Role="Materias" Type="Self.Materia" Multiplicity="0..1" />
-          <End Role="Asistencia" Type="Self.Asistencia" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Materias">
-              <PropertyRef Name="id_materia" />
-            </Principal>
-            <Dependent Role="Asistencia">
-              <PropertyRef Name="id_materia" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Asistenci__id_pr__571DF1D5">
-          <End Role="Profesores" Type="Self.Profesore" Multiplicity="0..1" />
-          <End Role="Asistencia" Type="Self.Asistencia" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Profesores">
-              <PropertyRef Name="id_profesor" />
-            </Principal>
-            <Dependent Role="Asistencia">
-              <PropertyRef Name="id_profesor" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Asistencia_Estado">
-          <End Role="Estados_Asistencia" Type="Self.Estados_Asistencia" Multiplicity="0..1" />
-          <End Role="Asistencia" Type="Self.Asistencia" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Estados_Asistencia">
-              <PropertyRef Name="id_estado" />
-            </Principal>
-            <Dependent Role="Asistencia">
-              <PropertyRef Name="id_estado" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__Secciones__id_ci__398D8EEE">
           <End Role="Ciclos" Type="Self.Ciclo" Multiplicity="0..1" />
           <End Role="Secciones" Type="Self.Seccione" Multiplicity="*" />
@@ -1179,43 +666,7 @@ advertencia 6002: La tabla o vista 'Liceo_BA.dbo.vista_notas_estudiantes' no tie
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Notas__id_estudi__03BB8E22">
-          <End Role="Estudiantes" Type="Self.Estudiante" Multiplicity="1" />
-          <End Role="Notas" Type="Self.Nota" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Estudiantes">
-              <PropertyRef Name="id_estudiante" />
-            </Principal>
-            <Dependent Role="Notas">
-              <PropertyRef Name="id_estudiante" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Notas_Est__id_es__41EDCAC5">
-          <End Role="Estudiantes" Type="Self.Estudiante" Multiplicity="1" />
-          <End Role="Notas_Estandarizadas" Type="Self.Notas_Estandarizadas" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Estudiantes">
-              <PropertyRef Name="id_estudiante" />
-            </Principal>
-            <Dependent Role="Notas_Estandarizadas">
-              <PropertyRef Name="id_estudiante" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__NotasEsta__id_es__09746778">
-          <End Role="Estudiantes" Type="Self.Estudiante" Multiplicity="1" />
-          <End Role="NotasEstandarizadas" Type="Self.NotasEstandarizada" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Estudiantes">
-              <PropertyRef Name="id_estudiante" />
-            </Principal>
-            <Dependent Role="NotasEstandarizadas">
-              <PropertyRef Name="id_estudiante" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Usuarios__id_est__5BE2A6F2">
+        <Association Name="FK__Usuarios__id_est__5535A963">
           <End Role="Estudiantes" Type="Self.Estudiante" Multiplicity="0..1" />
           <End Role="Usuarios" Type="Self.Usuario" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1227,7 +678,7 @@ advertencia 6002: La tabla o vista 'Liceo_BA.dbo.vista_notas_estudiantes' no tie
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Horarios__id_mat__4D94879B">
+        <Association Name="FK__Horarios__id_mat__5070F446">
           <End Role="Materias" Type="Self.Materia" Multiplicity="0..1" />
           <End Role="Horarios" Type="Self.Horario" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1239,7 +690,7 @@ advertencia 6002: La tabla o vista 'Liceo_BA.dbo.vista_notas_estudiantes' no tie
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Horarios__id_sec__4CA06362">
+        <Association Name="FK__Horarios__id_sec__4F7CD00D">
           <End Role="Secciones" Type="Self.Seccione" Multiplicity="0..1" />
           <End Role="Horarios" Type="Self.Horario" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1251,91 +702,7 @@ advertencia 6002: La tabla o vista 'Liceo_BA.dbo.vista_notas_estudiantes' no tie
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Notas__id_materi__04AFB25B">
-          <End Role="Materias" Type="Self.Materia" Multiplicity="1" />
-          <End Role="Notas" Type="Self.Nota" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Materias">
-              <PropertyRef Name="id_materia" />
-            </Principal>
-            <Dependent Role="Notas">
-              <PropertyRef Name="id_materia" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Notas_Est__id_ma__42E1EEFE">
-          <End Role="Materias" Type="Self.Materia" Multiplicity="1" />
-          <End Role="Notas_Estandarizadas" Type="Self.Notas_Estandarizadas" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Materias">
-              <PropertyRef Name="id_materia" />
-            </Principal>
-            <Dependent Role="Notas_Estandarizadas">
-              <PropertyRef Name="id_materia" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__NotasEsta__id_ma__0A688BB1">
-          <End Role="Materias" Type="Self.Materia" Multiplicity="1" />
-          <End Role="NotasEstandarizadas" Type="Self.NotasEstandarizada" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Materias">
-              <PropertyRef Name="id_materia" />
-            </Principal>
-            <Dependent Role="NotasEstandarizadas">
-              <PropertyRef Name="id_materia" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Notas__id_profes__05A3D694">
-          <End Role="Profesores" Type="Self.Profesore" Multiplicity="1" />
-          <End Role="Notas" Type="Self.Nota" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Profesores">
-              <PropertyRef Name="id_profesor" />
-            </Principal>
-            <Dependent Role="Notas">
-              <PropertyRef Name="id_profesor" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Notas__id_tipo_n__0697FACD">
-          <End Role="TiposNota" Type="Self.TiposNota" Multiplicity="1" />
-          <End Role="Notas" Type="Self.Nota" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TiposNota">
-              <PropertyRef Name="id_tipo_nota" />
-            </Principal>
-            <Dependent Role="Notas">
-              <PropertyRef Name="id_tipo_nota" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Notas_Est__id_pr__43D61337">
-          <End Role="Profesores" Type="Self.Profesore" Multiplicity="1" />
-          <End Role="Notas_Estandarizadas" Type="Self.Notas_Estandarizadas" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Profesores">
-              <PropertyRef Name="id_profesor" />
-            </Principal>
-            <Dependent Role="Notas_Estandarizadas">
-              <PropertyRef Name="id_profesor" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__NotasEsta__id_pr__0B5CAFEA">
-          <End Role="Profesores" Type="Self.Profesore" Multiplicity="1" />
-          <End Role="NotasEstandarizadas" Type="Self.NotasEstandarizada" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Profesores">
-              <PropertyRef Name="id_profesor" />
-            </Principal>
-            <Dependent Role="NotasEstandarizadas">
-              <PropertyRef Name="id_profesor" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Usuarios__id_pro__5CD6CB2B">
+        <Association Name="FK__Usuarios__id_pro__5629CD9C">
           <End Role="Profesores" Type="Self.Profesore" Multiplicity="0..1" />
           <End Role="Usuarios" Type="Self.Usuario" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1356,39 +723,16 @@ advertencia 6002: La tabla o vista 'Liceo_BA.dbo.vista_notas_estudiantes' no tie
           <End Role="Padres" Type="Self.Padre" Multiplicity="*" />
         </Association>
         <EntityContainer Name="L_BAEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Asistencias" EntityType="Self.Asistencia" />
           <EntitySet Name="Ciclos" EntityType="Self.Ciclo" />
-          <EntitySet Name="Estados_Asistencia" EntityType="Self.Estados_Asistencia" />
           <EntitySet Name="Estudiantes" EntityType="Self.Estudiante" />
           <EntitySet Name="Horarios" EntityType="Self.Horario" />
           <EntitySet Name="Materias" EntityType="Self.Materia" />
-          <EntitySet Name="Notas" EntityType="Self.Nota" />
-          <EntitySet Name="Notas_Estandarizadas" EntityType="Self.Notas_Estandarizadas" />
-          <EntitySet Name="NotasEstandarizadas" EntityType="Self.NotasEstandarizada" />
+          <EntitySet Name="Matriculas" EntityType="Self.Matricula" />
+          <EntitySet Name="Noticias" EntityType="Self.Noticia" />
           <EntitySet Name="Padres" EntityType="Self.Padre" />
           <EntitySet Name="Profesores" EntityType="Self.Profesore" />
           <EntitySet Name="Secciones" EntityType="Self.Seccione" />
-          <EntitySet Name="TiposNotas" EntityType="Self.TiposNota" />
           <EntitySet Name="Usuarios" EntityType="Self.Usuario" />
-          <EntitySet Name="vista_asistencia_detalle" EntityType="Self.vista_asistencia_detalle" />
-          <EntitySet Name="vista_estudiantes_info" EntityType="Self.vista_estudiantes_info" />
-          <EntitySet Name="vista_notas_estudiantes" EntityType="Self.vista_notas_estudiantes" />
-          <AssociationSet Name="FK__Asistenci__id_es__5535A963" Association="Self.FK__Asistenci__id_es__5535A963">
-            <End Role="Estudiantes" EntitySet="Estudiantes" />
-            <End Role="Asistencia" EntitySet="Asistencias" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Asistenci__id_ma__5629CD9C" Association="Self.FK__Asistenci__id_ma__5629CD9C">
-            <End Role="Materias" EntitySet="Materias" />
-            <End Role="Asistencia" EntitySet="Asistencias" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Asistenci__id_pr__571DF1D5" Association="Self.FK__Asistenci__id_pr__571DF1D5">
-            <End Role="Profesores" EntitySet="Profesores" />
-            <End Role="Asistencia" EntitySet="Asistencias" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Asistencia_Estado" Association="Self.FK_Asistencia_Estado">
-            <End Role="Estados_Asistencia" EntitySet="Estados_Asistencia" />
-            <End Role="Asistencia" EntitySet="Asistencias" />
-          </AssociationSet>
           <AssociationSet Name="FK__Secciones__id_ci__398D8EEE" Association="Self.FK__Secciones__id_ci__398D8EEE">
             <End Role="Ciclos" EntitySet="Ciclos" />
             <End Role="Secciones" EntitySet="Secciones" />
@@ -1397,59 +741,19 @@ advertencia 6002: La tabla o vista 'Liceo_BA.dbo.vista_notas_estudiantes' no tie
             <End Role="Secciones" EntitySet="Secciones" />
             <End Role="Estudiantes" EntitySet="Estudiantes" />
           </AssociationSet>
-          <AssociationSet Name="FK__Notas__id_estudi__03BB8E22" Association="Self.FK__Notas__id_estudi__03BB8E22">
-            <End Role="Estudiantes" EntitySet="Estudiantes" />
-            <End Role="Notas" EntitySet="Notas" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Notas_Est__id_es__41EDCAC5" Association="Self.FK__Notas_Est__id_es__41EDCAC5">
-            <End Role="Estudiantes" EntitySet="Estudiantes" />
-            <End Role="Notas_Estandarizadas" EntitySet="Notas_Estandarizadas" />
-          </AssociationSet>
-          <AssociationSet Name="FK__NotasEsta__id_es__09746778" Association="Self.FK__NotasEsta__id_es__09746778">
-            <End Role="Estudiantes" EntitySet="Estudiantes" />
-            <End Role="NotasEstandarizadas" EntitySet="NotasEstandarizadas" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Usuarios__id_est__5BE2A6F2" Association="Self.FK__Usuarios__id_est__5BE2A6F2">
+          <AssociationSet Name="FK__Usuarios__id_est__5535A963" Association="Self.FK__Usuarios__id_est__5535A963">
             <End Role="Estudiantes" EntitySet="Estudiantes" />
             <End Role="Usuarios" EntitySet="Usuarios" />
           </AssociationSet>
-          <AssociationSet Name="FK__Horarios__id_mat__4D94879B" Association="Self.FK__Horarios__id_mat__4D94879B">
+          <AssociationSet Name="FK__Horarios__id_mat__5070F446" Association="Self.FK__Horarios__id_mat__5070F446">
             <End Role="Materias" EntitySet="Materias" />
             <End Role="Horarios" EntitySet="Horarios" />
           </AssociationSet>
-          <AssociationSet Name="FK__Horarios__id_sec__4CA06362" Association="Self.FK__Horarios__id_sec__4CA06362">
+          <AssociationSet Name="FK__Horarios__id_sec__4F7CD00D" Association="Self.FK__Horarios__id_sec__4F7CD00D">
             <End Role="Secciones" EntitySet="Secciones" />
             <End Role="Horarios" EntitySet="Horarios" />
           </AssociationSet>
-          <AssociationSet Name="FK__Notas__id_materi__04AFB25B" Association="Self.FK__Notas__id_materi__04AFB25B">
-            <End Role="Materias" EntitySet="Materias" />
-            <End Role="Notas" EntitySet="Notas" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Notas_Est__id_ma__42E1EEFE" Association="Self.FK__Notas_Est__id_ma__42E1EEFE">
-            <End Role="Materias" EntitySet="Materias" />
-            <End Role="Notas_Estandarizadas" EntitySet="Notas_Estandarizadas" />
-          </AssociationSet>
-          <AssociationSet Name="FK__NotasEsta__id_ma__0A688BB1" Association="Self.FK__NotasEsta__id_ma__0A688BB1">
-            <End Role="Materias" EntitySet="Materias" />
-            <End Role="NotasEstandarizadas" EntitySet="NotasEstandarizadas" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Notas__id_profes__05A3D694" Association="Self.FK__Notas__id_profes__05A3D694">
-            <End Role="Profesores" EntitySet="Profesores" />
-            <End Role="Notas" EntitySet="Notas" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Notas__id_tipo_n__0697FACD" Association="Self.FK__Notas__id_tipo_n__0697FACD">
-            <End Role="TiposNota" EntitySet="TiposNotas" />
-            <End Role="Notas" EntitySet="Notas" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Notas_Est__id_pr__43D61337" Association="Self.FK__Notas_Est__id_pr__43D61337">
-            <End Role="Profesores" EntitySet="Profesores" />
-            <End Role="Notas_Estandarizadas" EntitySet="Notas_Estandarizadas" />
-          </AssociationSet>
-          <AssociationSet Name="FK__NotasEsta__id_pr__0B5CAFEA" Association="Self.FK__NotasEsta__id_pr__0B5CAFEA">
-            <End Role="Profesores" EntitySet="Profesores" />
-            <End Role="NotasEstandarizadas" EntitySet="NotasEstandarizadas" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Usuarios__id_pro__5CD6CB2B" Association="Self.FK__Usuarios__id_pro__5CD6CB2B">
+          <AssociationSet Name="FK__Usuarios__id_pro__5629CD9C" Association="Self.FK__Usuarios__id_pro__5629CD9C">
             <End Role="Profesores" EntitySet="Profesores" />
             <End Role="Usuarios" EntitySet="Usuarios" />
           </AssociationSet>
@@ -1469,12 +773,7 @@ advertencia 6002: La tabla o vista 'Liceo_BA.dbo.vista_notas_estudiantes' no tie
             <Parameter Name="id_profesor" Mode="In" Type="Int32" />
             <Parameter Name="id_materia" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="SP_delAsistencia">
-            <Parameter Name="id_asistencia" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="SP_delAsistenciaPorFecha">
-            <Parameter Name="id_estudiante" Mode="In" Type="Int32" />
-            <Parameter Name="fecha" Mode="In" Type="DateTime" />
+          <FunctionImport Name="SP_asignarMateriaProfesor">
             <Parameter Name="id_profesor" Mode="In" Type="Int32" />
             <Parameter Name="id_materia" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -1487,8 +786,8 @@ advertencia 6002: La tabla o vista 'Liceo_BA.dbo.vista_notas_estudiantes' no tie
           <FunctionImport Name="SP_delMateria">
             <Parameter Name="id_materia" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="SP_delNota">
-            <Parameter Name="id_nota" Mode="In" Type="Int32" />
+          <FunctionImport Name="SP_delNoticia">
+            <Parameter Name="id_noticia" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_delPadre">
             <Parameter Name="id_padre" Mode="In" Type="Int32" />
@@ -1502,16 +801,8 @@ advertencia 6002: La tabla o vista 'Liceo_BA.dbo.vista_notas_estudiantes' no tie
           <FunctionImport Name="SP_delUsuario">
             <Parameter Name="id_usuario" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="SP_insAsistencia">
-            <Parameter Name="id_estudiante" Mode="In" Type="Int32" />
-            <Parameter Name="id_materia" Mode="In" Type="Int32" />
-            <Parameter Name="id_profesor" Mode="In" Type="Int32" />
-            <Parameter Name="fecha" Mode="In" Type="DateTime" />
-            <Parameter Name="id_estado" Mode="In" Type="Int32" />
-            <Parameter Name="observaciones" Mode="In" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="SP_insCiclo">
-            <Parameter Name="nombre" Mode="In" Type="String" />
+            <Parameter Name="nombre_ciclo" Mode="In" Type="String" />
             <Parameter Name="descripcion" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_insEstudiante">
@@ -1524,22 +815,26 @@ advertencia 6002: La tabla o vista 'Liceo_BA.dbo.vista_notas_estudiantes' no tie
           <FunctionImport Name="SP_insMateria">
             <Parameter Name="nombre_materia" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="SP_insNota">
-            <Parameter Name="id_estudiante" Mode="In" Type="Int32" />
-            <Parameter Name="id_materia" Mode="In" Type="Int32" />
-            <Parameter Name="id_profesor" Mode="In" Type="Int32" />
-            <Parameter Name="id_tipo_nota" Mode="In" Type="Int32" />
-            <Parameter Name="nota" Mode="In" Type="Decimal" />
-            <Parameter Name="observaciones" Mode="In" Type="String" />
-            <Parameter Name="fecha" Mode="In" Type="DateTime" />
+          <FunctionImport Name="SP_insMatricula">
+            <Parameter Name="nombre_estudiante" Mode="In" Type="String" />
+            <Parameter Name="cedula_estudiante" Mode="In" Type="String" />
+            <Parameter Name="escuela_procedencia" Mode="In" Type="String" />
+            <Parameter Name="fecha_nacimiento" Mode="In" Type="DateTime" />
+            <Parameter Name="telefono_estudiante" Mode="In" Type="String" />
+            <Parameter Name="nivel" Mode="In" Type="String" />
+            <Parameter Name="nombre_padre" Mode="In" Type="String" />
+            <Parameter Name="cedula_padre" Mode="In" Type="String" />
+            <Parameter Name="telefono_padre" Mode="In" Type="String" />
+            <Parameter Name="direccion_padre" Mode="In" Type="String" />
+            <Parameter Name="parentesco" Mode="In" Type="String" />
+            <Parameter Name="fecha_cita" Mode="In" Type="DateTime" />
+            <Parameter Name="hora_cita" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="SP_insNotaEstandarizada">
-            <Parameter Name="id_estudiante" Mode="In" Type="Int32" />
-            <Parameter Name="id_materia" Mode="In" Type="Int32" />
-            <Parameter Name="id_profesor" Mode="In" Type="Int32" />
-            <Parameter Name="nota" Mode="In" Type="Decimal" />
-            <Parameter Name="observaciones" Mode="In" Type="String" />
-            <Parameter Name="fecha" Mode="In" Type="DateTime" />
+          <FunctionImport Name="SP_insNoticia">
+            <Parameter Name="titulo" Mode="In" Type="String" />
+            <Parameter Name="contenido" Mode="In" Type="String" />
+            <Parameter Name="fecha_publicacion" Mode="In" Type="DateTime" />
+            <Parameter Name="imagen_url" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_insPadre">
             <Parameter Name="cedula" Mode="In" Type="String" />
@@ -1551,11 +846,8 @@ advertencia 6002: La tabla o vista 'Liceo_BA.dbo.vista_notas_estudiantes' no tie
             <Parameter Name="nombre" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_insSeccion">
-            <Parameter Name="nombre" Mode="In" Type="String" />
+            <Parameter Name="nombre_seccion" Mode="In" Type="String" />
             <Parameter Name="id_ciclo" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="SP_insTipoNota">
-            <Parameter Name="nombre_tipo" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_insUsuario">
             <Parameter Name="usuario" Mode="In" Type="String" />
@@ -1564,14 +856,13 @@ advertencia 6002: La tabla o vista 'Liceo_BA.dbo.vista_notas_estudiantes' no tie
             <Parameter Name="id_estudiante" Mode="In" Type="Int32" />
             <Parameter Name="id_profesor" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="SP_modAsistencia">
-            <Parameter Name="id_asistencia" Mode="In" Type="Int32" />
-            <Parameter Name="id_estado" Mode="In" Type="Int32" />
-            <Parameter Name="observaciones" Mode="In" Type="String" />
+          <FunctionImport Name="SP_loginUsuario" ReturnType="Collection(L_BAModel.SP_loginUsuario_Result)">
+            <Parameter Name="usuario" Mode="In" Type="String" />
+            <Parameter Name="contrasena" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_modCiclo">
             <Parameter Name="id_ciclo" Mode="In" Type="Int32" />
-            <Parameter Name="nombre" Mode="In" Type="String" />
+            <Parameter Name="nombre_ciclo" Mode="In" Type="String" />
             <Parameter Name="descripcion" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_modEstudiante">
@@ -1586,11 +877,12 @@ advertencia 6002: La tabla o vista 'Liceo_BA.dbo.vista_notas_estudiantes' no tie
             <Parameter Name="id_materia" Mode="In" Type="Int32" />
             <Parameter Name="nombre_materia" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="SP_modNota">
-            <Parameter Name="id_nota" Mode="In" Type="Int32" />
-            <Parameter Name="nota" Mode="In" Type="Decimal" />
-            <Parameter Name="observaciones" Mode="In" Type="String" />
-            <Parameter Name="fecha" Mode="In" Type="DateTime" />
+          <FunctionImport Name="SP_modNoticia">
+            <Parameter Name="id_noticia" Mode="In" Type="Int32" />
+            <Parameter Name="titulo" Mode="In" Type="String" />
+            <Parameter Name="contenido" Mode="In" Type="String" />
+            <Parameter Name="fecha_publicacion" Mode="In" Type="DateTime" />
+            <Parameter Name="imagen_url" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_modPadre">
             <Parameter Name="id_padre" Mode="In" Type="Int32" />
@@ -1605,7 +897,7 @@ advertencia 6002: La tabla o vista 'Liceo_BA.dbo.vista_notas_estudiantes' no tie
           </FunctionImport>
           <FunctionImport Name="SP_modSeccion">
             <Parameter Name="id_seccion" Mode="In" Type="Int32" />
-            <Parameter Name="nombre" Mode="In" Type="String" />
+            <Parameter Name="nombre_seccion" Mode="In" Type="String" />
             <Parameter Name="id_ciclo" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_modUsuario">
@@ -1623,15 +915,18 @@ advertencia 6002: La tabla o vista 'Liceo_BA.dbo.vista_notas_estudiantes' no tie
             <Parameter Name="id_profesor" Mode="In" Type="Int32" />
             <Parameter Name="id_materia" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="SP_recAsistenciaPorId" ReturnType="Collection(L_BAModel.SP_recAsistenciaPorId_Result)">
-            <Parameter Name="id_asistencia" Mode="In" Type="Int32" />
+          <FunctionImport Name="SP_quitarMateriaProfesor">
+            <Parameter Name="id_profesor" Mode="In" Type="Int32" />
+            <Parameter Name="id_materia" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="SP_recAsistencias" ReturnType="Collection(L_BAModel.SP_recAsistencias_Result)" />
+          <FunctionImport Name="SP_quitarRelacionPadreEstudiante">
+            <Parameter Name="id_padre" Mode="In" Type="Int32" />
+            <Parameter Name="id_estudiante" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="SP_recCicloPorId" ReturnType="Collection(L_BAModel.SP_recCicloPorId_Result)">
             <Parameter Name="id_ciclo" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_recCiclos" ReturnType="Collection(L_BAModel.SP_recCiclos_Result)" />
-          <FunctionImport Name="SP_recEstadosAsistencia" ReturnType="Collection(L_BAModel.SP_recEstadosAsistencia_Result)" />
           <FunctionImport Name="SP_recEstudiantePorCedula" ReturnType="Collection(L_BAModel.SP_recEstudiantePorCedula_Result)">
             <Parameter Name="cedula" Mode="In" Type="String" />
           </FunctionImport>
@@ -1653,23 +948,10 @@ advertencia 6002: La tabla o vista 'Liceo_BA.dbo.vista_notas_estudiantes' no tie
           <FunctionImport Name="SP_recMateriasPorProfesor" ReturnType="Collection(L_BAModel.SP_recMateriasPorProfesor_Result)">
             <Parameter Name="id_profesor" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="SP_recNotaPorId" ReturnType="Collection(L_BAModel.SP_recNotaPorId_Result)">
-            <Parameter Name="id_nota" Mode="In" Type="Int32" />
+          <FunctionImport Name="SP_recNoticiaPorId" ReturnType="Collection(L_BAModel.SP_recNoticiaPorId_Result)">
+            <Parameter Name="id_noticia" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="SP_recNotas" ReturnType="Collection(L_BAModel.SP_recNotas_Result)" />
-          <FunctionImport Name="SP_recNotasEstandarizadas" ReturnType="Collection(L_BAModel.SP_recNotasEstandarizadas_Result)" />
-          <FunctionImport Name="SP_recNotasEstandarizadasPorEstudiante" ReturnType="Collection(L_BAModel.SP_recNotasEstandarizadasPorEstudiante_Result)">
-            <Parameter Name="id_estudiante" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="SP_recNotasPorEstudiante" ReturnType="Collection(L_BAModel.SP_recNotasPorEstudiante_Result)">
-            <Parameter Name="id_estudiante" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="SP_recNotasPorMateria">
-            <Parameter Name="id_materia" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="SP_recNotasPorProfesor">
-            <Parameter Name="id_profesor" Mode="In" Type="Int32" />
-          </FunctionImport>
+          <FunctionImport Name="SP_recNoticias" ReturnType="Collection(L_BAModel.SP_recNoticias_Result)" />
           <FunctionImport Name="SP_recPadrePorCedula" ReturnType="Collection(L_BAModel.SP_recPadrePorCedula_Result)">
             <Parameter Name="cedula" Mode="In" Type="String" />
           </FunctionImport>
@@ -1685,9 +967,6 @@ advertencia 6002: La tabla o vista 'Liceo_BA.dbo.vista_notas_estudiantes' no tie
           <FunctionImport Name="SP_recProfesoresPorMateria" ReturnType="Collection(L_BAModel.SP_recProfesoresPorMateria_Result)">
             <Parameter Name="id_materia" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="SP_recProfesorPorCedula" ReturnType="Collection(L_BAModel.SP_recProfesorPorCedula_Result)">
-            <Parameter Name="cedula" Mode="In" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="SP_recProfesorPorId" ReturnType="Collection(L_BAModel.SP_recProfesorPorId_Result)">
             <Parameter Name="id_profesor" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -1702,34 +981,19 @@ advertencia 6002: La tabla o vista 'Liceo_BA.dbo.vista_notas_estudiantes' no tie
             <Parameter Name="id_usuario" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_recUsuarios" ReturnType="Collection(L_BAModel.SP_recUsuarios_Result)" />
-          <FunctionImport Name="SP_reporteAsistenciaPorSeccion">
-            <Parameter Name="id_seccion" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="SP_reporteMensualAsistencia" ReturnType="Collection(L_BAModel.SP_reporteMensualAsistencia_Result)">
-            <Parameter Name="anio" Mode="In" Type="Int32" />
-            <Parameter Name="mes" Mode="In" Type="Int32" />
-            <Parameter Name="idProfesor" Mode="In" Type="Int32" />
-            <Parameter Name="idSeccion" Mode="In" Type="Int32" />
-            <Parameter Name="idMateria" Mode="In" Type="Int32" />
+          <FunctionImport Name="SP_relPadreEstudiante">
+            <Parameter Name="id_padre" Mode="In" Type="Int32" />
+            <Parameter Name="id_estudiante" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
-        <ComplexType Name="SP_recAsistenciaPorId_Result">
-          <Property Type="Int32" Name="id_asistencia" Nullable="false" />
+        <ComplexType Name="SP_loginUsuario_Result">
+          <Property Type="Int32" Name="id_usuario" Nullable="false" />
+          <Property Type="String" Name="usuario" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="contrasena" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="rol" Nullable="true" MaxLength="20" />
           <Property Type="Int32" Name="id_estudiante" Nullable="true" />
-          <Property Type="Int32" Name="id_materia" Nullable="true" />
           <Property Type="Int32" Name="id_profesor" Nullable="true" />
-          <Property Type="DateTime" Name="fecha" Nullable="true" />
-          <Property Type="String" Name="observaciones" Nullable="true" MaxLength="Max" />
-          <Property Type="Int32" Name="id_estado" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="SP_recAsistencias_Result">
-          <Property Type="Int32" Name="id_asistencia" Nullable="false" />
-          <Property Type="Int32" Name="id_estudiante" Nullable="true" />
-          <Property Type="Int32" Name="id_materia" Nullable="true" />
-          <Property Type="Int32" Name="id_profesor" Nullable="true" />
-          <Property Type="DateTime" Name="fecha" Nullable="true" />
-          <Property Type="String" Name="observaciones" Nullable="true" MaxLength="Max" />
-          <Property Type="Int32" Name="id_estado" Nullable="true" />
+          <Property Type="Boolean" Name="activo" Nullable="true" />
         </ComplexType>
         <ComplexType Name="SP_recCicloPorId_Result">
           <Property Type="Int32" Name="id_ciclo" Nullable="false" />
@@ -1740,10 +1004,6 @@ advertencia 6002: La tabla o vista 'Liceo_BA.dbo.vista_notas_estudiantes' no tie
           <Property Type="Int32" Name="id_ciclo" Nullable="false" />
           <Property Type="String" Name="nombre_ciclo" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="descripcion" Nullable="true" MaxLength="Max" />
-        </ComplexType>
-        <ComplexType Name="SP_recEstadosAsistencia_Result">
-          <Property Type="Int32" Name="id_estado" Nullable="false" />
-          <Property Type="String" Name="nombre_estado" Nullable="true" MaxLength="20" />
         </ComplexType>
         <ComplexType Name="SP_recEstudiantePorCedula_Result">
           <Property Type="Int32" Name="id_estudiante" Nullable="false" />
@@ -1806,57 +1066,19 @@ advertencia 6002: La tabla o vista 'Liceo_BA.dbo.vista_notas_estudiantes' no tie
           <Property Type="Int32" Name="id_profesor" Nullable="false" />
           <Property Type="String" Name="nombre_profesor" Nullable="true" MaxLength="100" />
         </ComplexType>
-        <ComplexType Name="SP_recNotaPorId_Result">
-          <Property Type="Int32" Name="id_nota" Nullable="false" />
-          <Property Type="Int32" Name="id_estudiante" Nullable="false" />
-          <Property Type="Int32" Name="id_materia" Nullable="false" />
-          <Property Type="Int32" Name="id_profesor" Nullable="false" />
-          <Property Type="Int32" Name="id_tipo_nota" Nullable="false" />
-          <Property Type="Decimal" Name="nota" Nullable="false" Precision="5" Scale="2" />
-          <Property Type="String" Name="observaciones" Nullable="true" MaxLength="Max" />
-          <Property Type="DateTime" Name="fecha" Nullable="false" />
+        <ComplexType Name="SP_recNoticiaPorId_Result">
+          <Property Type="Int32" Name="id_noticia" Nullable="false" />
+          <Property Type="String" Name="titulo" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="contenido" Nullable="false" MaxLength="Max" />
+          <Property Type="DateTime" Name="fecha_publicacion" Nullable="false" />
+          <Property Type="String" Name="imagen_url" Nullable="true" MaxLength="255" />
         </ComplexType>
-        <ComplexType Name="SP_recNotas_Result">
-          <Property Type="Int32" Name="id_nota" Nullable="false" />
-          <Property Type="Int32" Name="id_estudiante" Nullable="false" />
-          <Property Type="String" Name="estudiante" Nullable="true" MaxLength="100" />
-          <Property Type="Int32" Name="id_materia" Nullable="false" />
-          <Property Type="String" Name="materia" Nullable="true" MaxLength="100" />
-          <Property Type="Int32" Name="id_profesor" Nullable="false" />
-          <Property Type="String" Name="profesor" Nullable="true" MaxLength="100" />
-          <Property Type="Int32" Name="id_tipo_nota" Nullable="false" />
-          <Property Type="String" Name="tipo_nota" Nullable="false" MaxLength="50" />
-          <Property Type="Decimal" Name="nota" Nullable="false" Precision="5" Scale="2" />
-          <Property Type="String" Name="observaciones" Nullable="true" MaxLength="Max" />
-          <Property Type="DateTime" Name="fecha" Nullable="false" />
-        </ComplexType>
-        <ComplexType Name="SP_recNotasEstandarizadas_Result">
-          <Property Type="Int32" Name="id_nota_est" Nullable="false" />
-          <Property Type="Int32" Name="id_estudiante" Nullable="false" />
-          <Property Type="String" Name="estudiante" Nullable="true" MaxLength="100" />
-          <Property Type="Int32" Name="id_materia" Nullable="false" />
-          <Property Type="String" Name="materia" Nullable="true" MaxLength="100" />
-          <Property Type="Int32" Name="id_profesor" Nullable="false" />
-          <Property Type="String" Name="profesor" Nullable="true" MaxLength="100" />
-          <Property Type="Decimal" Name="nota" Nullable="false" Precision="5" Scale="2" />
-          <Property Type="String" Name="observaciones" Nullable="true" MaxLength="Max" />
-          <Property Type="DateTime" Name="fecha" Nullable="false" />
-        </ComplexType>
-        <ComplexType Name="SP_recNotasEstandarizadasPorEstudiante_Result">
-          <Property Type="String" Name="materia" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="profesor" Nullable="true" MaxLength="100" />
-          <Property Type="Decimal" Name="nota" Nullable="false" Precision="5" Scale="2" />
-          <Property Type="DateTime" Name="fecha" Nullable="false" />
-          <Property Type="String" Name="observaciones" Nullable="true" MaxLength="Max" />
-        </ComplexType>
-        <ComplexType Name="SP_recNotasPorEstudiante_Result">
-          <Property Type="Int32" Name="id_nota" Nullable="false" />
-          <Property Type="String" Name="materia" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="profesor" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="tipo_nota" Nullable="false" MaxLength="50" />
-          <Property Type="Decimal" Name="nota" Nullable="false" Precision="5" Scale="2" />
-          <Property Type="DateTime" Name="fecha" Nullable="false" />
-          <Property Type="String" Name="observaciones" Nullable="true" MaxLength="Max" />
+        <ComplexType Name="SP_recNoticias_Result">
+          <Property Type="Int32" Name="id_noticia" Nullable="false" />
+          <Property Type="String" Name="titulo" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="contenido" Nullable="false" MaxLength="Max" />
+          <Property Type="DateTime" Name="fecha_publicacion" Nullable="false" />
+          <Property Type="String" Name="imagen_url" Nullable="true" MaxLength="255" />
         </ComplexType>
         <ComplexType Name="SP_recPadrePorCedula_Result">
           <Property Type="Int32" Name="id_padre" Nullable="false" />
@@ -1899,11 +1121,6 @@ advertencia 6002: La tabla o vista 'Liceo_BA.dbo.vista_notas_estudiantes' no tie
           <Property Type="Int32" Name="id_materia" Nullable="false" />
           <Property Type="String" Name="nombre_materia" Nullable="true" MaxLength="100" />
         </ComplexType>
-        <ComplexType Name="SP_recProfesorPorCedula_Result">
-          <Property Type="Int32" Name="id_profesor" Nullable="false" />
-          <Property Type="String" Name="cedula" Nullable="false" MaxLength="20" />
-          <Property Type="String" Name="nombre" Nullable="true" MaxLength="100" />
-        </ComplexType>
         <ComplexType Name="SP_recProfesorPorId_Result">
           <Property Type="Int32" Name="id_profesor" Nullable="false" />
           <Property Type="String" Name="cedula" Nullable="false" MaxLength="20" />
@@ -1942,82 +1159,18 @@ advertencia 6002: La tabla o vista 'Liceo_BA.dbo.vista_notas_estudiantes' no tie
           <Property Type="Int32" Name="id_profesor" Nullable="true" />
           <Property Type="Boolean" Name="activo" Nullable="true" />
         </ComplexType>
-        <ComplexType Name="SP_reporteMensualAsistencia_Result">
-          <Property Type="String" Name="estudiante" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="seccion" Nullable="true" MaxLength="20" />
-          <Property Type="String" Name="materia" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="profesor" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="D1" Nullable="true" MaxLength="5" />
-          <Property Type="String" Name="D2" Nullable="true" MaxLength="5" />
-          <Property Type="String" Name="D3" Nullable="true" MaxLength="5" />
-          <Property Type="String" Name="D4" Nullable="true" MaxLength="5" />
-          <Property Type="String" Name="D5" Nullable="true" MaxLength="5" />
-          <Property Type="String" Name="D6" Nullable="true" MaxLength="5" />
-          <Property Type="String" Name="D7" Nullable="true" MaxLength="5" />
-          <Property Type="String" Name="D8" Nullable="true" MaxLength="5" />
-          <Property Type="String" Name="D9" Nullable="true" MaxLength="5" />
-          <Property Type="String" Name="D10" Nullable="true" MaxLength="5" />
-          <Property Type="String" Name="D11" Nullable="true" MaxLength="5" />
-          <Property Type="String" Name="D12" Nullable="true" MaxLength="5" />
-          <Property Type="String" Name="D13" Nullable="true" MaxLength="5" />
-          <Property Type="String" Name="D14" Nullable="true" MaxLength="5" />
-          <Property Type="String" Name="D15" Nullable="true" MaxLength="5" />
-          <Property Type="String" Name="D16" Nullable="true" MaxLength="5" />
-          <Property Type="String" Name="D17" Nullable="true" MaxLength="5" />
-          <Property Type="String" Name="D18" Nullable="true" MaxLength="5" />
-          <Property Type="String" Name="D19" Nullable="true" MaxLength="5" />
-          <Property Type="String" Name="D20" Nullable="true" MaxLength="5" />
-          <Property Type="String" Name="D21" Nullable="true" MaxLength="5" />
-          <Property Type="String" Name="D22" Nullable="true" MaxLength="5" />
-          <Property Type="String" Name="D23" Nullable="true" MaxLength="5" />
-          <Property Type="String" Name="D24" Nullable="true" MaxLength="5" />
-          <Property Type="String" Name="D25" Nullable="true" MaxLength="5" />
-          <Property Type="String" Name="D26" Nullable="true" MaxLength="5" />
-          <Property Type="String" Name="D27" Nullable="true" MaxLength="5" />
-          <Property Type="String" Name="D28" Nullable="true" MaxLength="5" />
-          <Property Type="String" Name="D29" Nullable="true" MaxLength="5" />
-          <Property Type="String" Name="D30" Nullable="true" MaxLength="5" />
-          <Property Type="String" Name="D31" Nullable="true" MaxLength="5" />
-          <Property Type="Int32" Name="total_presente" Nullable="true" />
-          <Property Type="Int32" Name="total_faltas" Nullable="true" />
-          <Property Type="Int32" Name="total_justificada" Nullable="true" />
-          <Property Type="Int32" Name="total_tardanza" Nullable="true" />
-          <Property Type="Decimal" Name="porcentaje_asistencia" Nullable="true" Precision="26" Scale="12" />
-        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="L_BAModelStoreContainer" CdmEntityContainer="L_BAEntities">
-          <EntitySetMapping Name="Asistencias">
-            <EntityTypeMapping TypeName="L_BAModel.Asistencia">
-              <MappingFragment StoreEntitySet="Asistencia">
-                <ScalarProperty Name="id_asistencia" ColumnName="id_asistencia" />
-                <ScalarProperty Name="id_estudiante" ColumnName="id_estudiante" />
-                <ScalarProperty Name="id_materia" ColumnName="id_materia" />
-                <ScalarProperty Name="id_profesor" ColumnName="id_profesor" />
-                <ScalarProperty Name="fecha" ColumnName="fecha" />
-                <ScalarProperty Name="observaciones" ColumnName="observaciones" />
-                <ScalarProperty Name="id_estado" ColumnName="id_estado" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Ciclos">
             <EntityTypeMapping TypeName="L_BAModel.Ciclo">
               <MappingFragment StoreEntitySet="Ciclos">
                 <ScalarProperty Name="id_ciclo" ColumnName="id_ciclo" />
                 <ScalarProperty Name="nombre_ciclo" ColumnName="nombre_ciclo" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Estados_Asistencia">
-            <EntityTypeMapping TypeName="L_BAModel.Estados_Asistencia">
-              <MappingFragment StoreEntitySet="Estados_Asistencia">
-                <ScalarProperty Name="id_estado" ColumnName="id_estado" />
-                <ScalarProperty Name="nombre_estado" ColumnName="nombre_estado" />
-                <ScalarProperty Name="simbolo" ColumnName="simbolo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2053,43 +1206,34 @@ advertencia 6002: La tabla o vista 'Liceo_BA.dbo.vista_notas_estudiantes' no tie
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Notas">
-            <EntityTypeMapping TypeName="L_BAModel.Nota">
-              <MappingFragment StoreEntitySet="Notas">
-                <ScalarProperty Name="id_nota" ColumnName="id_nota" />
-                <ScalarProperty Name="id_estudiante" ColumnName="id_estudiante" />
-                <ScalarProperty Name="id_materia" ColumnName="id_materia" />
-                <ScalarProperty Name="id_profesor" ColumnName="id_profesor" />
-                <ScalarProperty Name="id_tipo_nota" ColumnName="id_tipo_nota" />
-                <ScalarProperty Name="nota1" ColumnName="nota" />
-                <ScalarProperty Name="observaciones" ColumnName="observaciones" />
-                <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <EntitySetMapping Name="Matriculas">
+            <EntityTypeMapping TypeName="L_BAModel.Matricula">
+              <MappingFragment StoreEntitySet="Matricula">
+                <ScalarProperty Name="id_matricula" ColumnName="id_matricula" />
+                <ScalarProperty Name="nombre_estudiante" ColumnName="nombre_estudiante" />
+                <ScalarProperty Name="cedula_estudiante" ColumnName="cedula_estudiante" />
+                <ScalarProperty Name="escuela_procedencia" ColumnName="escuela_procedencia" />
+                <ScalarProperty Name="fecha_nacimiento" ColumnName="fecha_nacimiento" />
+                <ScalarProperty Name="telefono_estudiante" ColumnName="telefono_estudiante" />
+                <ScalarProperty Name="nivel" ColumnName="nivel" />
+                <ScalarProperty Name="nombre_padre" ColumnName="nombre_padre" />
+                <ScalarProperty Name="cedula_padre" ColumnName="cedula_padre" />
+                <ScalarProperty Name="telefono_padre" ColumnName="telefono_padre" />
+                <ScalarProperty Name="direccion_padre" ColumnName="direccion_padre" />
+                <ScalarProperty Name="parentesco" ColumnName="parentesco" />
+                <ScalarProperty Name="fecha_cita" ColumnName="fecha_cita" />
+                <ScalarProperty Name="hora_cita" ColumnName="hora_cita" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Notas_Estandarizadas">
-            <EntityTypeMapping TypeName="L_BAModel.Notas_Estandarizadas">
-              <MappingFragment StoreEntitySet="Notas_Estandarizadas">
-                <ScalarProperty Name="id_estandarizada" ColumnName="id_estandarizada" />
-                <ScalarProperty Name="id_estudiante" ColumnName="id_estudiante" />
-                <ScalarProperty Name="id_materia" ColumnName="id_materia" />
-                <ScalarProperty Name="id_profesor" ColumnName="id_profesor" />
-                <ScalarProperty Name="semestre" ColumnName="semestre" />
-                <ScalarProperty Name="nota_estandarizada" ColumnName="nota_estandarizada" />
-                <ScalarProperty Name="fecha" ColumnName="fecha" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="NotasEstandarizadas">
-            <EntityTypeMapping TypeName="L_BAModel.NotasEstandarizada">
-              <MappingFragment StoreEntitySet="NotasEstandarizadas">
-                <ScalarProperty Name="id_nota_est" ColumnName="id_nota_est" />
-                <ScalarProperty Name="id_estudiante" ColumnName="id_estudiante" />
-                <ScalarProperty Name="id_materia" ColumnName="id_materia" />
-                <ScalarProperty Name="id_profesor" ColumnName="id_profesor" />
-                <ScalarProperty Name="nota" ColumnName="nota" />
-                <ScalarProperty Name="observaciones" ColumnName="observaciones" />
-                <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <EntitySetMapping Name="Noticias">
+            <EntityTypeMapping TypeName="L_BAModel.Noticia">
+              <MappingFragment StoreEntitySet="Noticias">
+                <ScalarProperty Name="id_noticia" ColumnName="id_noticia" />
+                <ScalarProperty Name="titulo" ColumnName="titulo" />
+                <ScalarProperty Name="contenido" ColumnName="contenido" />
+                <ScalarProperty Name="fecha_publicacion" ColumnName="fecha_publicacion" />
+                <ScalarProperty Name="imagen_url" ColumnName="imagen_url" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2121,14 +1265,6 @@ advertencia 6002: La tabla o vista 'Liceo_BA.dbo.vista_notas_estudiantes' no tie
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TiposNotas">
-            <EntityTypeMapping TypeName="L_BAModel.TiposNota">
-              <MappingFragment StoreEntitySet="TiposNota">
-                <ScalarProperty Name="id_tipo_nota" ColumnName="id_tipo_nota" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Usuarios">
             <EntityTypeMapping TypeName="L_BAModel.Usuario">
               <MappingFragment StoreEntitySet="Usuarios">
@@ -2139,44 +1275,6 @@ advertencia 6002: La tabla o vista 'Liceo_BA.dbo.vista_notas_estudiantes' no tie
                 <ScalarProperty Name="id_estudiante" ColumnName="id_estudiante" />
                 <ScalarProperty Name="id_profesor" ColumnName="id_profesor" />
                 <ScalarProperty Name="activo" ColumnName="activo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="vista_asistencia_detalle">
-            <EntityTypeMapping TypeName="L_BAModel.vista_asistencia_detalle">
-              <MappingFragment StoreEntitySet="vista_asistencia_detalle">
-                <ScalarProperty Name="id_asistencia" ColumnName="id_asistencia" />
-                <ScalarProperty Name="estudiante" ColumnName="estudiante" />
-                <ScalarProperty Name="nombre_materia" ColumnName="nombre_materia" />
-                <ScalarProperty Name="profesor" ColumnName="profesor" />
-                <ScalarProperty Name="fecha" ColumnName="fecha" />
-                <ScalarProperty Name="estado" ColumnName="estado" />
-                <ScalarProperty Name="observaciones" ColumnName="observaciones" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="vista_estudiantes_info">
-            <EntityTypeMapping TypeName="L_BAModel.vista_estudiantes_info">
-              <MappingFragment StoreEntitySet="vista_estudiantes_info">
-                <ScalarProperty Name="id_estudiante" ColumnName="id_estudiante" />
-                <ScalarProperty Name="nombre_estudiante" ColumnName="nombre_estudiante" />
-                <ScalarProperty Name="direccion" ColumnName="direccion" />
-                <ScalarProperty Name="telefono" ColumnName="telefono" />
-                <ScalarProperty Name="nombre_seccion" ColumnName="nombre_seccion" />
-                <ScalarProperty Name="nombre_ciclo" ColumnName="nombre_ciclo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="vista_notas_estudiantes">
-            <EntityTypeMapping TypeName="L_BAModel.vista_notas_estudiantes">
-              <MappingFragment StoreEntitySet="vista_notas_estudiantes">
-                <ScalarProperty Name="id_nota" ColumnName="id_nota" />
-                <ScalarProperty Name="estudiante" ColumnName="estudiante" />
-                <ScalarProperty Name="nombre_materia" ColumnName="nombre_materia" />
-                <ScalarProperty Name="profesor" ColumnName="profesor" />
-                <ScalarProperty Name="nota" ColumnName="nota" />
-                <ScalarProperty Name="observaciones" ColumnName="observaciones" />
-                <ScalarProperty Name="fecha" ColumnName="fecha" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2198,64 +1296,49 @@ advertencia 6002: La tabla o vista 'Liceo_BA.dbo.vista_notas_estudiantes' no tie
           </AssociationSetMapping>
           <FunctionImportMapping FunctionImportName="SP_asignarEstudianteAPadre" FunctionName="L_BAModel.Store.SP_asignarEstudianteAPadre" />
           <FunctionImportMapping FunctionImportName="SP_asignarMateriaAProfesor" FunctionName="L_BAModel.Store.SP_asignarMateriaAProfesor" />
-          <FunctionImportMapping FunctionImportName="SP_delAsistencia" FunctionName="L_BAModel.Store.SP_delAsistencia" />
-          <FunctionImportMapping FunctionImportName="SP_delAsistenciaPorFecha" FunctionName="L_BAModel.Store.SP_delAsistenciaPorFecha" />
+          <FunctionImportMapping FunctionImportName="SP_asignarMateriaProfesor" FunctionName="L_BAModel.Store.SP_asignarMateriaProfesor" />
           <FunctionImportMapping FunctionImportName="SP_delCiclo" FunctionName="L_BAModel.Store.SP_delCiclo" />
           <FunctionImportMapping FunctionImportName="SP_delEstudiante" FunctionName="L_BAModel.Store.SP_delEstudiante" />
           <FunctionImportMapping FunctionImportName="SP_delMateria" FunctionName="L_BAModel.Store.SP_delMateria" />
-          <FunctionImportMapping FunctionImportName="SP_delNota" FunctionName="L_BAModel.Store.SP_delNota" />
+          <FunctionImportMapping FunctionImportName="SP_delNoticia" FunctionName="L_BAModel.Store.SP_delNoticia" />
           <FunctionImportMapping FunctionImportName="SP_delPadre" FunctionName="L_BAModel.Store.SP_delPadre" />
           <FunctionImportMapping FunctionImportName="SP_delProfesor" FunctionName="L_BAModel.Store.SP_delProfesor" />
           <FunctionImportMapping FunctionImportName="SP_delSeccion" FunctionName="L_BAModel.Store.SP_delSeccion" />
           <FunctionImportMapping FunctionImportName="SP_delUsuario" FunctionName="L_BAModel.Store.SP_delUsuario" />
-          <FunctionImportMapping FunctionImportName="SP_insAsistencia" FunctionName="L_BAModel.Store.SP_insAsistencia" />
           <FunctionImportMapping FunctionImportName="SP_insCiclo" FunctionName="L_BAModel.Store.SP_insCiclo" />
           <FunctionImportMapping FunctionImportName="SP_insEstudiante" FunctionName="L_BAModel.Store.SP_insEstudiante" />
           <FunctionImportMapping FunctionImportName="SP_insMateria" FunctionName="L_BAModel.Store.SP_insMateria" />
-          <FunctionImportMapping FunctionImportName="SP_insNota" FunctionName="L_BAModel.Store.SP_insNota" />
-          <FunctionImportMapping FunctionImportName="SP_insNotaEstandarizada" FunctionName="L_BAModel.Store.SP_insNotaEstandarizada" />
+          <FunctionImportMapping FunctionImportName="SP_insMatricula" FunctionName="L_BAModel.Store.SP_insMatricula" />
+          <FunctionImportMapping FunctionImportName="SP_insNoticia" FunctionName="L_BAModel.Store.SP_insNoticia" />
           <FunctionImportMapping FunctionImportName="SP_insPadre" FunctionName="L_BAModel.Store.SP_insPadre" />
           <FunctionImportMapping FunctionImportName="SP_insProfesor" FunctionName="L_BAModel.Store.SP_insProfesor" />
           <FunctionImportMapping FunctionImportName="SP_insSeccion" FunctionName="L_BAModel.Store.SP_insSeccion" />
-          <FunctionImportMapping FunctionImportName="SP_insTipoNota" FunctionName="L_BAModel.Store.SP_insTipoNota" />
           <FunctionImportMapping FunctionImportName="SP_insUsuario" FunctionName="L_BAModel.Store.SP_insUsuario" />
-          <FunctionImportMapping FunctionImportName="SP_modAsistencia" FunctionName="L_BAModel.Store.SP_modAsistencia" />
+          <FunctionImportMapping FunctionImportName="SP_loginUsuario" FunctionName="L_BAModel.Store.SP_loginUsuario">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="L_BAModel.SP_loginUsuario_Result">
+                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="contrasena" ColumnName="contrasena" />
+                <ScalarProperty Name="rol" ColumnName="rol" />
+                <ScalarProperty Name="id_estudiante" ColumnName="id_estudiante" />
+                <ScalarProperty Name="id_profesor" ColumnName="id_profesor" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="SP_modCiclo" FunctionName="L_BAModel.Store.SP_modCiclo" />
           <FunctionImportMapping FunctionImportName="SP_modEstudiante" FunctionName="L_BAModel.Store.SP_modEstudiante" />
           <FunctionImportMapping FunctionImportName="SP_modMateria" FunctionName="L_BAModel.Store.SP_modMateria" />
-          <FunctionImportMapping FunctionImportName="SP_modNota" FunctionName="L_BAModel.Store.SP_modNota" />
+          <FunctionImportMapping FunctionImportName="SP_modNoticia" FunctionName="L_BAModel.Store.SP_modNoticia" />
           <FunctionImportMapping FunctionImportName="SP_modPadre" FunctionName="L_BAModel.Store.SP_modPadre" />
           <FunctionImportMapping FunctionImportName="SP_modProfesor" FunctionName="L_BAModel.Store.SP_modProfesor" />
           <FunctionImportMapping FunctionImportName="SP_modSeccion" FunctionName="L_BAModel.Store.SP_modSeccion" />
           <FunctionImportMapping FunctionImportName="SP_modUsuario" FunctionName="L_BAModel.Store.SP_modUsuario" />
           <FunctionImportMapping FunctionImportName="SP_quitarEstudianteDePadre" FunctionName="L_BAModel.Store.SP_quitarEstudianteDePadre" />
           <FunctionImportMapping FunctionImportName="SP_quitarMateriaDeProfesor" FunctionName="L_BAModel.Store.SP_quitarMateriaDeProfesor" />
-          <FunctionImportMapping FunctionImportName="SP_recAsistenciaPorId" FunctionName="L_BAModel.Store.SP_recAsistenciaPorId">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="L_BAModel.SP_recAsistenciaPorId_Result">
-                <ScalarProperty Name="id_asistencia" ColumnName="id_asistencia" />
-                <ScalarProperty Name="id_estudiante" ColumnName="id_estudiante" />
-                <ScalarProperty Name="id_materia" ColumnName="id_materia" />
-                <ScalarProperty Name="id_profesor" ColumnName="id_profesor" />
-                <ScalarProperty Name="fecha" ColumnName="fecha" />
-                <ScalarProperty Name="observaciones" ColumnName="observaciones" />
-                <ScalarProperty Name="id_estado" ColumnName="id_estado" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SP_recAsistencias" FunctionName="L_BAModel.Store.SP_recAsistencias">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="L_BAModel.SP_recAsistencias_Result">
-                <ScalarProperty Name="id_asistencia" ColumnName="id_asistencia" />
-                <ScalarProperty Name="id_estudiante" ColumnName="id_estudiante" />
-                <ScalarProperty Name="id_materia" ColumnName="id_materia" />
-                <ScalarProperty Name="id_profesor" ColumnName="id_profesor" />
-                <ScalarProperty Name="fecha" ColumnName="fecha" />
-                <ScalarProperty Name="observaciones" ColumnName="observaciones" />
-                <ScalarProperty Name="id_estado" ColumnName="id_estado" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_quitarMateriaProfesor" FunctionName="L_BAModel.Store.SP_quitarMateriaProfesor" />
+          <FunctionImportMapping FunctionImportName="SP_quitarRelacionPadreEstudiante" FunctionName="L_BAModel.Store.SP_quitarRelacionPadreEstudiante" />
           <FunctionImportMapping FunctionImportName="SP_recCicloPorId" FunctionName="L_BAModel.Store.SP_recCicloPorId">
             <ResultMapping>
               <ComplexTypeMapping TypeName="L_BAModel.SP_recCicloPorId_Result">
@@ -2271,14 +1354,6 @@ advertencia 6002: La tabla o vista 'Liceo_BA.dbo.vista_notas_estudiantes' no tie
                 <ScalarProperty Name="id_ciclo" ColumnName="id_ciclo" />
                 <ScalarProperty Name="nombre_ciclo" ColumnName="nombre_ciclo" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SP_recEstadosAsistencia" FunctionName="L_BAModel.Store.SP_recEstadosAsistencia">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="L_BAModel.SP_recEstadosAsistencia_Result">
-                <ScalarProperty Name="id_estado" ColumnName="id_estado" />
-                <ScalarProperty Name="nombre_estado" ColumnName="nombre_estado" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -2379,80 +1454,28 @@ advertencia 6002: La tabla o vista 'Liceo_BA.dbo.vista_notas_estudiantes' no tie
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SP_recNotaPorId" FunctionName="L_BAModel.Store.SP_recNotaPorId">
+          <FunctionImportMapping FunctionImportName="SP_recNoticiaPorId" FunctionName="L_BAModel.Store.SP_recNoticiaPorId">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="L_BAModel.SP_recNotaPorId_Result">
-                <ScalarProperty Name="id_nota" ColumnName="id_nota" />
-                <ScalarProperty Name="id_estudiante" ColumnName="id_estudiante" />
-                <ScalarProperty Name="id_materia" ColumnName="id_materia" />
-                <ScalarProperty Name="id_profesor" ColumnName="id_profesor" />
-                <ScalarProperty Name="id_tipo_nota" ColumnName="id_tipo_nota" />
-                <ScalarProperty Name="nota" ColumnName="nota" />
-                <ScalarProperty Name="observaciones" ColumnName="observaciones" />
-                <ScalarProperty Name="fecha" ColumnName="fecha" />
+              <ComplexTypeMapping TypeName="L_BAModel.SP_recNoticiaPorId_Result">
+                <ScalarProperty Name="id_noticia" ColumnName="id_noticia" />
+                <ScalarProperty Name="titulo" ColumnName="titulo" />
+                <ScalarProperty Name="contenido" ColumnName="contenido" />
+                <ScalarProperty Name="fecha_publicacion" ColumnName="fecha_publicacion" />
+                <ScalarProperty Name="imagen_url" ColumnName="imagen_url" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SP_recNotas" FunctionName="L_BAModel.Store.SP_recNotas">
+          <FunctionImportMapping FunctionImportName="SP_recNoticias" FunctionName="L_BAModel.Store.SP_recNoticias">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="L_BAModel.SP_recNotas_Result">
-                <ScalarProperty Name="id_nota" ColumnName="id_nota" />
-                <ScalarProperty Name="id_estudiante" ColumnName="id_estudiante" />
-                <ScalarProperty Name="estudiante" ColumnName="estudiante" />
-                <ScalarProperty Name="id_materia" ColumnName="id_materia" />
-                <ScalarProperty Name="materia" ColumnName="materia" />
-                <ScalarProperty Name="id_profesor" ColumnName="id_profesor" />
-                <ScalarProperty Name="profesor" ColumnName="profesor" />
-                <ScalarProperty Name="id_tipo_nota" ColumnName="id_tipo_nota" />
-                <ScalarProperty Name="tipo_nota" ColumnName="tipo_nota" />
-                <ScalarProperty Name="nota" ColumnName="nota" />
-                <ScalarProperty Name="observaciones" ColumnName="observaciones" />
-                <ScalarProperty Name="fecha" ColumnName="fecha" />
+              <ComplexTypeMapping TypeName="L_BAModel.SP_recNoticias_Result">
+                <ScalarProperty Name="id_noticia" ColumnName="id_noticia" />
+                <ScalarProperty Name="titulo" ColumnName="titulo" />
+                <ScalarProperty Name="contenido" ColumnName="contenido" />
+                <ScalarProperty Name="fecha_publicacion" ColumnName="fecha_publicacion" />
+                <ScalarProperty Name="imagen_url" ColumnName="imagen_url" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SP_recNotasEstandarizadas" FunctionName="L_BAModel.Store.SP_recNotasEstandarizadas">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="L_BAModel.SP_recNotasEstandarizadas_Result">
-                <ScalarProperty Name="id_nota_est" ColumnName="id_nota_est" />
-                <ScalarProperty Name="id_estudiante" ColumnName="id_estudiante" />
-                <ScalarProperty Name="estudiante" ColumnName="estudiante" />
-                <ScalarProperty Name="id_materia" ColumnName="id_materia" />
-                <ScalarProperty Name="materia" ColumnName="materia" />
-                <ScalarProperty Name="id_profesor" ColumnName="id_profesor" />
-                <ScalarProperty Name="profesor" ColumnName="profesor" />
-                <ScalarProperty Name="nota" ColumnName="nota" />
-                <ScalarProperty Name="observaciones" ColumnName="observaciones" />
-                <ScalarProperty Name="fecha" ColumnName="fecha" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SP_recNotasEstandarizadasPorEstudiante" FunctionName="L_BAModel.Store.SP_recNotasEstandarizadasPorEstudiante">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="L_BAModel.SP_recNotasEstandarizadasPorEstudiante_Result">
-                <ScalarProperty Name="materia" ColumnName="materia" />
-                <ScalarProperty Name="profesor" ColumnName="profesor" />
-                <ScalarProperty Name="nota" ColumnName="nota" />
-                <ScalarProperty Name="fecha" ColumnName="fecha" />
-                <ScalarProperty Name="observaciones" ColumnName="observaciones" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SP_recNotasPorEstudiante" FunctionName="L_BAModel.Store.SP_recNotasPorEstudiante">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="L_BAModel.SP_recNotasPorEstudiante_Result">
-                <ScalarProperty Name="id_nota" ColumnName="id_nota" />
-                <ScalarProperty Name="materia" ColumnName="materia" />
-                <ScalarProperty Name="profesor" ColumnName="profesor" />
-                <ScalarProperty Name="tipo_nota" ColumnName="tipo_nota" />
-                <ScalarProperty Name="nota" ColumnName="nota" />
-                <ScalarProperty Name="fecha" ColumnName="fecha" />
-                <ScalarProperty Name="observaciones" ColumnName="observaciones" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SP_recNotasPorMateria" FunctionName="L_BAModel.Store.SP_recNotasPorMateria" />
-          <FunctionImportMapping FunctionImportName="SP_recNotasPorProfesor" FunctionName="L_BAModel.Store.SP_recNotasPorProfesor" />
           <FunctionImportMapping FunctionImportName="SP_recPadrePorCedula" FunctionName="L_BAModel.Store.SP_recPadrePorCedula">
             <ResultMapping>
               <ComplexTypeMapping TypeName="L_BAModel.SP_recPadrePorCedula_Result">
@@ -2522,15 +1545,6 @@ advertencia 6002: La tabla o vista 'Liceo_BA.dbo.vista_notas_estudiantes' no tie
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SP_recProfesorPorCedula" FunctionName="L_BAModel.Store.SP_recProfesorPorCedula">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="L_BAModel.SP_recProfesorPorCedula_Result">
-                <ScalarProperty Name="id_profesor" ColumnName="id_profesor" />
-                <ScalarProperty Name="cedula" ColumnName="cedula" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="SP_recProfesorPorId" FunctionName="L_BAModel.Store.SP_recProfesorPorId">
             <ResultMapping>
               <ComplexTypeMapping TypeName="L_BAModel.SP_recProfesorPorId_Result">
@@ -2593,53 +1607,7 @@ advertencia 6002: La tabla o vista 'Liceo_BA.dbo.vista_notas_estudiantes' no tie
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SP_reporteAsistenciaPorSeccion" FunctionName="L_BAModel.Store.SP_reporteAsistenciaPorSeccion" />
-          <FunctionImportMapping FunctionImportName="SP_reporteMensualAsistencia" FunctionName="L_BAModel.Store.SP_reporteMensualAsistencia">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="L_BAModel.SP_reporteMensualAsistencia_Result">
-                <ScalarProperty Name="estudiante" ColumnName="estudiante" />
-                <ScalarProperty Name="seccion" ColumnName="seccion" />
-                <ScalarProperty Name="materia" ColumnName="materia" />
-                <ScalarProperty Name="profesor" ColumnName="profesor" />
-                <ScalarProperty Name="D1" ColumnName="D1" />
-                <ScalarProperty Name="D2" ColumnName="D2" />
-                <ScalarProperty Name="D3" ColumnName="D3" />
-                <ScalarProperty Name="D4" ColumnName="D4" />
-                <ScalarProperty Name="D5" ColumnName="D5" />
-                <ScalarProperty Name="D6" ColumnName="D6" />
-                <ScalarProperty Name="D7" ColumnName="D7" />
-                <ScalarProperty Name="D8" ColumnName="D8" />
-                <ScalarProperty Name="D9" ColumnName="D9" />
-                <ScalarProperty Name="D10" ColumnName="D10" />
-                <ScalarProperty Name="D11" ColumnName="D11" />
-                <ScalarProperty Name="D12" ColumnName="D12" />
-                <ScalarProperty Name="D13" ColumnName="D13" />
-                <ScalarProperty Name="D14" ColumnName="D14" />
-                <ScalarProperty Name="D15" ColumnName="D15" />
-                <ScalarProperty Name="D16" ColumnName="D16" />
-                <ScalarProperty Name="D17" ColumnName="D17" />
-                <ScalarProperty Name="D18" ColumnName="D18" />
-                <ScalarProperty Name="D19" ColumnName="D19" />
-                <ScalarProperty Name="D20" ColumnName="D20" />
-                <ScalarProperty Name="D21" ColumnName="D21" />
-                <ScalarProperty Name="D22" ColumnName="D22" />
-                <ScalarProperty Name="D23" ColumnName="D23" />
-                <ScalarProperty Name="D24" ColumnName="D24" />
-                <ScalarProperty Name="D25" ColumnName="D25" />
-                <ScalarProperty Name="D26" ColumnName="D26" />
-                <ScalarProperty Name="D27" ColumnName="D27" />
-                <ScalarProperty Name="D28" ColumnName="D28" />
-                <ScalarProperty Name="D29" ColumnName="D29" />
-                <ScalarProperty Name="D30" ColumnName="D30" />
-                <ScalarProperty Name="D31" ColumnName="D31" />
-                <ScalarProperty Name="total_presente" ColumnName="total_presente" />
-                <ScalarProperty Name="total_faltas" ColumnName="total_faltas" />
-                <ScalarProperty Name="total_justificada" ColumnName="total_justificada" />
-                <ScalarProperty Name="total_tardanza" ColumnName="total_tardanza" />
-                <ScalarProperty Name="porcentaje_asistencia" ColumnName="porcentaje_asistencia" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_relPadreEstudiante" FunctionName="L_BAModel.Store.SP_relPadreEstudiante" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

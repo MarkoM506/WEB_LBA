@@ -15,6 +15,8 @@ namespace AccesoDatos.Interfaces
 
         List<SP_recSeccionesPorCiclo_Result> recSeccionesPorCiclo(int idCiclo);
 
+
+
         bool insSeccion(Seccione pobjSeccion);
 
         bool modSeccion(Seccione pobjSeccion);

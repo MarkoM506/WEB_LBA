@@ -17,11 +17,7 @@ namespace Entidades
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Materia()
         {
-            this.Asistencias = new HashSet<Asistencia>();
             this.Horarios = new HashSet<Horario>();
-            this.Notas = new HashSet<Nota>();
-            this.Notas_Estandarizadas = new HashSet<Notas_Estandarizadas>();
-            this.NotasEstandarizadas = new HashSet<NotasEstandarizada>();
             this.Profesores = new HashSet<Profesore>();
         }
     
@@ -29,15 +25,7 @@ namespace Entidades
         public string nombre_materia { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Asistencia> Asistencias { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Horario> Horarios { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Nota> Notas { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Notas_Estandarizadas> Notas_Estandarizadas { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<NotasEstandarizada> NotasEstandarizadas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Profesore> Profesores { get; set; }
     }

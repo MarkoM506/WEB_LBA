@@ -1,0 +1,137 @@
+﻿@model WEB_LBA.Models.M_Noticia
+
+@{
+    ViewBag.Title = "Agregar Noticia";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section styles {
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7fc;
+            margin: 0;
+            padding: 0;
+        }
+
+        .formulario-noticia {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 40px auto;
+            box-sizing: border-box;
+        }
+
+            .formulario-noticia h2 {
+                font-size: 26px;
+                font-weight: bold;
+                margin-bottom: 20px;
+                text-align: center;
+            }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+            .form-group label {
+                font-size: 16px;
+                color: #333;
+                font-weight: 600;
+                display: block;
+                margin-bottom: 8px;
+            }
+
+            .form-group input, .form-group textarea {
+                width: 100%;
+                padding: 12px;
+                font-size: 14px;
+                border: 1px solid #ddd;
+                border-radius: 6px;
+                box-sizing: border-box;
+            }
+
+            .form-group textarea {
+                resize: vertical;
+            }
+
+        .btn-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 12px 20px;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .btn-primary {
+            background-color: #28a745;
+            color: white;
+        }
+
+            .btn-primary:hover {
+                background-color: #218838;
+                transform: scale(1.05);
+            }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            color: white;
+        }
+
+            .btn-secondary:hover {
+                background-color: #5a6268;
+                transform: scale(1.05);
+            }
+    </style>
+}
+
+<div class="formulario-noticia">
+    <h2>📰 Agregar Nueva Noticia</h2>
+
+    @if (TempData["Mensaje"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["Mensaje"]
+        </div>
+    }
+
+    @using (Html.BeginForm("Acciones", "Noticia", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.titulo)
+            @Html.TextBoxFor(model => model.titulo, new { @class = "form-control", placeholder = "Título de la noticia" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.contenido)
+            @Html.TextAreaFor(model => model.contenido, new { @class = "form-control", placeholder = "Contenido de la noticia", rows = 5 })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.fecha_publicacion)
+            @Html.TextBoxFor(model => model.fecha_publicacion, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+        </div>
+
+        <div class="form-group">
+            <label>Subir Imagen</label>
+            <input type="file" name="imagen" class="form-control" />
+        </div>
+
+        <input type="hidden" name="imagen_url" value="@Model?.imagen_url" />
+
+        <div class="btn-container">
+            <button type="submit" name="submitButton" value="Agregar" class="btn btn-primary">💾 Guardar Noticia</button>
+            <a href="@Url.Action("PanelNoticias", "Noticia")" class="btn btn-secondary">Volver</a>
+        </div>
+    }
+</div>

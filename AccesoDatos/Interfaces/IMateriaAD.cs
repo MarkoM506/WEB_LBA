@@ -9,11 +9,13 @@ namespace AccesoDatos.Interfaces
 {
     public interface IMateriaAD
     {
-        List<SP_recMateriasConProfesores_Result> recMateriasConProfes();
 
         List<SP_recMaterias_Result> recMateriaS();
 
+        List<SP_recMateriasConProfesores_Result> recMateriasConProfes();
+
         SP_recMateriaPorId_Result recMateriaXId(int pId);
+
 
         bool insMateriA(Materia pobjMateria);
 

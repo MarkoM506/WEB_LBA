@@ -28,23 +28,16 @@ namespace AccesoDatos
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Asistencia> Asistencias { get; set; }
         public virtual DbSet<Ciclo> Ciclos { get; set; }
-        public virtual DbSet<Estados_Asistencia> Estados_Asistencia { get; set; }
         public virtual DbSet<Estudiante> Estudiantes { get; set; }
         public virtual DbSet<Horario> Horarios { get; set; }
         public virtual DbSet<Materia> Materias { get; set; }
-        public virtual DbSet<Nota> Notas { get; set; }
-        public virtual DbSet<Notas_Estandarizadas> Notas_Estandarizadas { get; set; }
-        public virtual DbSet<NotasEstandarizada> NotasEstandarizadas { get; set; }
+        public virtual DbSet<Matricula> Matriculas { get; set; }
+        public virtual DbSet<Noticia> Noticias { get; set; }
         public virtual DbSet<Padre> Padres { get; set; }
         public virtual DbSet<Profesore> Profesores { get; set; }
         public virtual DbSet<Seccione> Secciones { get; set; }
-        public virtual DbSet<TiposNota> TiposNotas { get; set; }
         public virtual DbSet<Usuario> Usuarios { get; set; }
-        public virtual DbSet<vista_asistencia_detalle> vista_asistencia_detalle { get; set; }
-        public virtual DbSet<vista_estudiantes_info> vista_estudiantes_info { get; set; }
-        public virtual DbSet<vista_notas_estudiantes> vista_notas_estudiantes { get; set; }
     
         public virtual int SP_asignarEstudianteAPadre(Nullable<int> id_padre, Nullable<int> id_estudiante)
         {
@@ -72,25 +65,8 @@ namespace AccesoDatos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_asignarMateriaAProfesor", id_profesorParameter, id_materiaParameter);
         }
     
-        public virtual int SP_delAsistencia(Nullable<int> id_asistencia)
+        public virtual int SP_asignarMateriaProfesor(Nullable<int> id_profesor, Nullable<int> id_materia)
         {
-            var id_asistenciaParameter = id_asistencia.HasValue ?
-                new ObjectParameter("id_asistencia", id_asistencia) :
-                new ObjectParameter("id_asistencia", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_delAsistencia", id_asistenciaParameter);
-        }
-    
-        public virtual int SP_delAsistenciaPorFecha(Nullable<int> id_estudiante, Nullable<System.DateTime> fecha, Nullable<int> id_profesor, Nullable<int> id_materia)
-        {
-            var id_estudianteParameter = id_estudiante.HasValue ?
-                new ObjectParameter("id_estudiante", id_estudiante) :
-                new ObjectParameter("id_estudiante", typeof(int));
-    
-            var fechaParameter = fecha.HasValue ?
-                new ObjectParameter("fecha", fecha) :
-                new ObjectParameter("fecha", typeof(System.DateTime));
-    
             var id_profesorParameter = id_profesor.HasValue ?
                 new ObjectParameter("id_profesor", id_profesor) :
                 new ObjectParameter("id_profesor", typeof(int));
@@ -99,7 +75,7 @@ namespace AccesoDatos
                 new ObjectParameter("id_materia", id_materia) :
                 new ObjectParameter("id_materia", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_delAsistenciaPorFecha", id_estudianteParameter, fechaParameter, id_profesorParameter, id_materiaParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_asignarMateriaProfesor", id_profesorParameter, id_materiaParameter);
         }
     
         public virtual int SP_delCiclo(Nullable<int> id_ciclo)
@@ -129,13 +105,13 @@ namespace AccesoDatos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_delMateria", id_materiaParameter);
         }
     
-        public virtual int SP_delNota(Nullable<int> id_nota)
+        public virtual int SP_delNoticia(Nullable<int> id_noticia)
         {
-            var id_notaParameter = id_nota.HasValue ?
-                new ObjectParameter("id_nota", id_nota) :
-                new ObjectParameter("id_nota", typeof(int));
+            var id_noticiaParameter = id_noticia.HasValue ?
+                new ObjectParameter("id_noticia", id_noticia) :
+                new ObjectParameter("id_noticia", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_delNota", id_notaParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_delNoticia", id_noticiaParameter);
         }
     
         public virtual int SP_delPadre(Nullable<int> id_padre)
@@ -174,46 +150,17 @@ namespace AccesoDatos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_delUsuario", id_usuarioParameter);
         }
     
-        public virtual int SP_insAsistencia(Nullable<int> id_estudiante, Nullable<int> id_materia, Nullable<int> id_profesor, Nullable<System.DateTime> fecha, Nullable<int> id_estado, string observaciones)
+        public virtual int SP_insCiclo(string nombre_ciclo, string descripcion)
         {
-            var id_estudianteParameter = id_estudiante.HasValue ?
-                new ObjectParameter("id_estudiante", id_estudiante) :
-                new ObjectParameter("id_estudiante", typeof(int));
-    
-            var id_materiaParameter = id_materia.HasValue ?
-                new ObjectParameter("id_materia", id_materia) :
-                new ObjectParameter("id_materia", typeof(int));
-    
-            var id_profesorParameter = id_profesor.HasValue ?
-                new ObjectParameter("id_profesor", id_profesor) :
-                new ObjectParameter("id_profesor", typeof(int));
-    
-            var fechaParameter = fecha.HasValue ?
-                new ObjectParameter("fecha", fecha) :
-                new ObjectParameter("fecha", typeof(System.DateTime));
-    
-            var id_estadoParameter = id_estado.HasValue ?
-                new ObjectParameter("id_estado", id_estado) :
-                new ObjectParameter("id_estado", typeof(int));
-    
-            var observacionesParameter = observaciones != null ?
-                new ObjectParameter("observaciones", observaciones) :
-                new ObjectParameter("observaciones", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_insAsistencia", id_estudianteParameter, id_materiaParameter, id_profesorParameter, fechaParameter, id_estadoParameter, observacionesParameter);
-        }
-    
-        public virtual int SP_insCiclo(string nombre, string descripcion)
-        {
-            var nombreParameter = nombre != null ?
-                new ObjectParameter("nombre", nombre) :
-                new ObjectParameter("nombre", typeof(string));
+            var nombre_cicloParameter = nombre_ciclo != null ?
+                new ObjectParameter("nombre_ciclo", nombre_ciclo) :
+                new ObjectParameter("nombre_ciclo", typeof(string));
     
             var descripcionParameter = descripcion != null ?
                 new ObjectParameter("descripcion", descripcion) :
                 new ObjectParameter("descripcion", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_insCiclo", nombreParameter, descripcionParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_insCiclo", nombre_cicloParameter, descripcionParameter);
         }
     
         public virtual int SP_insEstudiante(string cedula, string nombre, string direccion, string telefono, Nullable<int> id_seccion)
@@ -250,66 +197,82 @@ namespace AccesoDatos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_insMateria", nombre_materiaParameter);
         }
     
-        public virtual int SP_insNota(Nullable<int> id_estudiante, Nullable<int> id_materia, Nullable<int> id_profesor, Nullable<int> id_tipo_nota, Nullable<decimal> nota, string observaciones, Nullable<System.DateTime> fecha)
+        public virtual int SP_insMatricula(string nombre_estudiante, string cedula_estudiante, string escuela_procedencia, Nullable<System.DateTime> fecha_nacimiento, string telefono_estudiante, string nivel, string nombre_padre, string cedula_padre, string telefono_padre, string direccion_padre, string parentesco, Nullable<System.DateTime> fecha_cita, string hora_cita)
         {
-            var id_estudianteParameter = id_estudiante.HasValue ?
-                new ObjectParameter("id_estudiante", id_estudiante) :
-                new ObjectParameter("id_estudiante", typeof(int));
+            var nombre_estudianteParameter = nombre_estudiante != null ?
+                new ObjectParameter("nombre_estudiante", nombre_estudiante) :
+                new ObjectParameter("nombre_estudiante", typeof(string));
     
-            var id_materiaParameter = id_materia.HasValue ?
-                new ObjectParameter("id_materia", id_materia) :
-                new ObjectParameter("id_materia", typeof(int));
+            var cedula_estudianteParameter = cedula_estudiante != null ?
+                new ObjectParameter("cedula_estudiante", cedula_estudiante) :
+                new ObjectParameter("cedula_estudiante", typeof(string));
     
-            var id_profesorParameter = id_profesor.HasValue ?
-                new ObjectParameter("id_profesor", id_profesor) :
-                new ObjectParameter("id_profesor", typeof(int));
+            var escuela_procedenciaParameter = escuela_procedencia != null ?
+                new ObjectParameter("escuela_procedencia", escuela_procedencia) :
+                new ObjectParameter("escuela_procedencia", typeof(string));
     
-            var id_tipo_notaParameter = id_tipo_nota.HasValue ?
-                new ObjectParameter("id_tipo_nota", id_tipo_nota) :
-                new ObjectParameter("id_tipo_nota", typeof(int));
+            var fecha_nacimientoParameter = fecha_nacimiento.HasValue ?
+                new ObjectParameter("fecha_nacimiento", fecha_nacimiento) :
+                new ObjectParameter("fecha_nacimiento", typeof(System.DateTime));
     
-            var notaParameter = nota.HasValue ?
-                new ObjectParameter("nota", nota) :
-                new ObjectParameter("nota", typeof(decimal));
+            var telefono_estudianteParameter = telefono_estudiante != null ?
+                new ObjectParameter("telefono_estudiante", telefono_estudiante) :
+                new ObjectParameter("telefono_estudiante", typeof(string));
     
-            var observacionesParameter = observaciones != null ?
-                new ObjectParameter("observaciones", observaciones) :
-                new ObjectParameter("observaciones", typeof(string));
+            var nivelParameter = nivel != null ?
+                new ObjectParameter("nivel", nivel) :
+                new ObjectParameter("nivel", typeof(string));
     
-            var fechaParameter = fecha.HasValue ?
-                new ObjectParameter("fecha", fecha) :
-                new ObjectParameter("fecha", typeof(System.DateTime));
+            var nombre_padreParameter = nombre_padre != null ?
+                new ObjectParameter("nombre_padre", nombre_padre) :
+                new ObjectParameter("nombre_padre", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_insNota", id_estudianteParameter, id_materiaParameter, id_profesorParameter, id_tipo_notaParameter, notaParameter, observacionesParameter, fechaParameter);
+            var cedula_padreParameter = cedula_padre != null ?
+                new ObjectParameter("cedula_padre", cedula_padre) :
+                new ObjectParameter("cedula_padre", typeof(string));
+    
+            var telefono_padreParameter = telefono_padre != null ?
+                new ObjectParameter("telefono_padre", telefono_padre) :
+                new ObjectParameter("telefono_padre", typeof(string));
+    
+            var direccion_padreParameter = direccion_padre != null ?
+                new ObjectParameter("direccion_padre", direccion_padre) :
+                new ObjectParameter("direccion_padre", typeof(string));
+    
+            var parentescoParameter = parentesco != null ?
+                new ObjectParameter("parentesco", parentesco) :
+                new ObjectParameter("parentesco", typeof(string));
+    
+            var fecha_citaParameter = fecha_cita.HasValue ?
+                new ObjectParameter("fecha_cita", fecha_cita) :
+                new ObjectParameter("fecha_cita", typeof(System.DateTime));
+    
+            var hora_citaParameter = hora_cita != null ?
+                new ObjectParameter("hora_cita", hora_cita) :
+                new ObjectParameter("hora_cita", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_insMatricula", nombre_estudianteParameter, cedula_estudianteParameter, escuela_procedenciaParameter, fecha_nacimientoParameter, telefono_estudianteParameter, nivelParameter, nombre_padreParameter, cedula_padreParameter, telefono_padreParameter, direccion_padreParameter, parentescoParameter, fecha_citaParameter, hora_citaParameter);
         }
     
-        public virtual int SP_insNotaEstandarizada(Nullable<int> id_estudiante, Nullable<int> id_materia, Nullable<int> id_profesor, Nullable<decimal> nota, string observaciones, Nullable<System.DateTime> fecha)
+        public virtual int SP_insNoticia(string titulo, string contenido, Nullable<System.DateTime> fecha_publicacion, string imagen_url)
         {
-            var id_estudianteParameter = id_estudiante.HasValue ?
-                new ObjectParameter("id_estudiante", id_estudiante) :
-                new ObjectParameter("id_estudiante", typeof(int));
+            var tituloParameter = titulo != null ?
+                new ObjectParameter("titulo", titulo) :
+                new ObjectParameter("titulo", typeof(string));
     
-            var id_materiaParameter = id_materia.HasValue ?
-                new ObjectParameter("id_materia", id_materia) :
-                new ObjectParameter("id_materia", typeof(int));
+            var contenidoParameter = contenido != null ?
+                new ObjectParameter("contenido", contenido) :
+                new ObjectParameter("contenido", typeof(string));
     
-            var id_profesorParameter = id_profesor.HasValue ?
-                new ObjectParameter("id_profesor", id_profesor) :
-                new ObjectParameter("id_profesor", typeof(int));
+            var fecha_publicacionParameter = fecha_publicacion.HasValue ?
+                new ObjectParameter("fecha_publicacion", fecha_publicacion) :
+                new ObjectParameter("fecha_publicacion", typeof(System.DateTime));
     
-            var notaParameter = nota.HasValue ?
-                new ObjectParameter("nota", nota) :
-                new ObjectParameter("nota", typeof(decimal));
+            var imagen_urlParameter = imagen_url != null ?
+                new ObjectParameter("imagen_url", imagen_url) :
+                new ObjectParameter("imagen_url", typeof(string));
     
-            var observacionesParameter = observaciones != null ?
-                new ObjectParameter("observaciones", observaciones) :
-                new ObjectParameter("observaciones", typeof(string));
-    
-            var fechaParameter = fecha.HasValue ?
-                new ObjectParameter("fecha", fecha) :
-                new ObjectParameter("fecha", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_insNotaEstandarizada", id_estudianteParameter, id_materiaParameter, id_profesorParameter, notaParameter, observacionesParameter, fechaParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_insNoticia", tituloParameter, contenidoParameter, fecha_publicacionParameter, imagen_urlParameter);
         }
     
         public virtual int SP_insPadre(string cedula, string nombre, string telefono)
@@ -342,26 +305,17 @@ namespace AccesoDatos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_insProfesor", cedulaParameter, nombreParameter);
         }
     
-        public virtual int SP_insSeccion(string nombre, Nullable<int> id_ciclo)
+        public virtual int SP_insSeccion(string nombre_seccion, Nullable<int> id_ciclo)
         {
-            var nombreParameter = nombre != null ?
-                new ObjectParameter("nombre", nombre) :
-                new ObjectParameter("nombre", typeof(string));
+            var nombre_seccionParameter = nombre_seccion != null ?
+                new ObjectParameter("nombre_seccion", nombre_seccion) :
+                new ObjectParameter("nombre_seccion", typeof(string));
     
             var id_cicloParameter = id_ciclo.HasValue ?
                 new ObjectParameter("id_ciclo", id_ciclo) :
                 new ObjectParameter("id_ciclo", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_insSeccion", nombreParameter, id_cicloParameter);
-        }
-    
-        public virtual int SP_insTipoNota(string nombre_tipo)
-        {
-            var nombre_tipoParameter = nombre_tipo != null ?
-                new ObjectParameter("nombre_tipo", nombre_tipo) :
-                new ObjectParameter("nombre_tipo", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_insTipoNota", nombre_tipoParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_insSeccion", nombre_seccionParameter, id_cicloParameter);
         }
     
         public virtual int SP_insUsuario(string usuario, string contrasena, string rol, Nullable<int> id_estudiante, Nullable<int> id_profesor)
@@ -389,38 +343,34 @@ namespace AccesoDatos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_insUsuario", usuarioParameter, contrasenaParameter, rolParameter, id_estudianteParameter, id_profesorParameter);
         }
     
-        public virtual int SP_modAsistencia(Nullable<int> id_asistencia, Nullable<int> id_estado, string observaciones)
+        public virtual ObjectResult<SP_loginUsuario_Result> SP_loginUsuario(string usuario, string contrasena)
         {
-            var id_asistenciaParameter = id_asistencia.HasValue ?
-                new ObjectParameter("id_asistencia", id_asistencia) :
-                new ObjectParameter("id_asistencia", typeof(int));
+            var usuarioParameter = usuario != null ?
+                new ObjectParameter("usuario", usuario) :
+                new ObjectParameter("usuario", typeof(string));
     
-            var id_estadoParameter = id_estado.HasValue ?
-                new ObjectParameter("id_estado", id_estado) :
-                new ObjectParameter("id_estado", typeof(int));
+            var contrasenaParameter = contrasena != null ?
+                new ObjectParameter("contrasena", contrasena) :
+                new ObjectParameter("contrasena", typeof(string));
     
-            var observacionesParameter = observaciones != null ?
-                new ObjectParameter("observaciones", observaciones) :
-                new ObjectParameter("observaciones", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_modAsistencia", id_asistenciaParameter, id_estadoParameter, observacionesParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_loginUsuario_Result>("SP_loginUsuario", usuarioParameter, contrasenaParameter);
         }
     
-        public virtual int SP_modCiclo(Nullable<int> id_ciclo, string nombre, string descripcion)
+        public virtual int SP_modCiclo(Nullable<int> id_ciclo, string nombre_ciclo, string descripcion)
         {
             var id_cicloParameter = id_ciclo.HasValue ?
                 new ObjectParameter("id_ciclo", id_ciclo) :
                 new ObjectParameter("id_ciclo", typeof(int));
     
-            var nombreParameter = nombre != null ?
-                new ObjectParameter("nombre", nombre) :
-                new ObjectParameter("nombre", typeof(string));
+            var nombre_cicloParameter = nombre_ciclo != null ?
+                new ObjectParameter("nombre_ciclo", nombre_ciclo) :
+                new ObjectParameter("nombre_ciclo", typeof(string));
     
             var descripcionParameter = descripcion != null ?
                 new ObjectParameter("descripcion", descripcion) :
                 new ObjectParameter("descripcion", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_modCiclo", id_cicloParameter, nombreParameter, descripcionParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_modCiclo", id_cicloParameter, nombre_cicloParameter, descripcionParameter);
         }
     
         public virtual int SP_modEstudiante(Nullable<int> id_estudiante, string cedula, string nombre, string direccion, string telefono, Nullable<int> id_seccion)
@@ -465,25 +415,29 @@ namespace AccesoDatos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_modMateria", id_materiaParameter, nombre_materiaParameter);
         }
     
-        public virtual int SP_modNota(Nullable<int> id_nota, Nullable<decimal> nota, string observaciones, Nullable<System.DateTime> fecha)
+        public virtual int SP_modNoticia(Nullable<int> id_noticia, string titulo, string contenido, Nullable<System.DateTime> fecha_publicacion, string imagen_url)
         {
-            var id_notaParameter = id_nota.HasValue ?
-                new ObjectParameter("id_nota", id_nota) :
-                new ObjectParameter("id_nota", typeof(int));
+            var id_noticiaParameter = id_noticia.HasValue ?
+                new ObjectParameter("id_noticia", id_noticia) :
+                new ObjectParameter("id_noticia", typeof(int));
     
-            var notaParameter = nota.HasValue ?
-                new ObjectParameter("nota", nota) :
-                new ObjectParameter("nota", typeof(decimal));
+            var tituloParameter = titulo != null ?
+                new ObjectParameter("titulo", titulo) :
+                new ObjectParameter("titulo", typeof(string));
     
-            var observacionesParameter = observaciones != null ?
-                new ObjectParameter("observaciones", observaciones) :
-                new ObjectParameter("observaciones", typeof(string));
+            var contenidoParameter = contenido != null ?
+                new ObjectParameter("contenido", contenido) :
+                new ObjectParameter("contenido", typeof(string));
     
-            var fechaParameter = fecha.HasValue ?
-                new ObjectParameter("fecha", fecha) :
-                new ObjectParameter("fecha", typeof(System.DateTime));
+            var fecha_publicacionParameter = fecha_publicacion.HasValue ?
+                new ObjectParameter("fecha_publicacion", fecha_publicacion) :
+                new ObjectParameter("fecha_publicacion", typeof(System.DateTime));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_modNota", id_notaParameter, notaParameter, observacionesParameter, fechaParameter);
+            var imagen_urlParameter = imagen_url != null ?
+                new ObjectParameter("imagen_url", imagen_url) :
+                new ObjectParameter("imagen_url", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_modNoticia", id_noticiaParameter, tituloParameter, contenidoParameter, fecha_publicacionParameter, imagen_urlParameter);
         }
     
         public virtual int SP_modPadre(Nullable<int> id_padre, string cedula, string nombre, string telefono)
@@ -524,21 +478,21 @@ namespace AccesoDatos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_modProfesor", id_profesorParameter, cedulaParameter, nombreParameter);
         }
     
-        public virtual int SP_modSeccion(Nullable<int> id_seccion, string nombre, Nullable<int> id_ciclo)
+        public virtual int SP_modSeccion(Nullable<int> id_seccion, string nombre_seccion, Nullable<int> id_ciclo)
         {
             var id_seccionParameter = id_seccion.HasValue ?
                 new ObjectParameter("id_seccion", id_seccion) :
                 new ObjectParameter("id_seccion", typeof(int));
     
-            var nombreParameter = nombre != null ?
-                new ObjectParameter("nombre", nombre) :
-                new ObjectParameter("nombre", typeof(string));
+            var nombre_seccionParameter = nombre_seccion != null ?
+                new ObjectParameter("nombre_seccion", nombre_seccion) :
+                new ObjectParameter("nombre_seccion", typeof(string));
     
             var id_cicloParameter = id_ciclo.HasValue ?
                 new ObjectParameter("id_ciclo", id_ciclo) :
                 new ObjectParameter("id_ciclo", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_modSeccion", id_seccionParameter, nombreParameter, id_cicloParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_modSeccion", id_seccionParameter, nombre_seccionParameter, id_cicloParameter);
         }
     
         public virtual int SP_modUsuario(Nullable<int> id_usuario, string usuario, string contrasena, string rol, Nullable<bool> activo)
@@ -592,18 +546,30 @@ namespace AccesoDatos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_quitarMateriaDeProfesor", id_profesorParameter, id_materiaParameter);
         }
     
-        public virtual ObjectResult<SP_recAsistenciaPorId_Result> SP_recAsistenciaPorId(Nullable<int> id_asistencia)
+        public virtual int SP_quitarMateriaProfesor(Nullable<int> id_profesor, Nullable<int> id_materia)
         {
-            var id_asistenciaParameter = id_asistencia.HasValue ?
-                new ObjectParameter("id_asistencia", id_asistencia) :
-                new ObjectParameter("id_asistencia", typeof(int));
+            var id_profesorParameter = id_profesor.HasValue ?
+                new ObjectParameter("id_profesor", id_profesor) :
+                new ObjectParameter("id_profesor", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_recAsistenciaPorId_Result>("SP_recAsistenciaPorId", id_asistenciaParameter);
+            var id_materiaParameter = id_materia.HasValue ?
+                new ObjectParameter("id_materia", id_materia) :
+                new ObjectParameter("id_materia", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_quitarMateriaProfesor", id_profesorParameter, id_materiaParameter);
         }
     
-        public virtual ObjectResult<SP_recAsistencias_Result> SP_recAsistencias()
+        public virtual int SP_quitarRelacionPadreEstudiante(Nullable<int> id_padre, Nullable<int> id_estudiante)
         {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_recAsistencias_Result>("SP_recAsistencias");
+            var id_padreParameter = id_padre.HasValue ?
+                new ObjectParameter("id_padre", id_padre) :
+                new ObjectParameter("id_padre", typeof(int));
+    
+            var id_estudianteParameter = id_estudiante.HasValue ?
+                new ObjectParameter("id_estudiante", id_estudiante) :
+                new ObjectParameter("id_estudiante", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_quitarRelacionPadreEstudiante", id_padreParameter, id_estudianteParameter);
         }
     
         public virtual ObjectResult<SP_recCicloPorId_Result> SP_recCicloPorId(Nullable<int> id_ciclo)
@@ -618,11 +584,6 @@ namespace AccesoDatos
         public virtual ObjectResult<SP_recCiclos_Result> SP_recCiclos()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_recCiclos_Result>("SP_recCiclos");
-        }
-    
-        public virtual ObjectResult<SP_recEstadosAsistencia_Result> SP_recEstadosAsistencia()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_recEstadosAsistencia_Result>("SP_recEstadosAsistencia");
         }
     
         public virtual ObjectResult<SP_recEstudiantePorCedula_Result> SP_recEstudiantePorCedula(string cedula)
@@ -694,59 +655,18 @@ namespace AccesoDatos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_recMateriasPorProfesor_Result>("SP_recMateriasPorProfesor", id_profesorParameter);
         }
     
-        public virtual ObjectResult<SP_recNotaPorId_Result> SP_recNotaPorId(Nullable<int> id_nota)
+        public virtual ObjectResult<SP_recNoticiaPorId_Result> SP_recNoticiaPorId(Nullable<int> id_noticia)
         {
-            var id_notaParameter = id_nota.HasValue ?
-                new ObjectParameter("id_nota", id_nota) :
-                new ObjectParameter("id_nota", typeof(int));
+            var id_noticiaParameter = id_noticia.HasValue ?
+                new ObjectParameter("id_noticia", id_noticia) :
+                new ObjectParameter("id_noticia", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_recNotaPorId_Result>("SP_recNotaPorId", id_notaParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_recNoticiaPorId_Result>("SP_recNoticiaPorId", id_noticiaParameter);
         }
     
-        public virtual ObjectResult<SP_recNotas_Result> SP_recNotas()
+        public virtual ObjectResult<SP_recNoticias_Result> SP_recNoticias()
         {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_recNotas_Result>("SP_recNotas");
-        }
-    
-        public virtual ObjectResult<SP_recNotasEstandarizadas_Result> SP_recNotasEstandarizadas()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_recNotasEstandarizadas_Result>("SP_recNotasEstandarizadas");
-        }
-    
-        public virtual ObjectResult<SP_recNotasEstandarizadasPorEstudiante_Result> SP_recNotasEstandarizadasPorEstudiante(Nullable<int> id_estudiante)
-        {
-            var id_estudianteParameter = id_estudiante.HasValue ?
-                new ObjectParameter("id_estudiante", id_estudiante) :
-                new ObjectParameter("id_estudiante", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_recNotasEstandarizadasPorEstudiante_Result>("SP_recNotasEstandarizadasPorEstudiante", id_estudianteParameter);
-        }
-    
-        public virtual ObjectResult<SP_recNotasPorEstudiante_Result> SP_recNotasPorEstudiante(Nullable<int> id_estudiante)
-        {
-            var id_estudianteParameter = id_estudiante.HasValue ?
-                new ObjectParameter("id_estudiante", id_estudiante) :
-                new ObjectParameter("id_estudiante", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_recNotasPorEstudiante_Result>("SP_recNotasPorEstudiante", id_estudianteParameter);
-        }
-    
-        public virtual int SP_recNotasPorMateria(Nullable<int> id_materia)
-        {
-            var id_materiaParameter = id_materia.HasValue ?
-                new ObjectParameter("id_materia", id_materia) :
-                new ObjectParameter("id_materia", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_recNotasPorMateria", id_materiaParameter);
-        }
-    
-        public virtual int SP_recNotasPorProfesor(Nullable<int> id_profesor)
-        {
-            var id_profesorParameter = id_profesor.HasValue ?
-                new ObjectParameter("id_profesor", id_profesor) :
-                new ObjectParameter("id_profesor", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_recNotasPorProfesor", id_profesorParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_recNoticias_Result>("SP_recNoticias");
         }
     
         public virtual ObjectResult<SP_recPadrePorCedula_Result> SP_recPadrePorCedula(string cedula)
@@ -800,15 +720,6 @@ namespace AccesoDatos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_recProfesoresPorMateria_Result>("SP_recProfesoresPorMateria", id_materiaParameter);
         }
     
-        public virtual ObjectResult<SP_recProfesorPorCedula_Result> SP_recProfesorPorCedula(string cedula)
-        {
-            var cedulaParameter = cedula != null ?
-                new ObjectParameter("cedula", cedula) :
-                new ObjectParameter("cedula", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_recProfesorPorCedula_Result>("SP_recProfesorPorCedula", cedulaParameter);
-        }
-    
         public virtual ObjectResult<SP_recProfesorPorId_Result> SP_recProfesorPorId(Nullable<int> id_profesor)
         {
             var id_profesorParameter = id_profesor.HasValue ?
@@ -855,38 +766,17 @@ namespace AccesoDatos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_recUsuarios_Result>("SP_recUsuarios");
         }
     
-        public virtual int SP_reporteAsistenciaPorSeccion(Nullable<int> id_seccion)
+        public virtual int SP_relPadreEstudiante(Nullable<int> id_padre, Nullable<int> id_estudiante)
         {
-            var id_seccionParameter = id_seccion.HasValue ?
-                new ObjectParameter("id_seccion", id_seccion) :
-                new ObjectParameter("id_seccion", typeof(int));
+            var id_padreParameter = id_padre.HasValue ?
+                new ObjectParameter("id_padre", id_padre) :
+                new ObjectParameter("id_padre", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_reporteAsistenciaPorSeccion", id_seccionParameter);
-        }
+            var id_estudianteParameter = id_estudiante.HasValue ?
+                new ObjectParameter("id_estudiante", id_estudiante) :
+                new ObjectParameter("id_estudiante", typeof(int));
     
-        public virtual ObjectResult<SP_reporteMensualAsistencia_Result> SP_reporteMensualAsistencia(Nullable<int> anio, Nullable<int> mes, Nullable<int> idProfesor, Nullable<int> idSeccion, Nullable<int> idMateria)
-        {
-            var anioParameter = anio.HasValue ?
-                new ObjectParameter("anio", anio) :
-                new ObjectParameter("anio", typeof(int));
-    
-            var mesParameter = mes.HasValue ?
-                new ObjectParameter("mes", mes) :
-                new ObjectParameter("mes", typeof(int));
-    
-            var idProfesorParameter = idProfesor.HasValue ?
-                new ObjectParameter("idProfesor", idProfesor) :
-                new ObjectParameter("idProfesor", typeof(int));
-    
-            var idSeccionParameter = idSeccion.HasValue ?
-                new ObjectParameter("idSeccion", idSeccion) :
-                new ObjectParameter("idSeccion", typeof(int));
-    
-            var idMateriaParameter = idMateria.HasValue ?
-                new ObjectParameter("idMateria", idMateria) :
-                new ObjectParameter("idMateria", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_reporteMensualAsistencia_Result>("SP_reporteMensualAsistencia", anioParameter, mesParameter, idProfesorParameter, idSeccionParameter, idMateriaParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_relPadreEstudiante", id_padreParameter, id_estudianteParameter);
         }
     }
 }

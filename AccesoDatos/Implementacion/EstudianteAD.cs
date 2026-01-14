@@ -1,4 +1,5 @@
-﻿using AccesoDatos.Interfaces;
+﻿
+using AccesoDatos.Interfaces;
 using Entidades;
 using System;
 using System.Collections.Generic;
@@ -182,4 +183,3 @@ namespace AccesoDatos.Implementacion
     }
 
 }
-

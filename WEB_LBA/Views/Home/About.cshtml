@@ -1,9 +1,118 @@
 ﻿@{
-    ViewBag.Title = "About";
+    ViewBag.Title = "Sobre el Liceo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<main aria-labelledby="title">
-    <h2 id="title">@ViewBag.Title.</h2>
-    <h3>@ViewBag.Message</h3>
 
-    <p>Use this area to provide additional information.</p>
+<link rel="stylesheet" href="~/Content/About.css?v=5" />
+
+<!-- Fondo -->
+<div class="page-bg" aria-hidden="true"></div>
+
+<main class="about-page" role="main" aria-label="Sección sobre el liceo">
+    <header class="about-hero glass">
+        <h1 class="page-title">Sobre nosotros</h1>
+        <p class="page-subtitle">
+            Educación integral, inclusión y excelencia al servicio de nuestra comunidad.
+        </p>
+        <span class="title-accent" aria-hidden="true"></span>
+    </header>
+
+    <section class="card-container">
+        <!-- Historia -->
+        <article class="card is-left glass" tabindex="0">
+            <figure class="card-media">
+                <img loading="lazy" src="~/Content/imagenesWeb/historia.jpg"
+                     alt="Momentos históricos del Liceo" class="card-img" />
+            </figure>
+            <div class="card-text">
+                <h2 class="card-title">Nuestra historia</h2>
+                <p>
+                    Fundado con la misión de brindar educación de calidad a la comunidad de Boca de Arenal,
+                    el liceo evolucionó con metodologías activas y espacios de aprendizaje modernos,
+                    manteniendo el enfoque humano y académico.
+                </p>
+            </div>
+        </article>
+
+        <!-- Misión -->
+        <article class="card is-right glass" tabindex="0">
+            <figure class="card-media">
+                <img loading="lazy" src="~/Content/imagenesWeb/mision.jpg"
+                     alt="Estudiantes trabajando en equipo" class="card-img" />
+            </figure>
+            <div class="card-text">
+                <h2 class="card-title">Nuestra misión</h2>
+                <p>
+                    Formar ciudadanos íntegros, responsables y comprometidos con su comunidad, promoviendo valores,
+                    pensamiento crítico y aprendizaje significativo a lo largo de la vida.
+                </p>
+            </div>
+        </article>
+
+        <!-- Visión -->
+        <article class="card is-left glass" tabindex="0">
+            <figure class="card-media">
+                <img loading="lazy" src="~/Content/imagenesWeb/vision.jpg"
+                     alt="Proyección y futuro del Liceo" class="card-img" />
+            </figure>
+            <div class="card-text">
+                <h2 class="card-title">Nuestra visión</h2>
+                <p>
+                    Ser una institución reconocida a nivel nacional por su calidad académica, innovación pedagógica
+                    y acompañamiento integral al estudiante.
+                </p>
+            </div>
+        </article>
+
+        <!-- Docentes -->
+        <article class="card is-right glass" tabindex="0">
+            <figure class="card-media">
+                <img loading="lazy" src="~/Content/imagenesWeb/docentes.jpg"
+                     alt="Equipo docente del Liceo" class="card-img" />
+            </figure>
+            <div class="card-text">
+                <h2 class="card-title">Nuestros docentes</h2>
+                <p>
+                    Un equipo profesional, actualizado y cercano que impulsa metodologías activas y evaluación formativa.
+                </p>
+            </div>
+        </article>
+
+        <!-- Instalaciones -->
+        <article class="card is-left glass" tabindex="0">
+            <figure class="card-media">
+                <img loading="lazy" src="~/Content/imagenesWeb/instalaciones.jpg"
+                     alt="Aulas, laboratorios, biblioteca y áreas recreativas" class="card-img" />
+            </figure>
+            <div class="card-text">
+                <h2 class="card-title">Instalaciones y características</h2>
+                <p>
+                    Aulas equipadas, laboratorios, biblioteca, conectividad y espacios recreativos que favorecen
+                    proyectos STEAM y actividades culturales.
+                </p>
+            </div>
+        </article>
+    </section>
 </main>
+
+<!-- Script para animar la línea -->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const accent = document.querySelector('.title-accent');
+  if (!accent) return;
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        accent.classList.remove('in-view');
+        void accent.offsetWidth; // reinicia animación
+        accent.classList.add('in-view');
+      } else {
+        accent.classList.remove('in-view');
+      }
+    });
+  }, { threshold: 0.6 });
+
+  io.observe(accent);
+});
+</script>

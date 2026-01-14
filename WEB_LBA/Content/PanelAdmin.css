@@ -1,0 +1,110 @@
+﻿/* =========================================================
+   Variables y fondo (imagen opcional + color de respaldo)
+========================================================= */
+:root {
+    --ink: #0b1324;
+    --muted: #334e68;
+    --accent: #000000; /* negro */
+    --accent-2: #cccccc; /* gris suave */
+    --glass-bg: rgba(255,255,255,.88);
+    --glass-stroke: rgba(255,255,255,.55);
+    --shadow-lg: 0 22px 48px rgba(16,42,67,.18);
+    --shadow-md: 0 12px 28px rgba(16,42,67,.14);
+    --radius-xl: 22px;
+    --bg-solid: #0c2f57; /* respaldo si no hay imagen */
+}
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    color: var(--ink);
+    background-image: url('/Content/imagenesWeb/bgg.png');
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+/* Contenedor principal */
+.panel-container {
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.93);
+    border-radius: 25px;
+    box-shadow: var(--shadow-lg);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+}
+
+/* Título principal */
+.page-title {
+    font-weight: 800;
+    font-size: 40px;
+    text-align: center;
+    color: var(--accent);
+    letter-spacing: 0.2px;
+    text-transform: uppercase;
+}
+
+/* Tarjetas de opciones */
+.card-opcion {
+    background: var(--glass-bg);
+    border-radius: 20px;
+    box-shadow: var(--shadow-md);
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+    padding: 20px;
+    text-align: center;
+    height: 180px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: 2px solid var(--glass-stroke);
+}
+
+    .card-opcion:hover {
+        transform: scale(1.1);
+        background-color: var(--accent-2);
+        box-shadow: 0 0 20px rgba(14,165,233,.25);
+    }
+
+    .card-opcion h5 {
+        font-size: 18px;
+        font-weight: bold;
+        color: var(--ink);
+        margin-top: 15px;
+    }
+
+    .card-opcion i {
+        font-size: 36px;
+        color: var(--accent);
+        transition: transform 0.3s ease;
+    }
+
+    /* Efecto de hover en los iconos */
+    .card-opcion:hover i {
+        transform: rotate(15deg);
+    }
+
+/* Columna de tarjetas */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .card-opcion {
+        height: 160px;
+        padding: 15px;
+    }
+
+        .card-opcion h5 {
+            font-size: 16px;
+        }
+
+        .card-opcion i {
+            font-size: 30px;
+        }
+}

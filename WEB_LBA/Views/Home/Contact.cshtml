@@ -1,19 +1,73 @@
 ﻿@{
-    ViewBag.Title = "Contact";
+    ViewBag.Title = "Contacto";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<main aria-labelledby="title">
-    <h2 id="title">@ViewBag.Title.</h2>
-    <h3>@ViewBag.Message</h3>
 
-    <address>
-        One Microsoft Way<br />
-        Redmond, WA 98052-6399<br />
-        <abbr title="Phone">P:</abbr>
-        425.555.0100
-    </address>
+<link rel="stylesheet" href="~/Content/Contact.css?v=2" />
 
-    <address>
-        <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-        <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-    </address>
+<!-- Fondo común -->
+<div class="page-bg" aria-hidden="true"></div>
+
+<main class="contact-page" role="main" aria-label="Información de contacto">
+    <!-- Encabezado -->
+    <header class="contact-hero glass">
+        <h1 class="page-title">Contáctenos</h1>
+        <p class="page-subtitle">
+            Estamos para ayudarle. Escríbanos, llámenos o visítenos en Boca de Arenal, San Carlos.
+        </p>
+        <span class="title-accent" aria-hidden="true"></span>
+    </header>
+
+    <!-- Datos + acción -->
+    <section class="contact-grid">
+        <article class="info-card glass">
+            <h2 class="card-title">Información</h2>
+            <ul class="info-list">
+                <li><b>Dirección:</b> Boca de Arenal, San Carlos</li>
+                <li><b>Teléfono:</b> <a href="tel:+50684800101">+506 8480 0101</a></li>
+                <li><b>Correo:</b> <a href="mailto:liceoba03@gmail.com">liceoba03@gmail.com</a></li>
+            </ul>
+
+            <div class="contact-actions">
+                <a class="btn btn-whatsapp"
+                   href="https://wa.me/50684800101?text=Hola%2C%20me%20gustar%C3%ADa%20obtener%20informaci%C3%B3n%20sobre%20el%20colegio."
+                   target="_blank" rel="noopener" aria-label="Abrir WhatsApp del colegio">
+                    <i class="fa fa-whatsapp" aria-hidden="true"></i>
+                    Contactar por WhatsApp
+                </a>
+            </div>
+        </article>
+
+        <article class="map-card glass" aria-label="Mapa de ubicación">
+            <div class="map-wrapper">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3937.500400364318!2d-84.3705!3d10.6369!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8fa00b2f70d92a8b%3A0x3ffbdb0d5baf420c!2sBoca%20de%20Arenal%2C%20San%20Carlos!5e0!3m2!1ses!2scr!4v1721573360000"
+                        style="border:0;" allowfullscreen loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"
+                        title="Mapa de Boca de Arenal">
+                </iframe>
+            </div>
+        </article>
+    </section>
 </main>
+
+<!-- Dispara la animación de la línea al entrar en viewport -->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const accent = document.querySelector('.title-accent');
+  if (!accent) return;
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        accent.classList.remove('in-view');
+        void accent.offsetWidth;   // reinicia la animación
+        accent.classList.add('in-view');
+      } else {
+        accent.classList.remove('in-view');
+      }
+    });
+  }, { threshold: 0.6 });
+
+  io.observe(accent);
+});
+</script>

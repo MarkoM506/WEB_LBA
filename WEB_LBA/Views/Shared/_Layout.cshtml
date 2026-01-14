@@ -2,55 +2,55 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>@ViewBag.Title - LICEO BOCA DE ARENAL</title>
-
-    @Styles.Render("~/Content/css")
-    <!-- Bootstrap 5.3 CSS CDN -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    @RenderSection("styles", required: false)
 </head>
 <body>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            @Html.ActionLink("LBA", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
+            @Html.ActionLink("LBA", "Index", "Home", null, new { @class = "navbar-brand" })
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
-                <ul class="navbar-nav flex-grow-1">
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
                     <li class="nav-item">@Html.ActionLink("Inicio", "Index", "Home", null, new { @class = "nav-link" })</li>
                     <li class="nav-item">@Html.ActionLink("Acerca de", "About", "Home", null, new { @class = "nav-link" })</li>
                     <li class="nav-item">@Html.ActionLink("Contacto", "Contact", "Home", null, new { @class = "nav-link" })</li>
-                    <li class="nav-item">@Html.ActionLink("Ciclos", "ListCiclos", "Ciclo", null, new { @class = "nav-link" })</li>
-                    <li class="nav-item">@Html.ActionLink("Secciones", "ListSecciones", "Seccion", null, new { @class = "nav-link" })</li>
-                    <li class="nav-item">@Html.ActionLink("Estudiantes", "ListEstudiantes", "Estudiante", null, new { @class = "nav-link" })</li>
-                    <li class="nav-item">@Html.ActionLink("Profesores", "ListProfesores", "Profesor", null, new { @class = "nav-link" })</li>
-                    <li class="nav-item">@Html.ActionLink("Materias", "ListMaterias", "Materia", null, new { @class = "nav-link" })</li>
-                    <li class="nav-item">@Html.ActionLink("Padres", "ListPadres", "Padre", null, new { @class = "nav-link" })</li>
-                    <li class="nav-item">
-                        @Html.ActionLink("Consultar Asistencias", "ReporteMensual", "Asistencia", new { id_seccion = 0 }, htmlAttributes: new { @class = "nav-link" })
-                    </li>
+                    <li class="nav-item">@Html.ActionLink("Noticias", "Noticias", "Home", null, new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("Matricula", "Index", "Matricula", null, new { @class = "nav-link" })</li>
+
+                    @if (Session["rol"] != null)
+                    {
+                        if (Session["rol"].ToString() == "administrativo")
+                        {
+                            <li class="nav-item">@Html.ActionLink("Usuarios", "ListUsuarios", "Usuario", null, new { @class = "nav-link" })</li>
+                            <li class="nav-item">@Html.ActionLink("Cerrar Sesión", "Logout", "Usuario", null, new { @class = "nav-link text-danger" })</li>
+                        }
+                        else if (Session["rol"].ToString() == "estudiante")
+                        {
+                            <li class="nav-item">@Html.ActionLink("Cerrar Sesión", "Logout", "Usuario", null, new { @class = "nav-link text-danger" })</li>
+                        }
+                    }
                 </ul>
             </div>
         </div>
     </nav>
 
-    <div class="container body-content mt-4">
+    <div class="container-fluid p-0">
         @RenderBody()
-        <hr />
-        <footer class="text-center">
-            <p>&copy; @DateTime.Now.Year - TODOS LOS DERECHOS RESERVADOS LBA.COM</p>
-        </footer>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/jqueryval")  <!-- Aquí el script para validar -->
-    @Scripts.Render("~/bundles/bootstrap")
-    <!-- Bootstrap 5.3 JS Bundle CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <footer class="text-center text-white bg-dark py-3 mt-5">
+        <p>&copy; @DateTime.Now.Year - TODOS LOS DERECHOS RESERVADOS LBA.COM</p>
+    </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>
